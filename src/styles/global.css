@@ -120,6 +120,8 @@ p { margin: 0 0 1em; }
 .nav-links a:hover { color: var(--text); }
 .theme-btn { margin-left: 8px; width: 40px; height: 40px; display: grid; place-items: center; border-radius: var(--r-1); border: 1px solid var(--line); background: transparent; color: var(--text-2); transition: color 0.15s, border-color 0.15s; }
 .theme-btn:hover { color: var(--text); border-color: var(--line-strong); }
+.nav-links a.icon-link { padding: 0; margin-left: 6px; color: var(--text-2); }
+.nav-links a.icon-link:hover { color: var(--text); }
 .theme-btn .moon { display: none; }
 :root[data-theme='dark'] .theme-btn .sun { display: none; }
 :root[data-theme='dark'] .theme-btn .moon { display: block; }
