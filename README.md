@@ -27,7 +27,13 @@
 - **Do vs Don’t.** Side-by-side interface examples.
 - **Real-world examples.** How products like Google, Netflix and Duolingo use it.
 - **How to apply it.** A practical checklist for your next design.
+- **Say it in a design review.** An example of how to use the law to explain a design decision.
 - **Where it comes from.** Who discovered it, when, and a link to the source.
+
+Beyond the lessons:
+
+- **Find the flaws.** A game with six realistic screens (sign-up, checkout, pricing, mobile, onboarding, a dashboard), each hiding four UX mistakes. Spot them, then learn the law behind each one.
+- **Browse by UI pattern.** Designing a form, a menu or a pricing page? See which laws matter most for that screen, and why.
 
 ## The 30 laws
 

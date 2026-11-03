@@ -3,7 +3,6 @@ import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import LawCard from '../components/LawCard.astro';
 import { CATEGORIES } from '../content.config';
-import { PATTERNS } from '../data/patterns';
 import { LEVELS, TOTAL_FLAWS } from '../components/flaws/levels';
 
 const laws = (await getCollection('laws')).sort((a, b) => a.data.order - b.data.order);
@@ -49,16 +48,6 @@ const firstLesson = laws.find((l) => l.id === 'hicks-law') ?? laws[0];
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
       </span>
     </a>
-  </section>
-
-  <section class="wrap home-patterns" aria-labelledby="home-patterns-title">
-    <div class="home-patterns-head">
-      <h2 id="home-patterns-title">Designing something specific?</h2>
-      <a href="/patterns">All patterns</a>
-    </div>
-    <div class="chips">
-      {PATTERNS.map((p) => <a class="chip" href={`/patterns/${p.id}`}>{p.title}</a>)}
-    </div>
   </section>
 
   <section class="wrap index" id="laws">

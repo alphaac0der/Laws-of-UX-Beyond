@@ -25,7 +25,7 @@ export default function FindTheFlaws(props: { laws: Record<string, string> }) {
   const [hint, setHint] = useState('');
   const [toast, setToast] = useState<{ text: string; kind: 'found' | 'fine' | 'again'; n: number } | null>(null);
   const [latest, setLatest] = useState('');
-  const toastTimer = useRef<number>();
+  const toastTimer = useRef<number | undefined>(undefined);
   const panelRef = useRef<HTMLDivElement>(null);
 
   const level = LEVELS[index];
@@ -78,7 +78,7 @@ export default function FindTheFlaws(props: { laws: Record<string, string> }) {
     hit: (id) => {
       const flaw = level.flaws.find((f) => f.id === id)!;
       if (p.found.includes(id) || p.revealed) {
-        flash(`Already spotted: ${props.laws[flaw.law]}`, 'again');
+        flash(`${p.found.includes(id) ? 'Already spotted' : 'Revealed'}: ${props.laws[flaw.law]}`, 'again');
         return;
       }
       update({ found: [...p.found, id] });
@@ -87,8 +87,8 @@ export default function FindTheFlaws(props: { laws: Record<string, string> }) {
       flash(`Found it: ${props.laws[flaw.law]}`, 'found');
     },
     miss: (note) => {
-      if (over) return;
-      update({ misses: p.misses + 1 });
+      // Once the screen is finished, still explain the element, but don't count a miss.
+      if (!over) update({ misses: p.misses + 1 });
       flash(note ?? 'Looks fine. Nothing wrong here.', 'fine');
     },
   };
@@ -127,10 +127,13 @@ export default function FindTheFlaws(props: { laws: Record<string, string> }) {
             <level.Screen />
           </SpotContext.Provider>
           {toast && (
-            <div class={`fx-toast ${toast.kind}`} key={toast.n}>
+            <div class={`fx-toast ${toast.kind}`} key={toast.n} aria-hidden="true">
               {toast.text}
             </div>
           )}
+          <p class="sr-only" aria-live="polite">
+            {toast?.text ?? ''}
+          </p>
         </div>
 
         <div class="fx-panel" ref={panelRef}>

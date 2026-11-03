@@ -72,7 +72,7 @@ export const PATTERNS: Pattern[] = [
       { slug: 'fitts-law', why: 'Important buttons should be big and close to where the user’s pointer or thumb already is.' },
       { slug: 'von-restorff-effect', why: 'Make one primary action stand out per screen. If everything is bold, nothing is.' },
       { slug: 'law-of-similarity', why: 'Buttons that do similar things should look alike, and links should look different from buttons.' },
-      { slug: 'jakobs-law', why: 'Primary on the right (or full width on mobile) and Cancel as a quiet secondary are what people expect.' },
+      { slug: 'jakobs-law', why: 'Follow the button order people know from their platform, and keep Cancel as a quiet secondary action.' },
       { slug: 'selective-attention', why: 'A button styled like an ad or banner gets ignored. Keep actions where people are working.' },
     ],
   },

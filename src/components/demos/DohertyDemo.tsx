@@ -14,7 +14,7 @@ export default function DohertyDemo() {
   const [delay, setDelay] = useState(400);
   const [busy, setBusy] = useState(false);
   const [count, setCount] = useState(0);
-  const timer = useRef<number>();
+  const timer = useRef<number | undefined>(undefined);
 
   function add() {
     if (busy) return;

@@ -379,13 +379,6 @@ p { margin: 0 0 1em; }
 .game-inline { display: inline-block; margin-top: 24px; padding: 10px 14px; border-radius: var(--r-1); background: var(--surface); border: 1px solid var(--line); font-size: 15px; color: var(--text-2); text-decoration: none; transition: border-color 0.15s, color 0.15s; }
 .game-inline b { color: var(--text); font-weight: 600; }
 .game-inline:hover { border-color: var(--line-strong); color: var(--text); }
-.home-patterns { padding-top: 40px; }
-.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
-.chip { display: inline-flex; align-items: center; height: 36px; padding: 0 14px; border-radius: 999px; border: 1px solid var(--line); font-size: 14px; font-weight: 500; color: var(--text-2); text-decoration: none; transition: color 0.15s, border-color 0.15s, background 0.15s; }
-.chip:hover { color: var(--text); border-color: var(--line-strong); background: var(--surface); }
-.home-patterns-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
-.home-patterns-head h2 { font-size: 18px; letter-spacing: -0.015em; }
-.home-patterns-head a { font-size: 14px; color: var(--text-2); }
 
 
 /* ============ Footer ============ */
