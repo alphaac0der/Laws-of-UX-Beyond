@@ -1,0 +1,164 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import { PATTERNS } from '../data/patterns';
+import { assertPatternSlugs, getChecklist } from '../data/checklists';
+
+const laws = (await getCollection('laws')).sort((a, b) => a.data.order - b.data.order);
+assertPatternSlugs(laws);
+const groups = laws.map((law) => ({
+  law,
+  items: getChecklist(law),
+  patterns: PATTERNS.filter((p) => p.laws.some((l) => l.slug === law.id)).map((p) => ({
+    id: p.id,
+    why: p.laws.find((l) => l.slug === law.id)!.why,
+  })),
+}));
+const total = groups.reduce((n, g) => n + g.items.length, 0);
+---
+
+<Base
+  title="Design review checklist · Laws of UX Beyond"
+  description="A printable checklist built from all 30 laws of UX. Filter it by the screen you're designing and tick through it before you hand off."
+>
+  <header class="page-hero">
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href="/">Home</a><span aria-hidden="true">/</span><span>Checklist</span>
+      </nav>
+      <h1>Design review checklist</h1>
+      <p class="lead">
+        Run through this before a critique or a handoff. Pick the kind of screen you’re reviewing to keep only the
+        checks that apply to it. Your ticks are saved in this browser.
+      </p>
+    </div>
+  </header>
+
+  <section class="wrap cl">
+    <div class="index-bar cl-bar">
+      <div class="tabs" role="tablist" aria-label="Filter by UI pattern">
+        <button class="tab" role="tab" type="button" data-pattern="all" aria-selected="true">
+          Everything<sup>{total}</sup>
+        </button>
+        {
+          PATTERNS.map((p) => (
+            <button class="tab" role="tab" type="button" data-pattern={p.id} aria-selected="false">
+              {p.title}
+            </button>
+          ))
+        }
+      </div>
+    </div>
+
+    <div class="cl-tools">
+      <p class="cl-count" aria-live="polite"><b id="cl-done">0</b> of <span id="cl-total">{total}</span> checked</p>
+      <div class="cl-actions">
+        <button class="btn" type="button" id="cl-clear">Clear ticks</button>
+        <button class="btn" type="button" id="cl-print">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9V3h12v6M6 18H4a1 1 0 0 1-1-1v-6a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1h-2"></path><path d="M6 14h12v7H6z"></path></svg>
+          Print
+        </button>
+      </div>
+    </div>
+    <p class="cl-print-title" id="cl-print-title">Design review checklist · Laws of UX Beyond</p>
+
+    <div class="cl-groups">
+      {
+        groups.map(({ law, items, patterns }) => (
+          <section class="cl-group" data-patterns={patterns.map((p) => p.id).join(' ')}>
+            <header class="cl-head">
+              <h2>
+                <a href={`/laws/${law.id}`}>{law.data.title}</a>
+              </h2>
+              <small>{law.data.category}</small>
+            </header>
+            {patterns.map((p) => (
+              <p class="cl-why" data-for={p.id} hidden>
+                {p.why}
+              </p>
+            ))}
+            <ul>
+              {items.map((item, i) => (
+                <li>
+                  <label>
+                    <input type="checkbox" data-key={`${law.id}:${i}`} />
+                    <span set:html={item} />
+                  </label>
+                </li>
+              ))}
+            </ul>
+            {law.data.critique && (
+              <details class="cl-say">
+                <summary>How to explain it in a review</summary>
+                <p>“{law.data.critique}”</p>
+              </details>
+            )}
+          </section>
+        ))
+      }
+    </div>
+  </section>
+</Base>
+
+<script>
+  const KEY = 'review-checklist';
+  const tabs = [...document.querySelectorAll<HTMLButtonElement>('[data-pattern]')];
+  const groups = [...document.querySelectorAll<HTMLElement>('.cl-group')];
+  const boxes = [...document.querySelectorAll<HTMLInputElement>('.cl-group input[type="checkbox"]')];
+  const doneOut = document.getElementById('cl-done')!;
+  const totalOut = document.getElementById('cl-total')!;
+  const printTitle = document.getElementById('cl-print-title')!;
+  let pattern = 'all';
+
+  let saved = new Set<string>();
+  try {
+    saved = new Set(JSON.parse(localStorage.getItem(KEY) ?? '[]'));
+  } catch {}
+  boxes.forEach((b) => (b.checked = saved.has(b.dataset.key!)));
+
+  const save = () => {
+    try {
+      localStorage.setItem(KEY, JSON.stringify(boxes.filter((b) => b.checked).map((b) => b.dataset.key)));
+    } catch {}
+  };
+
+  function count() {
+    const visible = boxes.filter((b) => !b.closest<HTMLElement>('.cl-group')!.hidden);
+    doneOut.textContent = String(visible.filter((b) => b.checked).length);
+    totalOut.textContent = String(visible.length);
+  }
+
+  function apply(next: string) {
+    pattern = tabs.some((t) => t.dataset.pattern === next) ? next : 'all';
+    tabs.forEach((t) => t.setAttribute('aria-selected', String(t.dataset.pattern === pattern)));
+    for (const g of groups) {
+      g.hidden = pattern !== 'all' && !g.dataset.patterns!.split(' ').includes(pattern);
+      g.querySelectorAll<HTMLElement>('.cl-why').forEach((w) => (w.hidden = w.dataset.for !== pattern));
+    }
+    const tab = tabs.find((t) => t.dataset.pattern === pattern)!;
+    printTitle.textContent =
+      pattern === 'all' ? 'Design review checklist' : `Design review checklist: ${tab.textContent!.trim()}`;
+    const url = new URL(location.href);
+    if (pattern === 'all') url.searchParams.delete('pattern');
+    else url.searchParams.set('pattern', pattern);
+    history.replaceState(null, '', url);
+    count();
+  }
+
+  tabs.forEach((t) => t.addEventListener('click', () => apply(t.dataset.pattern!)));
+  boxes.forEach((b) =>
+    b.addEventListener('change', () => {
+      save();
+      count();
+    }),
+  );
+  document.getElementById('cl-clear')!.addEventListener('click', () => {
+    boxes.forEach((b) => (b.checked = false));
+    save();
+    count();
+  });
+  document.getElementById('cl-print')!.addEventListener('click', () => print());
+
+  apply(new URLSearchParams(location.search).get('pattern') ?? 'all');
+  tabs.find((t) => t.dataset.pattern === pattern)?.scrollIntoView({ block: 'nearest', inline: 'center' });
+</script>

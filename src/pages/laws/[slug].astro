@@ -3,6 +3,7 @@ import { getCollection, render, type CollectionEntry } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import Section from '../../components/Section.astro';
 import LawDiagram from '../../components/LawDiagram.astro';
+import { patternsForLaw } from '../../data/patterns';
 
 export async function getStaticPaths() {
   const laws = (await getCollection('laws')).sort((a, b) => a.data.order - b.data.order);
@@ -21,6 +22,7 @@ interface Props {
 const { law, prev, next, all } = Astro.props;
 const { title, category, oneLiner, takeaway, critique, origin, related, complete, order } = law.data;
 const { Content } = await render(law);
+const usedIn = patternsForLaw(law.id);
 const relatedLaws = related
   .map((id) => all.find((l) => l.id === id))
   .filter((l): l is CollectionEntry<'laws'> => Boolean(l));
@@ -57,6 +59,21 @@ const toc = [
           <div><dt>Law</dt><dd>{String(order).padStart(2, '0')} of {all.length}</dd></div>
           <div><dt>Category</dt><dd>{category}</dd></div>
           {origin && <div><dt>Discovered</dt><dd>{origin.year}</dd></div>}
+          {
+            usedIn.length > 0 && (
+              <div>
+                <dt>Shows up in</dt>
+                <dd>
+                  {usedIn.map((p, i) => (
+                    <>
+                      {i > 0 && ', '}
+                      <a href={`/patterns/${p.id}`}>{p.title}</a>
+                    </>
+                  ))}
+                </dd>
+              </div>
+            )
+          }
         </dl>
       </div>
       <div class="law-art"><LawDiagram slug={law.id} /></div>

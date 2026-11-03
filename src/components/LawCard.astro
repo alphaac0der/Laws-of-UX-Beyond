@@ -2,19 +2,21 @@
 import type { CollectionEntry } from 'astro:content';
 import LawDiagram from './LawDiagram.astro';
 import { KEYWORDS } from '../data/keywords';
+import { patternsForLaw } from '../data/patterns';
 
 interface Props {
   law: CollectionEntry<'laws'>;
 }
 const { law } = Astro.props;
 const { title, category, oneLiner, order } = law.data;
+const patterns = patternsForLaw(law.id).map((p) => p.title).join(' ');
 ---
 
 <a
   class="tile"
   href={`/laws/${law.id}`}
   data-cat={category}
-  data-search={`${title} ${oneLiner} ${category} ${KEYWORDS[law.id] ?? ''}`.toLowerCase()}
+  data-search={`${title} ${oneLiner} ${category} ${KEYWORDS[law.id] ?? ''} ${patterns}`.toLowerCase()}
 >
   <div class="tile-art"><LawDiagram slug={law.id} /></div>
   <div class="tile-body">

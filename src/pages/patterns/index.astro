@@ -1,0 +1,53 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import LawDiagram from '../../components/LawDiagram.astro';
+import { PATTERNS } from '../../data/patterns';
+import { assertPatternSlugs } from '../../data/checklists';
+
+const laws = await getCollection('laws');
+assertPatternSlugs(laws);
+const titleOf = (slug: string) => laws.find((l) => l.id === slug)!.data.title;
+---
+
+<Base
+  title="Browse by UI pattern · Laws of UX Beyond"
+  description="Designing a form, a menu or a pricing page? See which laws of UX matter most for the screen in front of you."
+>
+  <header class="page-hero">
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href="/">Home</a><span aria-hidden="true">/</span><span>Patterns</span>
+      </nav>
+      <h1>Browse by UI pattern</h1>
+      <p class="lead">
+        Designing something specific? Pick the screen you’re working on to see the laws that matter most for it, why
+        they matter there, and what to check.
+      </p>
+    </div>
+  </header>
+
+  <section class="wrap pat-index">
+    <div class="grid">
+      {
+        PATTERNS.map((p) => (
+          <a class="pat-card" href={`/patterns/${p.id}`}>
+            <div class="pat-art" aria-hidden="true">
+              {p.laws.slice(0, 4).map((l) => (
+                <LawDiagram slug={l.slug} />
+              ))}
+            </div>
+            <div class="tile-body">
+              <div class="tile-meta">
+                <span>{p.laws.length} laws</span>
+              </div>
+              <h2>{p.title}</h2>
+              <p>{p.blurb}</p>
+              <p class="pat-laws">{p.laws.map((l) => titleOf(l.slug)).join(' · ')}</p>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+</Base>

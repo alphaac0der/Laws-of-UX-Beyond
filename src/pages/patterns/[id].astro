@@ -1,0 +1,92 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import LawDiagram from '../../components/LawDiagram.astro';
+import { PATTERNS, type Pattern } from '../../data/patterns';
+import { assertPatternSlugs, getChecklist } from '../../data/checklists';
+
+export function getStaticPaths() {
+  return PATTERNS.map((pattern, i) => ({
+    params: { id: pattern.id },
+    props: { pattern, next: PATTERNS[(i + 1) % PATTERNS.length] },
+  }));
+}
+
+interface Props {
+  pattern: Pattern;
+  next: Pattern;
+}
+const { pattern, next } = Astro.props;
+const all = await getCollection('laws');
+assertPatternSlugs(all);
+const rows = pattern.laws.map(({ slug, why }) => {
+  const law = all.find((l) => l.id === slug)!;
+  return { law, why, items: getChecklist(law) };
+});
+---
+
+<Base
+  title={`${pattern.title}: the laws of UX that matter · Laws of UX Beyond`}
+  description={`${pattern.blurb} The ${rows.length} laws of UX to keep in mind, and what to check.`}
+>
+  <header class="page-hero">
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href="/patterns">Patterns</a><span aria-hidden="true">/</span><span>{pattern.title}</span>
+      </nav>
+      <h1>{pattern.title}</h1>
+      <p class="lead">{pattern.blurb}</p>
+      <div class="hero-actions page-hero-actions">
+        <a class="btn btn-primary" href={`/checklist?pattern=${pattern.id}`}>
+          Review a design with this checklist
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <div class="wrap pat-detail">
+    <ol class="pat-rows">
+      {
+        rows.map(({ law, why, items }) => (
+          <li class="pat-row">
+            <a class="pat-row-art" href={`/laws/${law.id}`} tabindex="-1" aria-hidden="true">
+              <LawDiagram slug={law.id} />
+            </a>
+            <div class="pat-row-body">
+              <small>{law.data.category}</small>
+              <h2>
+                <a href={`/laws/${law.id}`}>{law.data.title}</a>
+              </h2>
+              <p class="pat-why">{why}</p>
+              <details class="pat-checks">
+                <summary>What to check ({items.length})</summary>
+                <div class="checklist">
+                  <ul>
+                    {items.map((item) => (
+                      <li set:html={item} />
+                    ))}
+                  </ul>
+                </div>
+              </details>
+              <a class="pat-more" href={`/laws/${law.id}`}>
+                Try the {law.data.title} demo →
+              </a>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+
+    <nav class="pager" aria-label="More patterns">
+      <a href="/patterns">
+        <small>← All patterns</small>
+        <strong>Browse by UI pattern</strong>
+      </a>
+      <a class="next" href={`/patterns/${next.id}`}>
+        <small>Next pattern →</small>
+        <strong>{next.title}</strong>
+      </a>
+    </nav>
+  </div>
+</Base>

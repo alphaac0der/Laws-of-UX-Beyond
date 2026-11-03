@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import LawCard from '../components/LawCard.astro';
 import { CATEGORIES } from '../content.config';
+import { PATTERNS } from '../data/patterns';
 
 const laws = (await getCollection('laws')).sort((a, b) => a.data.order - b.data.order);
 const counts = Object.fromEntries(
@@ -32,6 +33,16 @@ const firstLesson = laws.find((l) => l.id === 'hicks-law') ?? laws[0];
           </div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <section class="wrap home-patterns" aria-labelledby="home-patterns-title">
+    <div class="home-patterns-head">
+      <h2 id="home-patterns-title">Designing something specific?</h2>
+      <a href="/checklist">Open the review checklist</a>
+    </div>
+    <div class="chips">
+      {PATTERNS.map((p) => <a class="chip" href={`/patterns/${p.id}`}>{p.title}</a>)}
     </div>
   </section>
 
