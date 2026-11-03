@@ -31,6 +31,7 @@ npm run build      # must pass before you open a pull request
 | Shared demo helpers (intro screen, results bars, buttons) | `src/components/demos/shared.tsx` |
 | Lesson building blocks | `src/components/` (`Section`, `Analogy`, `DoDont`, `Checklist`, `DemoFrame`, `Practice`, `Challenge`) |
 | UI patterns (forms, navigation, pricing…) and their laws | `src/data/patterns.ts` |
+| Find the flaws game: screens and their mistakes | `src/components/flaws/levels.tsx` |
 | Per-law diagrams | `src/components/LawDiagram.astro` |
 | Design tokens, layout and page styles | `src/styles/global.css` |
 | Demo styles | `src/styles/demos.css` |
@@ -86,6 +87,16 @@ Wrong options should be tempting, not silly. In the `explain` text, say why the 
 ### Adding a UI pattern
 
 Patterns live in `src/data/patterns.ts`. Each one lists four to seven laws, and each law gets a `why` that is specific to that pattern, not the law’s general one-liner. The build fails if a pattern points at a law slug that doesn’t exist.
+
+### Adding a Find the flaws screen
+
+Each screen in `src/components/flaws/levels.tsx` has a `Screen` (a mock UI) and a list of `flaws`. Every flaw names the law behind it, plus `title`, `why`, `fix` and `hint` text.
+
+Inside the screen, wrap each mistake in `<Spot f="flaw-id">`. Also wrap the elements that are fine in a plain `<Spot note="Why this is fine.">`. Clicking a fine element counts as a miss, which keeps the game honest: hovering over or tabbing to things doesn’t reveal which ones are the flaws.
+
+- Aim for four flaws per screen, each from a different law, and each one something a real team could plausibly ship.
+- Keep at least three fine elements per screen.
+- Set `pattern` to the matching id in `patterns.ts` so the pattern page links to the screen.
 
 ### Writing style
 

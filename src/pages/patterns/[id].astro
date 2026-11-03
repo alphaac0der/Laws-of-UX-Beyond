@@ -4,6 +4,7 @@ import Base from '../../layouts/Base.astro';
 import LawDiagram from '../../components/LawDiagram.astro';
 import { PATTERNS, type Pattern } from '../../data/patterns';
 import { assertPatternSlugs, getChecklist } from '../../data/checklists';
+import { LEVELS } from '../../components/flaws/levels';
 
 export function getStaticPaths() {
   return PATTERNS.map((pattern, i) => ({
@@ -17,6 +18,7 @@ interface Props {
   next: Pattern;
 }
 const { pattern, next } = Astro.props;
+const level = LEVELS.find((l) => l.pattern === pattern.id);
 const all = await getCollection('laws');
 assertPatternSlugs(all);
 const rows = pattern.laws.map(({ slug, why }) => {
@@ -36,6 +38,13 @@ const rows = pattern.laws.map(({ slug, why }) => {
       </nav>
       <h1>{pattern.title}</h1>
       <p class="lead">{pattern.blurb}</p>
+      {
+        level && (
+          <a class="game-inline" href={`/find-the-flaws?level=${level.id}`}>
+            <b>Test yourself:</b> find the {level.flaws.length} flaws in a broken {level.title.toLowerCase()} →
+          </a>
+        )
+      }
     </div>
   </header>
 

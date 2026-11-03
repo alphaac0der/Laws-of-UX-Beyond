@@ -1,0 +1,34 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import FindTheFlaws from '../components/flaws/FindTheFlaws.tsx';
+import { LEVELS, TOTAL_FLAWS } from '../components/flaws/levels';
+
+const laws = await getCollection('laws');
+const titles = Object.fromEntries(laws.map((l) => [l.id, l.data.title]));
+for (const level of LEVELS)
+  for (const f of level.flaws)
+    if (!titles[f.law]) throw new Error(`Find the flaws: "${level.id}/${f.id}" points at unknown law "${f.law}"`);
+---
+
+<Base
+  title="Find the flaws · Laws of UX Beyond"
+  description={`A game for UX beginners: ${LEVELS.length} broken screens, ${TOTAL_FLAWS} hidden mistakes. Spot them, then learn the law behind each one.`}
+>
+  <header class="page-hero">
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href="/">Home</a><span aria-hidden="true">/</span><span>Find the flaws</span>
+      </nav>
+      <h1>Find the flaws</h1>
+      <p class="lead">
+        {LEVELS.length} screens, {TOTAL_FLAWS} hidden UX mistakes. Click on anything that looks wrong. Each one you
+        find shows the law behind it and how to fix it.
+      </p>
+    </div>
+  </header>
+
+  <section class="wrap fx-wrap">
+    <FindTheFlaws client:load laws={titles} />
+  </section>
+</Base>

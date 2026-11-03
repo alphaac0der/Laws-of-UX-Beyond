@@ -4,6 +4,7 @@ import Base from '../layouts/Base.astro';
 import LawCard from '../components/LawCard.astro';
 import { CATEGORIES } from '../content.config';
 import { PATTERNS } from '../data/patterns';
+import { LEVELS, TOTAL_FLAWS } from '../components/flaws/levels';
 
 const laws = (await getCollection('laws')).sort((a, b) => a.data.order - b.data.order);
 const counts = Object.fromEntries(
@@ -34,6 +35,20 @@ const firstLesson = laws.find((l) => l.id === 'hicks-law') ?? laws[0];
         </div>
       </div>
     </div>
+  </section>
+
+  <section class="wrap home-game">
+    <a class="game-teaser" href="/find-the-flaws">
+      <span class="game-teaser-text">
+        <small>Practice game</small>
+        <strong>Find the flaws</strong>
+        <span>{LEVELS.length} broken screens with {TOTAL_FLAWS} hidden UX mistakes. How many can you spot?</span>
+      </span>
+      <span class="btn btn-primary">
+        Play
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+      </span>
+    </a>
   </section>
 
   <section class="wrap home-patterns" aria-labelledby="home-patterns-title">
