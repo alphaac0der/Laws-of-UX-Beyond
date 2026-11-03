@@ -301,6 +301,11 @@ p { margin: 0 0 1em; }
 .takeaway { margin: 0; padding: 32px; border-radius: var(--r-2); background: var(--text); color: var(--bg); }
 .takeaway span { display: block; font-size: 13px; font-weight: 600; color: var(--accent); margin-bottom: 10px; }
 .takeaway p { margin: 0; font-size: clamp(20px, 2.4vw, 26px); line-height: 1.35; font-weight: 550; letter-spacing: -0.02em; }
+.review-quote { margin: 20px 0 0; padding: 4px 0 4px 22px; border-left: 2px solid var(--accent); }
+.review-quote p { margin: 0; font-size: 19px; line-height: 1.55; letter-spacing: -0.01em; color: var(--text); }
+.review-quote p::before { content: '“'; }
+.review-quote p::after { content: '”'; }
+.section > p.review-tip { margin: 20px 0 0; font-size: 14.5px; color: var(--text-3); }
 .related { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 @media (max-width: 560px) { .related { grid-template-columns: 1fr; } }
 .related a { display: flex; align-items: center; gap: 14px; padding: 12px; border: 1px solid var(--line); border-radius: var(--r-2); text-decoration: none; transition: border-color 0.15s, background 0.15s; }

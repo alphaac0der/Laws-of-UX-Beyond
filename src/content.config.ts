@@ -11,6 +11,8 @@ const laws = defineCollection({
     category: z.enum(CATEGORIES),
     oneLiner: z.string(),
     takeaway: z.string().optional(),
+    /** One first-person sentence showing how to cite this law when defending a design decision. */
+    critique: z.string().optional(),
     origin: z
       .object({
         person: z.string(),

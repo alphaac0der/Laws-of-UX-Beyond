@@ -19,7 +19,7 @@ interface Props {
   all: CollectionEntry<'laws'>[];
 }
 const { law, prev, next, all } = Astro.props;
-const { title, category, oneLiner, takeaway, origin, related, complete, order } = law.data;
+const { title, category, oneLiner, takeaway, critique, origin, related, complete, order } = law.data;
 const { Content } = await render(law);
 const relatedLaws = related
   .map((id) => all.find((l) => l.id === id))
@@ -36,6 +36,7 @@ const toc = [
         { id: 'apply', label: 'How to apply it' },
       ]
     : []),
+  ...(critique ? [{ id: 'review', label: 'Say it in a review' }] : []),
   ...(origin ? [{ id: 'origin', label: 'Where it comes from' }] : []),
   ...(relatedLaws.length ? [{ id: 'related', label: 'Related laws' }] : []),
 ];
@@ -92,6 +93,23 @@ const toc = [
               Until then, try a finished lesson like <a href="/laws/hicks-law">Hick’s Law</a>.
             </p>
           </div>
+        )
+      }
+
+      {
+        critique && (
+          <Section id="review" title="Say it in a design review">
+            <p>
+              In a critique, a handoff or a portfolio case study, describe the change you made and the problem it solved
+              for people. Here’s how that can sound:
+            </p>
+            <blockquote class="review-quote">
+              <p>{critique}</p>
+            </blockquote>
+            <p class="review-tip">
+              Lead with the change and its effect on users. Name the law afterwards, if it helps the people in the room.
+            </p>
+          </Section>
         )
       }
 
