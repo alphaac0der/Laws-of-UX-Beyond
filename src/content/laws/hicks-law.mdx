@@ -18,6 +18,8 @@ import DemoFrame from '../../components/DemoFrame.astro';
 import Analogy from '../../components/Analogy.astro';
 import DoDont from '../../components/DoDont.astro';
 import Checklist from '../../components/Checklist.astro';
+import Practice from '../../components/Practice.astro';
+import Challenge from '../../components/Challenge.astro';
 import HicksDemo from '../../components/demos/HicksDemo.tsx';
 
 <Section id="demo" title="Try it yourself">
@@ -94,4 +96,63 @@ When we choose, our brain doesn’t look at everything at once. It narrows thing
 - **Group long lists** into categories, and add search when there are dozens of items.
 - **Don’t over-hide.** If people have to dig for something they need often, that’s just a different kind of slowdown.
 </Checklist>
+</Section>
+
+<Section id="practice" title="Practice">
+<Practice>
+<Challenge
+  prompt="A food delivery app is redesigning its home screen. Which one gets hungry people to order faster?"
+  answer="b"
+  explain="B asks for one decision at a time: reorder your usual, search, or pick from four big categories. A makes people scan twelve equal tiles before they can even start. When nothing stands out, every tile is a small decision."
+>
+  <div slot="a" class="ui">
+    <div class="ui-title">What are you craving?</div>
+    <div class="ui-plans many" style="grid-template-columns:repeat(3,1fr)">
+      <div class="ui-plan">Pizza</div><div class="ui-plan">Sushi</div><div class="ui-plan">Burgers</div>
+      <div class="ui-plan">Thai</div><div class="ui-plan">Indian</div><div class="ui-plan">Salads</div>
+      <div class="ui-plan">Mexican</div><div class="ui-plan">Bakery</div><div class="ui-plan">Vegan</div>
+      <div class="ui-plan">Chinese</div><div class="ui-plan">Kebab</div><div class="ui-plan">Desserts</div>
+    </div>
+  </div>
+  <div slot="b" class="ui">
+    <div class="ui-input" style="display:flex;align-items:center;padding:0 10px;font-size:12px;color:#71717a">Search restaurants or dishes</div>
+    <div class="ui-btn primary block" style="margin-top:10px">Reorder: Margherita, Luigi’s</div>
+    <div class="ui-plans many" style="margin-top:10px">
+      <div class="ui-plan">Pizza</div><div class="ui-plan">Sushi</div><div class="ui-plan">Burgers</div><div class="ui-plan">More</div>
+    </div>
+  </div>
+</Challenge>
+
+<Challenge
+  prompt="People take a long time to share a photo from this sheet. What’s the most effective fix?"
+  choices={[
+    { label: 'Make every icon bigger so they’re easier to tap' },
+    { label: 'Show the 4 apps each person shares to most, with “More” for the rest', correct: true },
+    { label: 'Sort all 12 apps alphabetically' },
+    { label: 'Add a short animation when the sheet opens' },
+  ]}
+  explain="The slow part is deciding, not tapping. Putting the few apps a person actually uses first removes most of the choices. Sorting alphabetically helps when someone knows the exact name, but they still have to scan the whole list. Bigger icons fix a Fitts’s Law problem, which isn’t the issue here."
+>
+  <div slot="screen" class="ui">
+    <div class="ui-title">Share to</div>
+    <div class="ui-plans many">
+      <div class="ui-plan">Mail</div><div class="ui-plan">Notes</div><div class="ui-plan">Slack</div><div class="ui-plan">Drive</div>
+      <div class="ui-plan">Teams</div><div class="ui-plan">X</div><div class="ui-plan">Messages</div><div class="ui-plan">Print</div>
+      <div class="ui-plan">Dropbox</div><div class="ui-plan">Copy</div><div class="ui-plan">WhatsApp</div><div class="ui-plan">AirDrop</div>
+    </div>
+  </div>
+</Challenge>
+
+<Challenge
+  kind="Name the law"
+  prompt="A ride app replaces its home menu of services, promos and settings with a single question: “Where to?” New riders now book noticeably faster. Which law explains the speed-up best?"
+  choices={[
+    { label: 'Hick’s Law', correct: true },
+    { label: 'Choice Overload' },
+    { label: 'Fitts’s Law' },
+    { label: 'Jakob’s Law' },
+  ]}
+  explain="The result is about time: fewer options on screen means a faster decision, which is Hick’s Law. Choice Overload is a close cousin, but it’s about people giving up or regretting a choice when there are too many. Fitts’s Law is about how big and how far a target is, and nothing moved or changed size here."
+/>
+</Practice>
 </Section>

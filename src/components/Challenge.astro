@@ -1,0 +1,135 @@
+---
+/**
+ * One practice question at the end of a lesson. Two modes:
+ *
+ * Pick the better screen: pass two mock screens in slot="a" and slot="b", and answer="a" | "b".
+ *   <Challenge prompt="…" answer="b" explain="…">
+ *     <div slot="a" class="ui">…</div>
+ *     <div slot="b" class="ui">…</div>
+ *   </Challenge>
+ *
+ * Multiple choice: pass choices (mark one correct), with an optional mock in slot="screen".
+ *   <Challenge kind="Name the law" prompt="…" choices={[{ label: '…', correct: true }, { label: '…' }]} explain="…" />
+ */
+interface Choice {
+  label: string;
+  correct?: boolean;
+}
+interface Props {
+  prompt: string;
+  explain: string;
+  kind?: string;
+  answer?: 'a' | 'b';
+  choices?: Choice[];
+}
+const { prompt, explain, answer, choices = [] } = Astro.props;
+const isPick = Astro.slots.has('a') && Astro.slots.has('b');
+const kind = Astro.props.kind ?? (isPick ? 'Pick the better screen' : 'Spot the problem');
+if (isPick && !answer) throw new Error(`Challenge "${prompt}" needs answer="a" or "b".`);
+if (!isPick && choices.filter((c) => c.correct).length !== 1)
+  throw new Error(`Challenge "${prompt}" needs exactly one correct choice.`);
+---
+
+<div class="ch" data-challenge>
+  <p class="ch-eyebrow"><span class="ch-num"></span><span aria-hidden="true"> · </span>{kind}</p>
+  <p class="ch-prompt">{prompt}</p>
+
+  {
+    isPick ? (
+      <div class="ch-pick">
+        <div class="ch-screen" data-option data-correct={String(answer === 'a')}>
+          <div class="ch-stage">
+            <span class="ch-tag" aria-hidden="true">A</span>
+            <slot name="a" />
+          </div>
+          <button type="button" class="ch-btn">A works better</button>
+        </div>
+        <div class="ch-screen" data-option data-correct={String(answer === 'b')}>
+          <div class="ch-stage">
+            <span class="ch-tag" aria-hidden="true">B</span>
+            <slot name="b" />
+          </div>
+          <button type="button" class="ch-btn">B works better</button>
+        </div>
+      </div>
+    ) : (
+      <>
+        {Astro.slots.has('screen') && (
+          <div class="ch-stage ch-solo">
+            <slot name="screen" />
+          </div>
+        )}
+        <div class="ch-choices">
+          {choices.map((c) => (
+            <div data-option data-correct={String(Boolean(c.correct))}>
+              <button type="button" class="ch-btn ch-choice">
+                {c.label}
+              </button>
+            </div>
+          ))}
+        </div>
+      </>
+    )
+  }
+
+  <div class="ch-feedback" aria-live="polite">
+    <div class="ch-feedback-body" tabindex="-1" hidden>
+      <p class="ch-verdict"></p>
+      <p class="ch-explain">{explain}</p>
+      <button type="button" class="ch-retry">Try again</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  for (const ch of document.querySelectorAll<HTMLElement>('[data-challenge]')) {
+    const options = [...ch.querySelectorAll<HTMLElement>('[data-option]')];
+    const body = ch.querySelector<HTMLElement>('.ch-feedback-body')!;
+    const verdict = ch.querySelector<HTMLElement>('.ch-verdict')!;
+
+    const mark = (el: HTMLElement, text: string) => {
+      const s = document.createElement('span');
+      s.className = 'ch-mark';
+      s.textContent = text;
+      el.querySelector('.ch-btn')!.append(s);
+    };
+
+    const answer = (picked: HTMLElement) => {
+      if (ch.dataset.answered) return;
+      ch.dataset.answered = 'true';
+      const right = picked.dataset.correct === 'true';
+      for (const o of options) {
+        o.querySelector<HTMLButtonElement>('.ch-btn')!.disabled = true;
+        if (o.dataset.correct === 'true') {
+          o.classList.add('is-correct');
+          mark(o, right ? 'Your pick' : 'Correct answer');
+        } else if (o === picked) {
+          o.classList.add('is-wrong');
+          mark(o, 'Your pick');
+        } else o.classList.add('is-dim');
+      }
+      ch.classList.add(right ? 'got-it' : 'missed-it');
+      verdict.textContent = right ? 'Right.' : 'Not quite.';
+      body.hidden = false;
+      body.focus({ preventScroll: true });
+    };
+
+    for (const o of options) {
+      o.querySelector('.ch-btn')!.addEventListener('click', () => answer(o));
+      // Clicking the mock screen itself also counts as picking it.
+      o.querySelector('.ch-stage')?.addEventListener('click', () => answer(o));
+    }
+
+    ch.querySelector('.ch-retry')!.addEventListener('click', () => {
+      delete ch.dataset.answered;
+      ch.classList.remove('got-it', 'missed-it');
+      for (const o of options) {
+        o.classList.remove('is-correct', 'is-wrong', 'is-dim');
+        o.querySelector('.ch-mark')?.remove();
+        o.querySelector<HTMLButtonElement>('.ch-btn')!.disabled = false;
+      }
+      body.hidden = true;
+      options[0].querySelector<HTMLButtonElement>('.ch-btn')!.focus();
+    });
+  }
+</script>

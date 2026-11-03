@@ -18,6 +18,8 @@ import DemoFrame from '../../components/DemoFrame.astro';
 import Analogy from '../../components/Analogy.astro';
 import DoDont from '../../components/DoDont.astro';
 import Checklist from '../../components/Checklist.astro';
+import Practice from '../../components/Practice.astro';
+import Challenge from '../../components/Challenge.astro';
 import ProximityDemo from '../../components/demos/ProximityDemo.tsx';
 
 <Section id="demo" title="Try it yourself">
@@ -85,4 +87,62 @@ This makes spacing a very cheap design tool. You often don’t need borders, box
 - **Squint at your design.** If the blobs you see don’t match the real groups, adjust the spacing.
 - **Keep it consistent.** The same kind of relationship should get the same amount of space everywhere.
 </Checklist>
+</Section>
+
+<Section id="practice" title="Practice">
+<Practice>
+<Challenge
+  prompt="Two versions of the same shipping form. Which is easier to fill in correctly?"
+  answer="b"
+  explain="In A, every gap is the same, so each label sits just as close to the field above it as to its own field. In B, labels hug their own field and the bigger gaps fall between questions. Your eye pairs each label with the right box without thinking about it."
+>
+  <div slot="a" class="ui" style="display:grid;gap:10px">
+    <div class="ui-title" style="margin:0">Shipping</div>
+    <span class="ui-label">Full name</span>
+    <div class="ui-input"></div>
+    <span class="ui-label">Street address</span>
+    <div class="ui-input"></div>
+    <span class="ui-label">ZIP code</span>
+    <div class="ui-input"></div>
+  </div>
+  <div slot="b" class="ui">
+    <div class="ui-title">Shipping</div>
+    <span class="ui-label">Full name</span>
+    <div class="ui-input" style="margin-top:4px"></div>
+    <span class="ui-label" style="margin-top:16px">Street address</span>
+    <div class="ui-input" style="margin-top:4px"></div>
+    <span class="ui-label" style="margin-top:16px">ZIP code</span>
+    <div class="ui-input" style="margin-top:4px"></div>
+  </div>
+</Challenge>
+
+<Challenge
+  prompt="People keep deleting the wrong photo on this screen. Look at the spacing. What’s going wrong?"
+  choices={[
+    { label: 'The Delete button sits the same distance from both photos, so it’s unclear which one it belongs to', correct: true },
+    { label: 'The Delete button should be red' },
+    { label: 'The photo thumbnails are too small' },
+    { label: 'There should be a confirmation dialog instead' },
+  ]}
+  explain="Things that are close together look like they belong together. Here the button floats exactly halfway between two photos, so either reading is reasonable. Moving it next to its own photo fixes the cause. A red button or a confirmation dialog would only soften the result of the mistake."
+>
+  <div slot="screen" class="ui" style="display:grid;gap:12px">
+    <div class="ui-row" style="gap:10px"><div class="ui-img" style="width:44px;height:44px"></div><span>beach.jpg</span></div>
+    <div class="ui-btn" style="justify-self:end;height:26px;font-size:12px">Delete</div>
+    <div class="ui-row" style="gap:10px"><div class="ui-img" style="width:44px;height:44px"></div><span>mountains.jpg</span></div>
+  </div>
+</Challenge>
+
+<Challenge
+  kind="Name the law"
+  prompt="A news site adds more space between stories and tightens the space between each headline and its summary. Nothing else changes, and readers stop opening the wrong story. Which law is at work?"
+  choices={[
+    { label: 'Law of Proximity', correct: true },
+    { label: 'Law of Common Region' },
+    { label: 'Law of Similarity' },
+    { label: 'Von Restorff Effect' },
+  ]}
+  explain="Only the spacing changed, and that’s the Law of Proximity. If the site had put each story in a card or on a tinted background, that would be the Law of Common Region. Similarity is about things looking alike (color, shape, style), and Von Restorff is about one item standing out."
+/>
+</Practice>
 </Section>

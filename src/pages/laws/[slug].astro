@@ -38,6 +38,7 @@ const toc = [
         { id: 'apply', label: 'How to apply it' },
       ]
     : []),
+  ...(law.body?.includes('id="practice"') ? [{ id: 'practice', label: 'Practice' }] : []),
   ...(critique ? [{ id: 'review', label: 'Say it in a review' }] : []),
   ...(origin ? [{ id: 'origin', label: 'Where it comes from' }] : []),
   ...(relatedLaws.length ? [{ id: 'related', label: 'Related laws' }] : []),

@@ -18,6 +18,8 @@ import DemoFrame from '../../components/DemoFrame.astro';
 import Analogy from '../../components/Analogy.astro';
 import DoDont from '../../components/DoDont.astro';
 import Checklist from '../../components/Checklist.astro';
+import Practice from '../../components/Practice.astro';
+import Challenge from '../../components/Challenge.astro';
 import FittsDemo from '../../components/demos/FittsDemo.tsx';
 
 <Section id="demo" title="Try it yourself">
@@ -91,4 +93,69 @@ Moving your hand to a target happens in two parts. First a fast movement gets yo
 - **Make the whole row or card clickable**, not just the small text or icon inside it.
 - **Use screen edges and corners** for things people reach for often on desktop.
 </Checklist>
+</Section>
+
+<Section id="practice" title="Practice">
+<Practice>
+<Challenge
+  prompt="Two music player designs for a phone. Which one makes Play/Pause easier to hit while walking?"
+  answer="b"
+  explain="In A, Play is one of seven equally tiny icons, so you have to aim carefully every time. In B, the action people use most is the biggest target, sitting in the middle where the thumb rests. Bigger and closer means faster, with fewer missed taps."
+>
+  <div slot="a" class="ui">
+    <div class="ui-img" style="height:80px"></div>
+    <div class="ui-title" style="margin:10px 0 2px">Night Drive</div>
+    <div class="ui-muted">Aurora Lane</div>
+    <div class="ui-row" style="justify-content:space-between;margin-top:14px;font-size:12px;color:#52525b">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M3 7h4l10 10h4M3 17h4L17 7h4"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M5 5h2.5v14H5zM20 5v14L9 12z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M11 5v14L2 12zM22 5v14l-9-7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M7 4v16l13-8z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M13 5v14l9-7zM2 5v14l9-7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 5H19v14h-2.5zM4 5v14l11-7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4 13a8 8 0 0 1 14-6M20 11a8 8 0 0 1-14 6"/></svg>
+    </div>
+  </div>
+  <div slot="b" class="ui">
+    <div class="ui-img" style="height:80px"></div>
+    <div class="ui-title" style="margin:10px 0 2px">Night Drive</div>
+    <div class="ui-muted">Aurora Lane</div>
+    <div class="ui-row" style="justify-content:center;gap:22px;margin-top:10px;font-size:18px;color:#18181b">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M5 5h2.5v14H5zM20 5v14L9 12z"/></svg>
+      <span style="display:grid;place-items:center;width:52px;height:52px;border-radius:50%;background:#18181b;color:#fff;font-size:18px"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M7 4v16l13-8z"/></svg></span>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 5H19v14h-2.5zM4 5v14l11-7z"/></svg>
+    </div>
+  </div>
+</Challenge>
+
+<Challenge
+  prompt="On phones, people keep tapping Remove when they meant Edit. What’s the best fix?"
+  choices={[
+    { label: 'Make both icons at least 44 px and put more space between them', correct: true },
+    { label: 'Add a tooltip that explains each icon' },
+    { label: 'Color the Remove icon red' },
+    { label: 'Move both actions into the menu at the top of the screen' },
+  ]}
+  explain="The mistakes come from tiny targets packed close together, so fingers land on the neighbor. Larger targets with a gap fix the cause. Tooltips don’t exist on touch screens, color helps people recognize the icon but not hit it, and moving actions farther away makes every tap slower."
+>
+  <div slot="screen" class="ui">
+    <div class="ui-title">Team</div>
+    <div class="ui-row" style="justify-content:space-between;padding:8px 0;border-top:1px solid #e4e4e7">
+      <span>Maya Chen</span><span style="font-size:11px;color:#52525b;letter-spacing:2px">✎✕</span>
+    </div>
+    <div class="ui-row" style="justify-content:space-between;padding:8px 0;border-top:1px solid #e4e4e7">
+      <span>Sam Ortiz</span><span style="font-size:11px;color:#52525b;letter-spacing:2px">✎✕</span>
+    </div>
+    <div class="ui-row" style="justify-content:space-between;padding:8px 0;border-top:1px solid #e4e4e7">
+      <span>Priya Nair</span><span style="font-size:11px;color:#52525b;letter-spacing:2px">✎✕</span>
+    </div>
+  </div>
+</Challenge>
+
+<Challenge
+  kind="Name the law"
+  prompt="On a Mac, the menu bar sits at the very top edge of the screen. Because the pointer can’t go past the edge, you can fling the mouse upwards without aiming carefully. Which law explains why this is fast?"
+  choices={[
+    { label: 'Fitts’s Law', correct: true },
+    { label: 'Jakob’s Law' },
+    { label: 'Hick’s Law' },
+    { label: 'Doherty Threshold' },
+  ]}
+  explain="The screen edge stops the pointer, so the target behaves as if it were endlessly tall. Under Fitts’s Law a bigger target is faster to hit. Jakob’s Law would explain why people expect the menu to be there, not why it’s quick to reach."
+/>
+</Practice>
 </Section>

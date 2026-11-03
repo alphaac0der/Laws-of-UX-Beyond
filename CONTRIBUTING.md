@@ -29,7 +29,8 @@ npm run build      # must pass before you open a pull request
 | Lesson fields (title, category, origin…) | `src/content.config.ts` |
 | Interactive demos (Preact) | `src/components/demos/*.tsx` |
 | Shared demo helpers (intro screen, results bars, buttons) | `src/components/demos/shared.tsx` |
-| Lesson building blocks | `src/components/` (`Section`, `Analogy`, `DoDont`, `Checklist`, `DemoFrame`) |
+| Lesson building blocks | `src/components/` (`Section`, `Analogy`, `DoDont`, `Checklist`, `DemoFrame`, `Practice`, `Challenge`) |
+| UI patterns (forms, navigation, pricing…) and their laws | `src/data/patterns.ts` |
 | Per-law diagrams | `src/components/LawDiagram.astro` |
 | Design tokens, layout and page styles | `src/styles/global.css` |
 | Demo styles | `src/styles/demos.css` |
@@ -44,9 +45,47 @@ Every lesson follows the same structure, so readers always know where to look. U
 3. **Why it happens:** the psychology, plus one `.callout` with a common mistake or nuance.
 4. **Do vs Don’t:** one `<DoDont>` with two small mock screens built from the `.ui-*` classes.
 5. **Real-world examples:** three or four real products. Say *what* they do and *why* it works.
-6. **How to apply it:** a `<Checklist>` of four or five concrete actions.
+6. **How to apply it:** a `<Checklist>` of four or five concrete actions. Write each item as a Markdown bullet that starts with a **bold action**. The design review checklist (`/checklist`) and the pattern pages read these bullets directly from the lesson.
+7. **Practice:** a `<Practice>` block with three `<Challenge>` questions (see below).
 
-The frontmatter also needs a `takeaway`, an `origin` (who, when, source and link) and `related` laws. These render automatically.
+The frontmatter also needs a `takeaway`, a `critique`, an `origin` (who, when, source and link) and `related` laws. These render automatically.
+
+`critique` is one first-person sentence showing how a designer would cite the law in a review or case study. Name a concrete change and the effect it had on users, for example: *“I cut the plans from eight to three and highlighted one, because…”*. Don’t just restate the law.
+
+### Practice questions
+
+Each lesson ends with three questions. Use a different screen from the lesson’s own Do/Don’t, so readers practice spotting the law somewhere new instead of matching an example they’ve already seen.
+
+```mdx
+<Section id="practice" title="Practice">
+<Practice>
+<Challenge prompt="Which sign-up screen…?" answer="b" explain="Why B works, and why A doesn’t.">
+  <div slot="a" class="ui">…</div>
+  <div slot="b" class="ui">…</div>
+</Challenge>
+
+<Challenge
+  prompt="People keep doing X on this screen. What’s the best fix?"
+  choices={[{ label: 'The real fix', correct: true }, { label: 'A plausible fix for a different problem' }]}
+  explain="…"
+>
+  <div slot="screen" class="ui">…</div>
+</Challenge>
+
+<Challenge kind="Name the law" prompt="A short real-world scenario…" choices={[…]} explain="…" />
+</Practice>
+</Section>
+```
+
+1. **Pick the better screen:** two mock screens. Set `answer` to `"a"` or `"b"`.
+2. **Spot the problem:** one mock screen and four possible fixes.
+3. **Name the law:** a scenario plus four laws. Include the closest look-alike law as a wrong option (Hick’s Law vs Choice Overload, Proximity vs Common Region).
+
+Wrong options should be tempting, not silly. In the `explain` text, say why the right answer is right *and* why the most tempting wrong answer is wrong. Build mock icons as inline SVG, because emoji render differently on every platform.
+
+### Adding a UI pattern
+
+Patterns live in `src/data/patterns.ts`. Each one lists four to seven laws, and each law gets a `why` that is specific to that pattern, not the law’s general one-liner. The build fails if a pattern points at a law slug that doesn’t exist.
 
 ### Writing style
 

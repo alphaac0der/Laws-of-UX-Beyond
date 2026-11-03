@@ -124,7 +124,7 @@ export const PATTERNS: Pattern[] = [
       { slug: 'law-of-common-region', why: 'Cards or panels show which numbers and charts belong together.' },
       { slug: 'working-memory', why: 'Put the numbers people compare next to each other, instead of on separate tabs.' },
       { slug: 'chunking', why: 'Format big numbers (1.2M, 34,512) so they can be read at a glance.' },
-      { slug: 'von-restorff-effect', why: 'Use your accent colour only for what needs attention, like an alert or an outlier.' },
+      { slug: 'von-restorff-effect', why: 'Use your accent color only for what needs attention, like an alert or an outlier.' },
     ],
   },
   {
