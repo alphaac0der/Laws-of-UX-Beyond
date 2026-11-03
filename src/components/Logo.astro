@@ -1,0 +1,13 @@
+---
+/** The "L of Laws" mark: five dots form an L, one orange dot sits beyond it. */
+interface Props {
+  size?: number;
+}
+const { size = 26 } = Astro.props;
+---
+
+<svg class="brand-mark" viewBox="0 0 32 32" width={size} height={size} aria-hidden="true" focusable="false">
+  <circle cx="7" cy="7" r="3"></circle><circle cx="7" cy="15" r="3"></circle><circle cx="7" cy="23" r="3"></circle>
+  <circle cx="15" cy="23" r="3"></circle><circle cx="23" cy="23" r="3"></circle>
+  <circle class="beyond" cx="25" cy="7" r="4.2"></circle>
+</svg>

@@ -1,0 +1,81 @@
+---
+title: "Paradox of the Active User"
+order: 12
+category: Heuristics
+oneLiner: "Users skip the manual and start using the software right away."
+takeaway: "People won’t study first. Teach them while they’re doing, at the exact moment they need help."
+origin:
+  person: "Mary Beth Rosson & John M. Carroll"
+  year: "1987"
+  source: "“Paradox of the active user” (summary by Nielsen Norman Group)"
+  url: "https://www.nngroup.com/articles/paradox-of-the-active-user/"
+related: [jakobs-law, mental-model, zeigarnik-effect]
+complete: true
+---
+import Section from '../../components/Section.astro';
+import DemoFrame from '../../components/DemoFrame.astro';
+import Analogy from '../../components/Analogy.astro';
+import DoDont from '../../components/DoDont.astro';
+import Checklist from '../../components/Checklist.astro';
+import ParadoxDemo from '../../components/demos/ParadoxDemo.tsx';
+
+<Section id="demo" title="Try it yourself">
+  <DemoFrame hint="About 15 seconds"><ParadoxDemo client:visible /></DemoFrame>
+</Section>
+
+<Section id="plain" title="In plain words">
+<Analogy>
+You buy new furniture. The instruction booklet is right there, but you start putting it together anyway, and only open the booklet when you’re stuck.
+
+Almost everyone does this, even though reading first would be faster.
+</Analogy>
+
+People open an app to **get something done**, not to learn the app. They’ll skip tours and tutorials, guess their way around, and only look for help when they hit a wall.
+</Section>
+
+<Section id="why" title="Why it happens">
+Researchers Mary Beth Rosson and John Carroll watched people learn new software and saw a paradox: users would save time in the long run if they learned the system properly first, but they almost never do. They’re **motivated by their immediate goal**, so learning feels like a delay.
+
+This isn’t laziness. It’s just how people approach tools. Designers can’t change it, so they have to design around it.
+
+<div class="callout">
+  <strong>Common mistake:</strong> a 6-screen onboarding tour before the user can do anything. Most people tap “Skip” and remember none of it. Help is far more effective when it shows up at the moment it’s relevant.
+</div>
+</Section>
+
+<Section id="dodont" title="Do vs Don’t">
+<DoDont
+  dontCaption="A long tutorial blocks the app the first time it opens. Users skip it and are just as lost afterwards."
+  doCaption="The app opens straight into work, with a small hint next to the feature the first time it’s used."
+>
+  <div slot="dont" class="ui" style="background:#18181b;color:#fff">
+    <div class="ui-muted" style="color:#a1a1aa">Step 1 of 6</div>
+    <div class="ui-title" style="margin:6px 0">Welcome to the editor!</div>
+    <div style="font-size:11px;color:#d4d4d8;margin-bottom:12px">Before you start, let’s look at the toolbar, layers, presets, shortcuts and export settings…</div>
+    <div class="ui-row" style="justify-content:space-between"><span style="font-size:11px;color:#a1a1aa">Skip</span><span class="ui-btn">Next</span></div>
+  </div>
+  <div slot="do" class="ui">
+    <div class="ui-img" style="margin-bottom:10px"></div>
+    <div class="ui-row"><span class="ui-btn primary">Crop</span><span style="font-size:11px;background:#18181b;color:#fff;padding:4px 8px;border-radius:6px">Tip: drag the corners to crop</span></div>
+  </div>
+</DoDont>
+</Section>
+
+<Section id="examples" title="Real-world examples">
+<ul class="examples">
+  <li><strong>Slack</strong><p>Slackbot teaches you features inside real conversations, so you learn by doing rather than by reading.</p></li>
+  <li><strong>Duolingo</strong><p>You start your first lesson within a minute. Nobody explains the whole app up front.</p></li>
+  <li><strong>Figma</strong><p>Empty states and small tooltips point to the next useful action right where you are working.</p></li>
+  <li><strong>Video games</strong><p>The best games teach controls through the first level itself, instead of a manual.</p></li>
+</ul>
+</Section>
+
+<Section id="apply" title="How to apply it">
+<Checklist>
+- **Let people start immediately.** Don’t block the product behind a tour.
+- **Use contextual help**, such as tooltips, hints and empty states, at the moment a feature becomes relevant.
+- **Make the UI explain itself** with clear labels, familiar patterns and sensible defaults.
+- **Make help easy to find** for when people *do* get stuck, like search, a help menu or “?” icons.
+- **Design for guessing.** Make actions safe to try, with undo and previews.
+</Checklist>
+</Section>

@@ -1,0 +1,96 @@
+---
+title: "Hick’s Law"
+order: 4
+category: Heuristics
+oneLiner: "The more choices you give people, the longer it takes them to decide."
+takeaway: "Fewer, clearer choices mean faster decisions. Cut what you can, group what’s left, and recommend a default."
+origin:
+  person: "William Edmund Hick & Ray Hyman"
+  year: "1952"
+  source: "“On the rate of gain of information”, Quarterly Journal of Experimental Psychology"
+  url: "https://doi.org/10.1080/17470215208416600"
+related: [choice-overload, millers-law, cognitive-load, occams-razor]
+complete: true
+---
+import Section from '../../components/Section.astro';
+import DemoFrame from '../../components/DemoFrame.astro';
+import Analogy from '../../components/Analogy.astro';
+import DoDont from '../../components/DoDont.astro';
+import Checklist from '../../components/Checklist.astro';
+import HicksDemo from '../../components/demos/HicksDemo.tsx';
+
+<Section id="demo" title="Try it yourself">
+  <DemoFrame><HicksDemo client:visible /></DemoFrame>
+</Section>
+
+<Section id="plain" title="In plain words">
+<Analogy>
+You walk into a café with three drinks on the board. You order in five seconds.
+
+Next door, the menu has 80 drinks, eight milks and twelve syrups. You stand there, scroll, compare, and maybe walk out.
+</Analogy>
+
+Every option is a small question your brain has to answer: *“Is this the one?”* More options means more questions, and more questions take more time. Your users go through the same thing on every screen you design.
+</Section>
+
+<Section id="why" title="Why it happens">
+When we choose, our brain doesn’t look at everything at once. It narrows things down, roughly cutting the remaining options in half each step. That’s why decision time grows with the number of options, but **not in a straight line**. Going from 2 to 4 options hurts more than going from 20 to 22.
+
+<div class="formula">
+  RT = a + b · log₂(n + 1)
+  <small>Reaction time (RT) grows with the logarithm of the number of choices (n). The letters a and b are constants that depend on the person and the task.</small>
+</div>
+
+<div class="callout">
+  <strong>Common mistake:</strong> Hick’s Law doesn’t mean “always show fewer things.” If users already know exactly what they want and the list is well organised (like an alphabetical country list), they can find it quickly. The law matters most when people have to <em>compare</em> options to decide.
+</div>
+</Section>
+
+<Section id="dodont" title="Do vs Don’t">
+<DoDont
+  dontCaption="Eight plans with no clear winner. Users have to compare every column themselves, so many leave to “think about it.”"
+  doCaption="Three plans with one recommended. The highlight answers “which one is for me?” before anyone has to ask."
+>
+  <div slot="dont" class="ui">
+    <div class="ui-title">Choose a plan</div>
+    <div class="ui-plans many">
+      <div class="ui-plan"><b>$0</b>Free</div>
+      <div class="ui-plan"><b>$4</b>Lite</div>
+      <div class="ui-plan"><b>$7</b>Starter</div>
+      <div class="ui-plan"><b>$9</b>Basic</div>
+      <div class="ui-plan"><b>$12</b>Plus</div>
+      <div class="ui-plan"><b>$19</b>Pro</div>
+      <div class="ui-plan"><b>$29</b>Team</div>
+      <div class="ui-plan"><b>$49</b>Biz</div>
+    </div>
+    <div class="ui-muted" style="margin-top:10px">Compare all 46 features ↓</div>
+  </div>
+  <div slot="do" class="ui">
+    <div class="ui-title">Choose a plan</div>
+    <div class="ui-plans three">
+      <div class="ui-plan"><b>$0</b>Free<span class="ui-btn">Start</span></div>
+      <div class="ui-plan featured"><b>$12</b>Pro<span class="ui-btn primary">Start</span></div>
+      <div class="ui-plan"><b>$29</b>Team<span class="ui-btn">Start</span></div>
+    </div>
+  </div>
+</DoDont>
+</Section>
+
+<Section id="examples" title="Real-world examples">
+<ul class="examples">
+  <li><strong>Google Search</strong><p>The homepage is basically one box and one button. You can’t get stuck deciding what to do.</p></li>
+  <li><strong>Apple TV remote</strong><p>A handful of buttons instead of the usual 50. Fewer buttons means you don’t have to look down to find the right one.</p></li>
+  <li><strong>Netflix “Top picks for you”</strong><p>Instead of making you browse thousands of titles, it shows a short, personal shortlist first, so you start watching sooner.</p></li>
+  <li><strong>Duolingo onboarding</strong><p>It asks one simple question per screen (language, goal, level) instead of one long form. Each step is a single, easy decision.</p></li>
+</ul>
+</Section>
+
+<Section id="apply" title="How to apply it">
+<Checklist>
+- **Cut options people rarely use**, or move them behind a “More” or “Advanced” link.
+- **Recommend a default.** Highlight the most popular plan, or pre-select the most common choice.
+- **Break big decisions into steps** (progressive disclosure), one question at a time.
+- **Group long lists** into categories, and add search when there are dozens of items.
+- **Don’t over-hide.** If people have to dig for something they need often, that’s just a different kind of slowdown.
+</Checklist>
+</Section>

@@ -1,0 +1,79 @@
+---
+title: "Chunking"
+order: 26
+category: Cognition
+oneLiner: "Breaking information into small, meaningful groups makes it easier to understand and remember."
+takeaway: "Group information into small, meaningful chunks. People can hold a few chunks, but not a lot of loose pieces."
+origin:
+  person: "George A. Miller"
+  year: "1956"
+  source: "“The Magical Number Seven, Plus or Minus Two”, Psychological Review"
+  url: "https://en.wikipedia.org/wiki/Chunking_(psychology)"
+related: [millers-law, law-of-proximity, working-memory]
+complete: true
+---
+import Section from '../../components/Section.astro';
+import DemoFrame from '../../components/DemoFrame.astro';
+import Analogy from '../../components/Analogy.astro';
+import DoDont from '../../components/DoDont.astro';
+import Checklist from '../../components/Checklist.astro';
+import ChunkingDemo from '../../components/demos/ChunkingDemo.tsx';
+
+<Section id="demo" title="Try it yourself">
+  <DemoFrame hint="About 20 seconds"><ChunkingDemo client:visible /></DemoFrame>
+</Section>
+
+<Section id="plain" title="In plain words">
+<Analogy>
+Try remembering F-B-I-C-I-A-N-A-S-A. Hard. Now try FBI, CIA, NASA. Easy.
+
+Same ten letters. Three chunks instead of ten pieces.
+</Analogy>
+
+Our memory can only juggle a few things at once, but each “thing” can be a **group**. Chunking packs information into meaningful groups, so people can take in much more without feeling overloaded.
+</Section>
+
+<Section id="why" title="Why it happens">
+George Miller noticed that the limit of short-term memory isn’t really about individual pieces, it’s about **chunks**. Experts seem to remember more because they’ve learned to see bigger chunks: a chess master sees a familiar position, not 20 separate pieces.
+
+In interfaces, chunking happens through **grouping and structure**: spacing, headings, steps and formatting. A wall of text or a 16-digit number gives the brain nothing to hold onto. The same content in small groups is easy to scan and remember.
+
+<div class="callout">
+  <strong>Chunks should be meaningful.</strong> Splitting a form into random groups of 3 fields doesn’t help. Group by topic, like contact details, address and payment, so each chunk has a clear purpose.
+</div>
+</Section>
+
+<Section id="dodont" title="Do vs Don’t">
+<DoDont
+  dontCaption="A card number field with no grouping. Checking it for a mistake means counting 16 digits one by one."
+  doCaption="The same number shown in four groups of four. Errors are easy to spot, and it’s easy to read aloud."
+>
+  <div slot="dont" class="ui">
+    <span class="ui-label" style="margin-bottom:6px">Card number</span>
+    <div class="ui-input" style="display:flex;align-items:center;padding:0 10px;font-family:monospace;font-size:12px">4929381726354015</div>
+  </div>
+  <div slot="do" class="ui">
+    <span class="ui-label" style="margin-bottom:6px">Card number</span>
+    <div class="ui-input" style="display:flex;align-items:center;padding:0 10px;font-family:monospace;font-size:12px;word-spacing:6px">4929 3817 2635 4015</div>
+  </div>
+</DoDont>
+</Section>
+
+<Section id="examples" title="Real-world examples">
+<ul class="examples">
+  <li><strong>Phone and card numbers</strong><p>Almost everywhere, they’re shown in groups (555 123 4567, 4929 3817 2635 4015) to make them readable.</p></li>
+  <li><strong>News and blog articles</strong><p>Headings, short paragraphs and bullet lists break long text into bites that are easy to scan.</p></li>
+  <li><strong>Multi-step checkouts</strong><p>Shipping, delivery and payment are separate steps instead of one giant form.</p></li>
+  <li><strong>Apple Music and Spotify</strong><p>Huge libraries are chunked into albums, playlists and genres, so you browse groups instead of thousands of songs.</p></li>
+</ul>
+</Section>
+
+<Section id="apply" title="How to apply it">
+<Checklist>
+- **Format long numbers and codes in groups**, like phone numbers, cards, IBANs and license keys.
+- **Break text up** with headings, short paragraphs and lists.
+- **Group form fields by topic**, and split long forms into steps.
+- **Use spacing and containers** to make chunks visible (see the Law of Proximity).
+- **Keep chunks small:** three to five items per group is a good rule of thumb.
+</Checklist>
+</Section>

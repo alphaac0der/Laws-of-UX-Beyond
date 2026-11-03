@@ -1,0 +1,81 @@
+---
+title: "Postel’s Law"
+order: 8
+category: Heuristics
+oneLiner: "Be flexible in what you accept from users and precise in what you give back."
+takeaway: "Accept input the way people naturally give it, then clean it up yourself. Make the output clear and consistent."
+origin:
+  person: "Jon Postel"
+  year: "1980"
+  source: "RFC 761, the TCP specification (the “robustness principle”)"
+  url: "https://datatracker.ietf.org/doc/html/rfc761"
+related: [teslers-law, mental-model, cognitive-load]
+complete: true
+---
+import Section from '../../components/Section.astro';
+import DemoFrame from '../../components/DemoFrame.astro';
+import Analogy from '../../components/Analogy.astro';
+import DoDont from '../../components/DoDont.astro';
+import Checklist from '../../components/Checklist.astro';
+import PostelDemo from '../../components/demos/PostelDemo.tsx';
+
+<Section id="demo" title="Try it yourself">
+  <DemoFrame hint="About 20 seconds"><PostelDemo client:visible /></DemoFrame>
+</Section>
+
+<Section id="plain" title="In plain words">
+<Analogy>
+A good waiter understands “a flat white”, “one flat white please” and “can I get a flat white?” as the same order.
+
+A bad waiter says “Invalid order format. Please say: ONE FLAT WHITE.”
+</Analogy>
+
+People type, click and speak in messy, human ways. A good interface **understands what they meant**, instead of forcing them to match one exact format.
+</Section>
+
+<Section id="why" title="Why it happens">
+Jon Postel wrote this rule for the early internet: computers talking to each other should be **liberal in what they accept and conservative in what they send**. That way, small differences don’t break the conversation.
+
+The same goes for people. There are many ways to write a date, a phone number or a name. If your form only accepts one of them, people get errors for things that aren’t really mistakes, and every error costs time and trust.
+
+<div class="callout">
+  <strong>Flexible doesn’t mean sloppy.</strong> Accept many formats, but always store and show the result in one clear, consistent format, so people can check that you understood them correctly.
+</div>
+</Section>
+
+<Section id="dodont" title="Do vs Don’t">
+<DoDont
+  dontCaption="The field rejects “12 / 03 / 2026” because it wants “2026-03-12”, and the error doesn’t even say so."
+  doCaption="The field accepts many date styles and shows back what it understood: “Thursday, 12 March 2026.”"
+>
+  <div slot="dont" class="ui">
+    <span class="ui-label" style="margin-bottom:6px">Date of birth</span>
+    <div class="ui-input" style="border-color:#dc2626;display:flex;align-items:center;padding:0 10px;font-size:12px">12 / 03 / 1996</div>
+    <div style="color:#dc2626;font-size:11px;margin-top:6px">Invalid input.</div>
+  </div>
+  <div slot="do" class="ui">
+    <span class="ui-label" style="margin-bottom:6px">Date of birth</span>
+    <div class="ui-input" style="display:flex;align-items:center;padding:0 10px;font-size:12px">12 / 03 / 1996</div>
+    <div style="color:#15803d;font-size:11px;margin-top:6px">✓ 12 March 1996</div>
+  </div>
+</DoDont>
+</Section>
+
+<Section id="examples" title="Real-world examples">
+<ul class="examples">
+  <li><strong>Google Search</strong><p>It understands typos, missing words and casual questions, and still shows the right results (“Did you mean…?”).</p></li>
+  <li><strong>Google Calendar</strong><p>You can type “lunch with Ana tomorrow at 1” and it turns that into a proper event.</p></li>
+  <li><strong>Stripe Checkout</strong><p>Card numbers can be typed with or without spaces, and the form formats them neatly as you go.</p></li>
+  <li><strong>Voice assistants</strong><p>Siri and Alexa accept many ways of asking for the same thing, like “set an alarm for 7” or “wake me up at seven.”</p></li>
+</ul>
+</Section>
+
+<Section id="apply" title="How to apply it">
+<Checklist>
+- **Accept common formats** for dates, phone numbers, card numbers and postcodes. Strip spaces and symbols yourself.
+- **Be forgiving with case and whitespace**, for example in emails and codes.
+- **Show back what you understood** in a clear, standard format.
+- **Give helpful errors** that say exactly what’s needed, not just “invalid.”
+- **Support different devices and inputs**, like touch, keyboard, voice, autofill and paste.
+</Checklist>
+</Section>

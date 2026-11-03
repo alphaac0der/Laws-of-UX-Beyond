@@ -1,0 +1,80 @@
+---
+title: "Zeigarnik Effect"
+order: 22
+category: Biases
+oneLiner: "People remember unfinished tasks better than finished ones."
+takeaway: "Show people what’s left to do and how close they are, but never invent unfinished tasks just to nag them."
+origin:
+  person: "Bluma Zeigarnik"
+  year: "1927"
+  source: "Studies on remembering completed and interrupted tasks"
+  url: "https://en.wikipedia.org/wiki/Zeigarnik_effect"
+related: [goal-gradient-effect, peak-end-rule, paradox-of-the-active-user]
+complete: true
+---
+import Section from '../../components/Section.astro';
+import DemoFrame from '../../components/DemoFrame.astro';
+import Analogy from '../../components/Analogy.astro';
+import DoDont from '../../components/DoDont.astro';
+import Checklist from '../../components/Checklist.astro';
+import ZeigarnikDemo from '../../components/demos/ZeigarnikDemo.tsx';
+
+<Section id="demo" title="Try it yourself">
+  <DemoFrame hint="About 10 seconds"><ZeigarnikDemo client:visible /></DemoFrame>
+</Section>
+
+<Section id="plain" title="In plain words">
+<Analogy>
+A TV series ends an episode on a cliffhanger, and you can’t stop thinking about it until you watch the next one.
+
+An unfinished story stays open in your head.
+</Analogy>
+
+Unfinished things nag at us. Our mind keeps them “open” until they’re done. Products can use this gently to help people **come back and finish** what they started.
+</Section>
+
+<Section id="why" title="Why it happens">
+The story goes that psychologist Bluma Zeigarnik noticed waiters remembered unpaid orders perfectly, then forgot them the moment the bill was settled. In her experiments, people interrupted in the middle of tasks remembered those tasks better than the ones they’d completed.
+
+Starting something creates a kind of mental tension. Finishing it releases the tension. That’s why progress bars, checklists and “continue where you left off” prompts are so effective.
+
+<div class="callout">
+  <strong>Be kind about it.</strong> Reminding people of something they <em>want</em> to finish is helpful. Inventing fake to-dos, or a profile that’s “never quite 100%”, is manipulative and wears people out.
+</div>
+</Section>
+
+<Section id="dodont" title="Do vs Don’t">
+<DoDont
+  dontCaption="Setup steps are hidden. Once you leave, there’s no sign of what’s left, so most people never come back to finish."
+  doCaption="A visible checklist with progress. People see what’s left, and the open items invite them back."
+>
+  <div slot="dont" class="ui">
+    <div class="ui-title">Welcome back</div>
+    <div class="ui-img"></div>
+  </div>
+  <div slot="do" class="ui">
+    <div class="ui-row" style="justify-content:space-between"><b style="font-size:13px">Set up your shop</b><span class="ui-muted">3 of 5</span></div>
+    <div style="height:6px;border-radius:3px;background:#e4e4e7;margin:8px 0 10px"><div style="width:60%;height:100%;border-radius:3px;background:#18181b"></div></div>
+    <div style="font-size:12px;display:grid;gap:5px"><span style="color:#a1a1aa;text-decoration:line-through">Add products</span><span style="color:#a1a1aa;text-decoration:line-through">Choose a theme</span><span style="color:#a1a1aa;text-decoration:line-through">Set prices</span><b>Connect payments →</b><span>Launch your shop</span></div>
+  </div>
+</DoDont>
+</Section>
+
+<Section id="examples" title="Real-world examples">
+<ul class="examples">
+  <li><strong>LinkedIn profile strength</strong><p>A meter shows how complete your profile is and suggests the next step, which nudges people to finish.</p></li>
+  <li><strong>Netflix “Continue watching”</strong><p>Half-watched shows sit at the top of your home screen, pulling you back to finish them.</p></li>
+  <li><strong>Shopify setup guide</strong><p>New store owners get a checklist with progress, so they always know what’s left before launch.</p></li>
+  <li><strong>Online courses</strong><p>Coursera and Udemy show your progress through a course, making unfinished lessons hard to forget.</p></li>
+</ul>
+</Section>
+
+<Section id="apply" title="How to apply it">
+<Checklist>
+- **Show progress** on multi-step tasks like onboarding, profiles and courses.
+- **Let people resume** exactly where they left off, with their work saved.
+- **Highlight the next step**, not just how much is left.
+- **Make the end reachable.** A checklist that never completes feels like a trap.
+- **Only remind people about things they chose to start**, never invented tasks.
+</Checklist>
+</Section>

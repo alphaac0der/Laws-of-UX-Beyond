@@ -1,0 +1,81 @@
+---
+title: "Jakob’s Law"
+order: 5
+category: Heuristics
+oneLiner: "Users spend most of their time on other sites, so they expect yours to work the same way."
+takeaway: "Follow the patterns people already know. Save your originality for the things that make your product special."
+origin:
+  person: "Jakob Nielsen"
+  year: "2000"
+  source: "“End of Web Design”, Nielsen Norman Group"
+  url: "https://www.nngroup.com/articles/end-of-web-design/"
+related: [mental-model, paradox-of-the-active-user, cognitive-load]
+complete: true
+---
+import Section from '../../components/Section.astro';
+import DemoFrame from '../../components/DemoFrame.astro';
+import Analogy from '../../components/Analogy.astro';
+import DoDont from '../../components/DoDont.astro';
+import Checklist from '../../components/Checklist.astro';
+import JakobsDemo from '../../components/demos/JakobsDemo.tsx';
+
+<Section id="demo" title="Try it yourself">
+  <DemoFrame hint="About 20 seconds"><JakobsDemo client:visible /></DemoFrame>
+</Section>
+
+<Section id="plain" title="In plain words">
+<Analogy>
+You can drive almost any car without reading the manual. The steering wheel, pedals and indicators are always in the same places.
+
+Now imagine a car where the brake is on the steering wheel. It might be a clever idea, but you’ll crash before you get used to it.
+</Analogy>
+
+People don’t learn your website from scratch. They bring habits from **every other site and app** they use. When yours works the way they expect, it feels easy without them having to think.
+</Section>
+
+<Section id="why" title="Why it happens">
+Over time, people build **mental models**: expectations about how things work. The logo in the top-left goes home. The cart is in the top-right. Underlined blue text is a link. These expectations come from thousands of hours on other products.
+
+When your design matches them, people can spend their attention on their actual goal. When it breaks them, they have to stop, look around and relearn, and many won’t bother.
+
+<div class="callout">
+  <strong>This doesn’t mean “never innovate.”</strong> It means be different where it matters and familiar everywhere else. If you do change a convention, make sure the benefit is worth the learning cost.
+</div>
+</Section>
+
+<Section id="dodont" title="Do vs Don’t">
+<DoDont
+  dontCaption="A “creative” header: logo in the middle, menu as an unlabeled icon on the right, cart hidden in the footer."
+  doCaption="Logo top-left, navigation across the top, search in the middle, cart top-right. Nobody has to think."
+>
+  <div slot="dont" class="ui">
+    <div class="ui-row" style="justify-content:space-between;margin-bottom:12px"><span class="ui-muted">◎</span><b>Shoply</b><span class="ui-muted">⋯</span></div>
+    <div class="ui-img"></div>
+    <div class="ui-muted" style="text-align:center;margin-top:10px;font-size:10px">bag · info · help</div>
+  </div>
+  <div slot="do" class="ui">
+    <div class="ui-row" style="justify-content:space-between;margin-bottom:12px"><b>Shoply</b><span class="ui-muted">Women · Men · Sale</span><span class="ui-muted">Cart (2)</span></div>
+    <div class="ui-input" style="margin-bottom:10px"></div>
+    <div class="ui-img"></div>
+  </div>
+</DoDont>
+</Section>
+
+<Section id="examples" title="Real-world examples">
+<ul class="examples">
+  <li><strong>Online shops</strong><p>Almost every store puts search at the top and the cart in the top-right corner, so shoppers never have to hunt.</p></li>
+  <li><strong>YouTube’s redesigns</strong><p>When YouTube changes its layout, it often lets people try the new version early and switch back, giving them time to adjust.</p></li>
+  <li><strong>Google Docs</strong><p>It copied the familiar toolbar and shortcuts of Microsoft Word, so new users felt at home right away.</p></li>
+  <li><strong>Mobile apps</strong><p>Pull to refresh, swipe to delete and the bottom tab bar work the same across thousands of apps.</p></li>
+</ul>
+</Section>
+
+<Section id="apply" title="How to apply it">
+<Checklist>
+- **Study the conventions** in your type of product before designing, such as how other shops, banks or editors do it.
+- **Keep standard elements where people expect them:** logo, navigation, search, cart, account and settings.
+- **Use familiar names** like “Cart”, “Sign in” and “Settings” instead of clever ones.
+- **When you redesign, ease people in.** Offer a preview, a short explanation, or a temporary way back to the old version.
+- **Innovate in your core value**, not in basic controls like buttons, forms and menus.
+</Checklist>
+</Section>

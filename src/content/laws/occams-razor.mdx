@@ -1,0 +1,85 @@
+---
+title: "Occam’s Razor"
+order: 10
+category: Heuristics
+oneLiner: "When two solutions work equally well, pick the simpler one."
+takeaway: "Remove everything that doesn’t help people finish the task. Then check it still works."
+origin:
+  person: "William of Ockham"
+  year: "14th century"
+  source: "The principle of parsimony"
+  url: "https://en.wikipedia.org/wiki/Occam%27s_razor"
+related: [teslers-law, hicks-law, cognitive-load]
+complete: true
+---
+import Section from '../../components/Section.astro';
+import DemoFrame from '../../components/DemoFrame.astro';
+import Analogy from '../../components/Analogy.astro';
+import DoDont from '../../components/DoDont.astro';
+import Checklist from '../../components/Checklist.astro';
+import OccamDemo from '../../components/demos/OccamDemo.tsx';
+
+<Section id="demo" title="Try it yourself">
+  <DemoFrame hint="About 20 seconds"><OccamDemo client:visible /></DemoFrame>
+</Section>
+
+<Section id="plain" title="In plain words">
+<Analogy>
+A Swiss Army knife with 30 tools is impressive. But when you just want to spread butter, a simple butter knife is faster, safer and easier.
+
+More isn’t better if it doesn’t help with the job at hand.
+</Analogy>
+
+Every extra button, option and sentence is something people have to read, understand and decide to ignore. If it doesn’t help them do what they came to do, it’s **getting in the way**.
+</Section>
+
+<Section id="why" title="Why it happens">
+William of Ockham was a 14th-century philosopher. His idea, often summed up as “don’t add more than you need”, was about explanations: the simplest one that fits the facts is usually the best.
+
+In design, it means that among solutions that work, **the one with fewer parts usually wins**. It’s easier to learn, has fewer places for things to go wrong, and is cheaper to build and maintain.
+
+<div class="callout">
+  <strong>Simple is not the same as “less.”</strong> Removing something people actually need doesn’t make a design simpler, it makes it broken. The goal is the fewest parts that still <em>fully</em> do the job (see Tesler’s Law).
+</div>
+</Section>
+
+<Section id="dodont" title="Do vs Don’t">
+<DoDont
+  dontCaption="A newsletter sign-up asking for name, birthday, gender, interests and how you heard about us, just to send emails."
+  doCaption="One field and one button. Everything else can be asked later, if it’s ever needed."
+>
+  <div slot="dont" class="ui">
+    <div class="ui-title">Join our newsletter</div>
+    <div class="ui-stack">
+      <div class="ui-input"></div><div class="ui-input"></div>
+      <div class="ui-row"><div class="ui-input" style="flex:1"></div><div class="ui-input" style="flex:1"></div></div>
+      <div class="ui-input"></div>
+    </div>
+    <div class="ui-btn primary block" style="margin-top:12px">Sign up</div>
+  </div>
+  <div slot="do" class="ui">
+    <div class="ui-title">Join our newsletter</div>
+    <div class="ui-muted" style="margin-bottom:10px">One email a week. No spam.</div>
+    <div class="ui-row"><div class="ui-input" style="flex:1"></div><span class="ui-btn primary">Join</span></div>
+  </div>
+</DoDont>
+</Section>
+
+<Section id="examples" title="Real-world examples">
+<ul class="examples">
+  <li><strong>Google’s homepage</strong><p>One search box. For over 25 years, it has resisted adding clutter to its most important page.</p></li>
+  <li><strong>Apple’s product line</strong><p>When Steve Jobs returned in 1997, Apple cut dozens of products down to four, making it far easier to choose.</p></li>
+  <li><strong>Dropbox</strong><p>It started with one simple idea, a folder that syncs everywhere, instead of a complicated set of file-management features.</p></li>
+  <li><strong>Calm and Headspace</strong><p>Their home screens lead with one big “start” action instead of a menu of options.</p></li>
+</ul>
+</Section>
+
+<Section id="apply" title="How to apply it">
+<Checklist>
+- **Start from the task**: what does the user need to finish it? Remove anything that doesn’t serve that.
+- **Question every element.** If you removed it, would anyone notice or complain?
+- **Prefer one clear way** to do something over several half-good ways.
+- **Ask for information later**, only when it’s needed.
+- **Test after cutting** to make sure the simpler version still works for real people.
+</Checklist>
+</Section>

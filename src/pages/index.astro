@@ -1,0 +1,105 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import LawCard from '../components/LawCard.astro';
+import { CATEGORIES } from '../content.config';
+
+const laws = (await getCollection('laws')).sort((a, b) => a.data.order - b.data.order);
+const counts = Object.fromEntries(
+  CATEGORIES.map((c) => [c, laws.filter((l) => l.data.category === c).length]),
+);
+const firstLesson = laws.find((l) => l.id === 'hicks-law') ?? laws[0];
+---
+
+<Base title="Laws of UX Beyond: UX psychology, explained for beginners">
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div>
+          <h1>Learn why good design works. <span class="dim">Try it, don’t just read it.</span></h1>
+        </div>
+        <div class="hero-side">
+          <p>
+            {laws.length} principles from psychology that explain how people see, think and decide. Each one comes
+            with a hands-on demo and real examples.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href={`/laws/${firstLesson.id}`}>
+              Start with {firstLesson.data.title}
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+            </a>
+            <a class="btn" href="#laws">Browse all laws</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap index" id="laws">
+    <div class="index-head">
+      <h2>All laws</h2>
+    </div>
+    <div class="index-bar">
+      <div class="tabs" role="tablist" aria-label="Filter by category">
+        <button class="tab" role="tab" type="button" data-filter="all" aria-selected="true">
+          All<sup>{laws.length}</sup>
+        </button>
+        {
+          CATEGORIES.map((c) => (
+            <button class="tab" role="tab" type="button" data-filter={c} aria-selected="false">
+              {c}
+              <sup>{counts[c]}</sup>
+            </button>
+          ))
+        }
+      </div>
+      <label class="search">
+        <span class="sr-only">Search laws</span>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg>
+        <input id="search" type="search" placeholder="Search laws" autocomplete="off" />
+        <kbd aria-hidden="true">/</kbd>
+      </label>
+    </div>
+
+    <div class="grid" id="grid">
+      {laws.map((law) => <LawCard law={law} />)}
+    </div>
+    <p class="empty" id="empty" hidden>No laws match “<span id="q"></span>”.</p>
+  </section>
+</Base>
+
+<script>
+  const tabs = [...document.querySelectorAll<HTMLButtonElement>('[data-filter]')];
+  const tiles = [...document.querySelectorAll<HTMLElement>('#grid .tile')];
+  const input = document.getElementById('search') as HTMLInputElement;
+  const empty = document.getElementById('empty')!;
+  const qOut = document.getElementById('q')!;
+  let filter = 'all';
+
+  function apply() {
+    const q = input.value.trim().toLowerCase();
+    let shown = 0;
+    for (const t of tiles) {
+      const ok = (filter === 'all' || t.dataset.cat === filter) && (!q || t.dataset.search!.includes(q));
+      t.hidden = !ok;
+      if (ok) shown++;
+    }
+    qOut.textContent = input.value.trim();
+    empty.hidden = shown > 0;
+  }
+  tabs.forEach((tab) =>
+    tab.addEventListener('click', () => {
+      filter = tab.dataset.filter!;
+      tabs.forEach((t) => t.setAttribute('aria-selected', String(t === tab)));
+      apply();
+    }),
+  );
+  input.addEventListener('input', apply);
+  addEventListener('keydown', (e) => {
+    const el = document.activeElement as HTMLElement | null;
+    if (e.key === '/' && el?.tagName !== 'INPUT') {
+      e.preventDefault();
+      input.focus();
+    }
+  });
+</script>

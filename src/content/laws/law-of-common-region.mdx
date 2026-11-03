@@ -1,0 +1,83 @@
+---
+title: "Law of Common Region"
+order: 13
+category: Gestalt
+oneLiner: "Things inside the same box or area look like they belong together."
+takeaway: "A shared background or border is a quick, strong way to say “these belong together.” Use it on purpose, not everywhere."
+origin:
+  person: "Stephen E. Palmer"
+  year: "1992"
+  source: "“Common region: A new principle of perceptual grouping”, Cognitive Psychology"
+  url: "https://en.wikipedia.org/wiki/Principles_of_grouping"
+related: [law-of-proximity, law-of-uniform-connectedness, law-of-similarity]
+complete: true
+---
+import Section from '../../components/Section.astro';
+import DemoFrame from '../../components/DemoFrame.astro';
+import Analogy from '../../components/Analogy.astro';
+import DoDont from '../../components/DoDont.astro';
+import Checklist from '../../components/Checklist.astro';
+import GestaltDemo from '../../components/demos/GestaltDemo.tsx';
+
+<Section id="demo" title="Try it yourself">
+  <DemoFrame hint="About 10 seconds"><GestaltDemo mode="region" client:visible /></DemoFrame>
+</Section>
+
+<Section id="plain" title="In plain words">
+<Analogy>
+At a food court, each restaurant has its own counter. You never wonder whether the fries belong to the pizza place or the burger place.
+
+The counters draw invisible lines around each group.
+</Analogy>
+
+When elements share a **background, border or container**, we read them as one group, even if they’re spaced the same as everything else.
+</Section>
+
+<Section id="why" title="Why it happens">
+Psychologist Stephen Palmer showed that a shared region is such a strong grouping cue that it can **override closeness** (proximity) and even **similarity**. Two dots far apart inside the same box look more related than two close dots in different boxes.
+
+That’s why cards are so common in interfaces: a card instantly says “everything in here is about the same thing.”
+
+<div class="callout">
+  <strong>Common mistake:</strong> boxes inside boxes inside boxes. When every element has its own border, nothing stands out and the screen looks busy. Use regions for real groups, and let spacing handle the small stuff.
+</div>
+</Section>
+
+<Section id="dodont" title="Do vs Don’t">
+<DoDont
+  dontCaption="Two plans listed with no containers. It’s hard to tell which features belong to which plan."
+  doCaption="Each plan sits in its own card, so its price, features and button clearly belong together."
+>
+  <div slot="dont" class="ui">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px 14px;font-size:12px">
+      <b>Basic</b><b>Pro</b><span>$0</span><span>$12</span><span class="ui-muted">1 project</span><span class="ui-muted">Unlimited</span><span class="ui-muted">Email help</span><span class="ui-muted">Live chat</span>
+      <span class="ui-btn">Choose</span><span class="ui-btn primary">Choose</span>
+    </div>
+  </div>
+  <div slot="do" class="ui" style="background:#f4f4f5">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:12px">
+      <div style="background:#fff;border-radius:8px;padding:10px;display:grid;gap:4px"><b>Basic</b><span>$0</span><span class="ui-muted">1 project</span><span class="ui-muted">Email help</span><span class="ui-btn">Choose</span></div>
+      <div style="background:#fff;border-radius:8px;padding:10px;display:grid;gap:4px"><b>Pro</b><span>$12</span><span class="ui-muted">Unlimited</span><span class="ui-muted">Live chat</span><span class="ui-btn primary">Choose</span></div>
+    </div>
+  </div>
+</DoDont>
+</Section>
+
+<Section id="examples" title="Real-world examples">
+<ul class="examples">
+  <li><strong>Pinterest and Airbnb</strong><p>Every listing or pin is a card, so the photo, title and price clearly belong to one item.</p></li>
+  <li><strong>iOS Settings</strong><p>Related settings are grouped on rounded white panels against a grey background.</p></li>
+  <li><strong>Twitter/X quote posts</strong><p>The quoted post sits inside a bordered box, making it clear it’s separate from the reply around it.</p></li>
+  <li><strong>Forms</strong><p>Checkout pages often put “Shipping” and “Payment” in separate panels, so each set of fields reads as one step.</p></li>
+</ul>
+</Section>
+
+<Section id="apply" title="How to apply it">
+<Checklist>
+- **Use cards or panels** to group content about one thing, like a product, post or plan.
+- **Prefer a background tint over a border** for a lighter, cleaner look.
+- **Group form fields** that belong to the same step or topic.
+- **Avoid nesting regions** more than one or two levels deep.
+- **Combine with spacing:** clear gaps between regions make the grouping even stronger.
+</Checklist>
+</Section>

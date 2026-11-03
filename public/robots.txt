@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://lawsofuxbeyond.vercel.app/sitemap-index.xml

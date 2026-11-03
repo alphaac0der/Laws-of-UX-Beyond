@@ -1,0 +1,30 @@
+---
+interface Props {
+  doCaption: string;
+  dontCaption: string;
+}
+const { doCaption, dontCaption } = Astro.props;
+---
+
+<div class="dodont">
+  <figure class="dd dont">
+    <div class="dd-stage"><slot name="dont" /></div>
+    <figcaption class="dd-text">
+      <span class="dd-head">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M15 9l-6 6M9 9l6 6"></path></svg>
+        Don’t
+      </span>
+      <span class="dd-caption">{dontCaption}</span>
+    </figcaption>
+  </figure>
+  <figure class="dd do">
+    <div class="dd-stage"><slot name="do" /></div>
+    <figcaption class="dd-text">
+      <span class="dd-head">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M8 12.5l2.5 2.5L16 9.5"></path></svg>
+        Do
+      </span>
+      <span class="dd-caption">{doCaption}</span>
+    </figcaption>
+  </figure>
+</div>

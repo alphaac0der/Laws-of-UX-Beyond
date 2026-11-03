@@ -1,0 +1,93 @@
+---
+title: "Fitts’s Law"
+order: 3
+category: Heuristics
+oneLiner: "The time to reach a target depends on how far away it is and how big it is."
+takeaway: "Make important targets big and put them close to where the user already is."
+origin:
+  person: "Paul M. Fitts"
+  year: "1954"
+  source: "“The information capacity of the human motor system in controlling the amplitude of movement”, Journal of Experimental Psychology"
+  url: "https://doi.org/10.1037/h0055392"
+related: [hicks-law, doherty-threshold, law-of-proximity]
+complete: true
+---
+import Section from '../../components/Section.astro';
+import DemoFrame from '../../components/DemoFrame.astro';
+import Analogy from '../../components/Analogy.astro';
+import DoDont from '../../components/DoDont.astro';
+import Checklist from '../../components/Checklist.astro';
+import FittsDemo from '../../components/demos/FittsDemo.tsx';
+
+<Section id="demo" title="Try it yourself">
+  <DemoFrame><FittsDemo client:visible /></DemoFrame>
+</Section>
+
+<Section id="plain" title="In plain words">
+<Analogy>
+Throwing a ball into a laundry basket next to you is easy. Throwing it into a coffee cup across the room is hard.
+
+The basket is big and close. The cup is small and far. Buttons work the same way.
+</Analogy>
+
+Every time someone moves a mouse or a thumb to a button, they’re doing a tiny bit of aiming. **Small, far-away targets need slow, careful aiming. Big, nearby targets can be hit fast and without thinking.**
+</Section>
+
+<Section id="why" title="Why it happens">
+Moving your hand to a target happens in two parts. First a fast movement gets you close, then several small corrections land you on it. The smaller the target, the more corrections you need. The farther away it is, the longer the first movement takes.
+
+<div class="formula">
+  T = a + b · log₂(2D / W)
+  <small>Time (T) grows with the distance to the target (D) and shrinks as the target’s width (W) grows. The letters a and b depend on the device and the person.</small>
+</div>
+
+<div class="callout">
+  <strong>Bonus: screen edges are “infinitely” big.</strong> On a computer, your mouse stops at the edge of the screen, so you can’t overshoot. That’s why menus pinned to edges and corners (like the macOS menu bar or the Windows Start button) are so easy to hit.
+</div>
+</Section>
+
+<Section id="dodont" title="Do vs Don’t">
+<DoDont
+  dontCaption="The main action is a tiny text link, far from where the user just finished typing. On a phone it’s easy to tap the wrong thing."
+  doCaption="A big, full-width button right under the last field. Your thumb is already there, so there’s nothing to aim at."
+>
+  <div slot="dont" class="ui">
+    <div class="ui-row" style="justify-content:space-between;margin-bottom:12px">
+      <div class="ui-title" style="margin:0">Sign in</div>
+      <span class="ui-link">Submit</span>
+    </div>
+    <div class="ui-stack">
+      <span class="ui-label">Email</span><div class="ui-input"></div>
+      <span class="ui-label">Password</span><div class="ui-input"></div>
+    </div>
+    <div style="height:40px"></div>
+  </div>
+  <div slot="do" class="ui">
+    <div class="ui-title">Sign in</div>
+    <div class="ui-stack">
+      <span class="ui-label">Email</span><div class="ui-input"></div>
+      <span class="ui-label">Password</span><div class="ui-input"></div>
+    </div>
+    <div class="ui-btn primary block" style="margin-top:14px">Sign in</div>
+  </div>
+</DoDont>
+</Section>
+
+<Section id="examples" title="Real-world examples">
+<ul class="examples">
+  <li><strong>Mobile bottom tab bars</strong><p>Instagram and Spotify put main navigation at the bottom, where your thumb already rests, instead of in a hard-to-reach top corner.</p></li>
+  <li><strong>Floating action buttons</strong><p>Gmail’s big “Compose” button stays in the same easy-to-reach spot, sized for a quick tap.</p></li>
+  <li><strong>macOS menu bar</strong><p>It’s pinned to the top edge of the screen. You can throw your mouse upward and it stops right on the menu.</p></li>
+  <li><strong>Clickable labels</strong><p>Good forms let you click the text “Remember me” as well as the tiny checkbox. The click target gets much bigger and nothing looks different.</p></li>
+</ul>
+</Section>
+
+<Section id="apply" title="How to apply it">
+<Checklist>
+- **Make primary actions big.** Aim for at least **44×44px** touch targets (Apple) or **48×48dp** (Material).
+- **Put actions close to the task.** Place “Next” or “Save” right after the last field, not in a far corner.
+- **Leave space between targets** so people don’t tap the wrong one, especially destructive actions like “Delete.”
+- **Make the whole row or card clickable**, not just the small text or icon inside it.
+- **Use screen edges and corners** for things people reach for often on desktop.
+</Checklist>
+</Section>

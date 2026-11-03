@@ -1,0 +1,83 @@
+---
+title: "Pareto Principle"
+order: 11
+category: Heuristics
+oneLiner: "Roughly 80% of results come from 20% of causes."
+takeaway: "Find the vital few features and problems that matter most, and spend most of your effort there."
+origin:
+  person: "Vilfredo Pareto"
+  year: "1896"
+  source: "Observation that 20% of people owned 80% of land in Italy"
+  url: "https://en.wikipedia.org/wiki/Pareto_principle"
+related: [occams-razor, hicks-law, choice-overload]
+complete: true
+---
+import Section from '../../components/Section.astro';
+import DemoFrame from '../../components/DemoFrame.astro';
+import Analogy from '../../components/Analogy.astro';
+import DoDont from '../../components/DoDont.astro';
+import Checklist from '../../components/Checklist.astro';
+import ParetoDemo from '../../components/demos/ParetoDemo.tsx';
+
+<Section id="demo" title="Try it yourself">
+  <DemoFrame hint="About 10 seconds"><ParetoDemo client:visible /></DemoFrame>
+</Section>
+
+<Section id="plain" title="In plain words">
+<Analogy>
+Look in your wardrobe. You probably wear the same few favourite items most of the time, while the rest just hang there.
+
+A small part of what you own does most of the work.
+</Analogy>
+
+In most products, **a handful of features get most of the use**, and a handful of problems cause most of the complaints. Knowing which ones tells you where your effort will matter most.
+</Section>
+
+<Section id="why" title="Why it happens">
+Italian economist Vilfredo Pareto noticed that about 20% of the people in Italy owned about 80% of the land. Since then, people have found the same lopsided pattern almost everywhere: a few customers bring most of the revenue, and a few bugs cause most of the crashes.
+
+The numbers aren’t always exactly 80/20. It might be 70/30 or 90/10. The point is that **results are rarely spread evenly**, so treating everything as equally important wastes effort.
+
+<div class="callout">
+  <strong>Don’t delete the other 80% blindly.</strong> A rarely used feature can still be essential for some people, like “reset password” or accessibility settings. Use the principle to set priorities and layout, not as an excuse to cut.
+</div>
+</Section>
+
+<Section id="dodont" title="Do vs Don’t">
+<DoDont
+  dontCaption="Every feature gets the same space on the home screen, so the two things people do daily are lost among twenty they rarely touch."
+  doCaption="The most-used actions are big and up front, and the rest live one tap away under “More.”"
+>
+  <div slot="dont" class="ui">
+    <div class="ui-title">Banking</div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px">
+      <span class="ui-btn" style="height:30px;font-size:10px;padding:0">Pay</span><span class="ui-btn" style="height:30px;font-size:10px;padding:0">FX</span><span class="ui-btn" style="height:30px;font-size:10px;padding:0">Docs</span><span class="ui-btn" style="height:30px;font-size:10px;padding:0">Cards</span>
+      <span class="ui-btn" style="height:30px;font-size:10px;padding:0">Loans</span><span class="ui-btn" style="height:30px;font-size:10px;padding:0">Help</span><span class="ui-btn" style="height:30px;font-size:10px;padding:0">Tax</span><span class="ui-btn" style="height:30px;font-size:10px;padding:0">Send</span>
+    </div>
+  </div>
+  <div slot="do" class="ui">
+    <div class="ui-title">Banking</div>
+    <div class="ui-row" style="margin-bottom:8px"><span class="ui-btn primary" style="flex:1;height:44px">Send money</span><span class="ui-btn primary" style="flex:1;height:44px">Pay a bill</span></div>
+    <div class="ui-muted" style="text-align:center">Cards · Statements · More</div>
+  </div>
+</DoDont>
+</Section>
+
+<Section id="examples" title="Real-world examples">
+<ul class="examples">
+  <li><strong>Microsoft</strong><p>It found that fixing the top 20% of most-reported bugs would eliminate about 80% of crashes and errors.</p></li>
+  <li><strong>Banking apps</strong><p>Most put “send money” and “check balance” on the home screen, because those few tasks make up most visits.</p></li>
+  <li><strong>Microsoft Word’s ribbon</strong><p>The Home tab holds the handful of commands people use constantly, with the rest tucked into other tabs.</p></li>
+  <li><strong>App store reviews</strong><p>Teams often find that a few recurring complaints account for most bad reviews, so fixing those lifts ratings fast.</p></li>
+</ul>
+</Section>
+
+<Section id="apply" title="How to apply it">
+<Checklist>
+- **Use analytics** to find which features and pages get most of the use.
+- **Give the vital few the best spots**, like the home screen, primary buttons and shortcuts.
+- **Tackle problems by impact.** Fix the issues that affect the most people first.
+- **Move rarely used features** a step back, into “More”, settings or search, instead of deleting them.
+- **Revisit regularly.** The top 20% can change as your product and users change.
+</Checklist>
+</Section>

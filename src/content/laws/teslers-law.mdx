@@ -1,0 +1,84 @@
+---
+title: "Tesler’s Law"
+order: 9
+category: Heuristics
+oneLiner: "Every system has some complexity that can’t be removed, only moved around."
+takeaway: "You can’t delete necessary complexity. Make sure the system and the team carry it, not the user."
+origin:
+  person: "Larry Tesler (Xerox PARC)"
+  year: "mid-1980s"
+  source: "The law of conservation of complexity"
+  url: "https://en.wikipedia.org/wiki/Law_of_conservation_of_complexity"
+related: [occams-razor, postels-law, cognitive-load]
+complete: true
+---
+import Section from '../../components/Section.astro';
+import DemoFrame from '../../components/DemoFrame.astro';
+import Analogy from '../../components/Analogy.astro';
+import DoDont from '../../components/DoDont.astro';
+import Checklist from '../../components/Checklist.astro';
+import TeslerDemo from '../../components/demos/TeslerDemo.tsx';
+
+<Section id="demo" title="Try it yourself">
+  <DemoFrame hint="About 20 seconds"><TeslerDemo client:visible /></DemoFrame>
+</Section>
+
+<Section id="plain" title="In plain words">
+<Analogy>
+Cooking dinner always involves shopping, chopping and cooking. You can do it all yourself, buy a meal kit, or order takeaway.
+
+The work never disappears. You only choose who does it.
+</Analogy>
+
+Some complexity is part of the job. Taxes have to be calculated and time zones have to be converted. The design question is: **who handles it, the user or the product?**
+</Section>
+
+<Section id="why" title="Why it happens">
+Larry Tesler, who also helped invent copy and paste, argued that every application has a certain amount of **essential complexity**. You can hide it or move it, but you can’t make it vanish. If designers and engineers don’t deal with it, users will.
+
+Since one product is used by thousands or millions of people, it’s almost always better for the team to spend extra time once than for every user to struggle every time.
+
+<div class="callout">
+  <strong>Watch out for oversimplifying.</strong> Hiding complexity too aggressively can backfire. If the app guesses wrong and there’s no way to correct it, people feel stuck. Handle the complexity, but leave a clear way to adjust.
+</div>
+</Section>
+
+<Section id="dodont" title="Do vs Don’t">
+<DoDont
+  dontCaption="The user must work out tax and shipping themselves, then hope the final charge matches."
+  doCaption="The app calculates tax and shipping from the address and shows one final price before you pay."
+>
+  <div slot="dont" class="ui">
+    <div class="ui-title">Your order</div>
+    <div class="ui-row" style="justify-content:space-between"><span>Subtotal</span><b>$80.00</b></div>
+    <div class="ui-muted" style="margin:8px 0 12px">+ applicable tax (see tax table) + shipping (varies by region)</div>
+    <div class="ui-btn primary block">Pay</div>
+  </div>
+  <div slot="do" class="ui">
+    <div class="ui-title">Your order</div>
+    <div class="ui-row" style="justify-content:space-between"><span class="ui-muted">Subtotal</span><span>$80.00</span></div>
+    <div class="ui-row" style="justify-content:space-between"><span class="ui-muted">Tax (CA)</span><span>$5.80</span></div>
+    <div class="ui-row" style="justify-content:space-between;margin-bottom:12px"><span class="ui-muted">Shipping</span><span>$4.00</span></div>
+    <div class="ui-btn primary block">Pay $89.80</div>
+  </div>
+</DoDont>
+</Section>
+
+<Section id="examples" title="Real-world examples">
+<ul class="examples">
+  <li><strong>Gmail</strong><p>It suggests who you mean as you type a name, so you don’t have to remember full email addresses.</p></li>
+  <li><strong>Smartphone cameras</strong><p>Focus, exposure and white balance are calculated automatically. The complexity moved from the photographer to the software.</p></li>
+  <li><strong>Google Flights</strong><p>It shows arrival times in local time and warns about overnight layovers, so you don’t do the maths.</p></li>
+  <li><strong>Tax software</strong><p>TurboTax turns complex tax rules into simple questions about your life, and applies the rules for you.</p></li>
+</ul>
+</Section>
+
+<Section id="apply" title="How to apply it">
+<Checklist>
+- **List the complexity** in a task, then ask, for each part: “Can the system handle this?”
+- **Use smart defaults** based on what you know, like location, history and common choices.
+- **Calculate and convert for people**: totals, time zones, units and currencies.
+- **Keep a way to override.** Automated choices should always be easy to check and change.
+- **Budget for it.** Moving complexity to the product takes real design and engineering time, so plan for it.
+</Checklist>
+</Section>

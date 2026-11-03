@@ -1,0 +1,27 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import LawDiagram from './LawDiagram.astro';
+import { KEYWORDS } from '../data/keywords';
+
+interface Props {
+  law: CollectionEntry<'laws'>;
+}
+const { law } = Astro.props;
+const { title, category, oneLiner, order } = law.data;
+---
+
+<a
+  class="tile"
+  href={`/laws/${law.id}`}
+  data-cat={category}
+  data-search={`${title} ${oneLiner} ${category} ${KEYWORDS[law.id] ?? ''}`.toLowerCase()}
+>
+  <div class="tile-art"><LawDiagram slug={law.id} /></div>
+  <div class="tile-body">
+    <div class="tile-meta">
+      <span>{String(order).padStart(2, '0')} · {category}</span>
+    </div>
+    <h3>{title}</h3>
+    <p>{oneLiner}</p>
+  </div>
+</a>

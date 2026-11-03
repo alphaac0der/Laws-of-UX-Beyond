@@ -1,0 +1,85 @@
+---
+title: "Law of Similarity"
+order: 16
+category: Gestalt
+oneLiner: "Things that look alike seem to belong to the same group."
+takeaway: "Make things that work the same look the same, and make different things look different."
+origin:
+  person: "Max Wertheimer (Gestalt psychology)"
+  year: "1923"
+  source: "“Laws of organization in perceptual forms”"
+  url: "https://en.wikipedia.org/wiki/Principles_of_grouping"
+related: [law-of-proximity, von-restorff-effect, jakobs-law]
+complete: true
+---
+import Section from '../../components/Section.astro';
+import DemoFrame from '../../components/DemoFrame.astro';
+import Analogy from '../../components/Analogy.astro';
+import DoDont from '../../components/DoDont.astro';
+import Checklist from '../../components/Checklist.astro';
+import GestaltDemo from '../../components/demos/GestaltDemo.tsx';
+
+<Section id="demo" title="Try it yourself">
+  <DemoFrame hint="About 10 seconds"><GestaltDemo mode="similarity" client:visible /></DemoFrame>
+</Section>
+
+<Section id="plain" title="In plain words">
+<Analogy>
+At a football match, you instantly know who’s on which team. Players don’t stand in groups; they’re mixed all over the field.
+
+The shirt colors do all the grouping for you.
+</Analogy>
+
+When things share a **color, shape, size or style**, we assume they’re related and work the same way. That’s a powerful shortcut, and it can also mislead people if similar-looking things behave differently.
+</Section>
+
+<Section id="why" title="Why it happens">
+Our visual system groups similar things automatically, before we consciously think about it. It’s one of the ways we make sense of a busy scene quickly. Color is the strongest cue, followed by shape and size.
+
+In interfaces, this means **consistency teaches people**. Once someone learns that blue underlined text is a link, they expect every blue underlined thing to be a link. Break that pattern, and they get confused.
+
+<div class="callout">
+  <strong>Common mistake:</strong> styling plain text the same as links, or making a heading look like a button. If it looks clickable, people will click it, and if it’s not, they’ll think the site is broken.
+</div>
+</Section>
+
+<Section id="dodont" title="Do vs Don’t">
+<DoDont
+  dontCaption="Links, labels and a button all use the same blue. Which ones can you click?"
+  doCaption="Links share one style, buttons share another, and plain text stays plain. Function is clear at a glance."
+>
+  <div slot="dont" class="ui" style="color:#2563eb;font-size:13px;display:grid;gap:8px">
+    <b>Account</b>
+    <span>Email: {'sam@mail.com'}</span>
+    <span>Change password</span>
+    <span>Member since 2021</span>
+    <b>Save</b>
+  </div>
+  <div slot="do" class="ui" style="font-size:13px;display:grid;gap:8px">
+    <b>Account</b>
+    <span class="ui-muted">Email: {'sam@mail.com'}</span>
+    <span style="color:#2563eb;text-decoration:underline">Change password</span>
+    <span class="ui-muted">Member since 2021</span>
+    <span class="ui-btn primary" style="justify-self:start">Save</span>
+  </div>
+</DoDont>
+</Section>
+
+<Section id="examples" title="Real-world examples">
+<ul class="examples">
+  <li><strong>Hyperlinks</strong><p>Across the web, colored and underlined text means “clickable.” Similarity across millions of sites taught us that.</p></li>
+  <li><strong>Google Calendar</strong><p>Each calendar has its own color, so you can spot all your work events at a glance across the week.</p></li>
+  <li><strong>GitHub labels</strong><p>Issues with the same colored label (like “bug” in red) are quickly recognized as one type.</p></li>
+  <li><strong>Design systems</strong><p>Material, Apple and others make all primary buttons look the same, so users always know where the main action is.</p></li>
+</ul>
+</Section>
+
+<Section id="apply" title="How to apply it">
+<Checklist>
+- **Give each kind of element one consistent style**: links, primary buttons, secondary buttons and tags.
+- **Use color to group categories**, but always pair it with a label or icon for people who can’t see the difference.
+- **Don’t style non-clickable things like clickable ones.**
+- **Make the important item different** when you want it to stand out (see the Von Restorff Effect).
+- **Document styles in a design system** so the whole team stays consistent.
+</Checklist>
+</Section>

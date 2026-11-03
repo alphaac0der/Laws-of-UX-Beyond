@@ -1,0 +1,44 @@
+{
+  "name": "laws-of-ux-beyond",
+  "version": "1.0.0",
+  "description": "The psychology behind good interfaces, explained for beginners: 30 laws of UX, each with a hands-on demo.",
+  "type": "module",
+  "private": true,
+  "author": {
+    "name": "Irtiza Khan Labib",
+    "url": "https://irtizakhanlabib.vercel.app/"
+  },
+  "license": "MIT",
+  "homepage": "https://lawsofuxbeyond.vercel.app",
+  "keywords": [
+    "ux",
+    "ux-design",
+    "laws-of-ux",
+    "psychology",
+    "design",
+    "education",
+    "astro"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@astrojs/mdx": "^8.1.2",
+    "@astrojs/preact": "^6.1.1",
+    "@astrojs/sitemap": "^3.7.4",
+    "astro": "^7.4.5",
+    "preact": "^11.1.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alphaac0der/Laws-of-UX---Beyond.git"
+  },
+  "bugs": {
+    "url": "https://github.com/alphaac0der/Laws-of-UX---Beyond/issues"
+  }
+}

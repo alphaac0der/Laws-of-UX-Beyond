@@ -1,0 +1,83 @@
+---
+title: "Von Restorff Effect"
+order: 21
+category: Biases
+oneLiner: "When several similar things are shown, the one that stands out is the one people remember."
+takeaway: "Make the one thing that matters most look different, and keep it to one thing per screen."
+origin:
+  person: "Hedwig von Restorff"
+  year: "1933"
+  source: "Experiments on memory and isolation (the “isolation effect”)"
+  url: "https://en.wikipedia.org/wiki/Von_Restorff_effect"
+related: [law-of-similarity, selective-attention, serial-position-effect]
+complete: true
+---
+import Section from '../../components/Section.astro';
+import DemoFrame from '../../components/DemoFrame.astro';
+import Analogy from '../../components/Analogy.astro';
+import DoDont from '../../components/DoDont.astro';
+import Checklist from '../../components/Checklist.astro';
+import MemoryListDemo from '../../components/demos/MemoryListDemo.tsx';
+
+<Section id="demo" title="Try it yourself">
+  <DemoFrame hint="About 20 seconds"><MemoryListDemo mode="isolation" client:visible /></DemoFrame>
+</Section>
+
+<Section id="plain" title="In plain words">
+<Analogy>
+In a class photo where everyone wears school uniform, the one kid in a bright red jumper is the face you’ll remember.
+
+Being different is what makes something memorable.
+</Analogy>
+
+When most things look alike, the **odd one out** grabs attention and sticks in memory. Designers use this to point people to the most important action.
+</Section>
+
+<Section id="why" title="Why it happens">
+German psychologist Hedwig von Restorff found that when people studied a list of similar items with one item that was different, like a number among syllables, they remembered the different one much better.
+
+Our brains are wired to notice change and difference, because historically, the unusual thing was often the important thing. In interfaces, contrast in **color, size, shape or motion** triggers the same response.
+
+<div class="callout">
+  <strong>It only works if you use it sparingly.</strong> If everything is highlighted, nothing stands out. And don’t rely on color alone: about 1 in 12 men has some form of color blindness, so add a size, shape or label difference too.
+</div>
+</Section>
+
+<Section id="dodont" title="Do vs Don’t">
+<DoDont
+  dontCaption="Every button is bright and bold. The screen shouts, and none of the actions stands out."
+  doCaption="One primary action is clearly different. The others are quiet, so the main path is obvious."
+>
+  <div slot="dont" class="ui" style="display:grid;gap:6px">
+    <div class="ui-title">Your file is ready</div>
+    <span class="ui-btn" style="background:#dc2626;color:#fff;border:0">Download</span>
+    <span class="ui-btn" style="background:#2563eb;color:#fff;border:0">Share</span>
+    <span class="ui-btn" style="background:#16a34a;color:#fff;border:0">Edit</span>
+    <span class="ui-btn" style="background:#ca8a04;color:#fff;border:0">Delete</span>
+  </div>
+  <div slot="do" class="ui" style="display:grid;gap:6px">
+    <div class="ui-title">Your file is ready</div>
+    <span class="ui-btn primary block">Download</span>
+    <div class="ui-row" style="justify-content:center;gap:16px;font-size:12px;color:#52525b;margin-top:4px"><span>Share</span><span>Edit</span><span>Delete</span></div>
+  </div>
+</DoDont>
+</Section>
+
+<Section id="examples" title="Real-world examples">
+<ul class="examples">
+  <li><strong>Pricing tables</strong><p>The recommended plan is highlighted with a different color or a “Most popular” badge, so it’s the one people notice.</p></li>
+  <li><strong>Notification badges</strong><p>A small red dot on an app icon stands out against everything else on your home screen.</p></li>
+  <li><strong>Gmail’s Compose button</strong><p>It’s the one large, colored button in an otherwise calm sidebar.</p></li>
+  <li><strong>Search results</strong><p>Your search words are shown in bold inside each result, so you can scan for matches.</p></li>
+</ul>
+</Section>
+
+<Section id="apply" title="How to apply it">
+<Checklist>
+- **Pick one primary action per screen** and make it visually distinct.
+- **Use contrast in several ways**, such as size, weight, shape and color, not color alone.
+- **Keep everything else calm** so the highlight has something to stand out against.
+- **Use motion sparingly.** It’s the strongest attention-grabber, and the most distracting.
+- **Don’t make unimportant things stand out**, like ads or upsells, or people learn to ignore highlights.
+</Checklist>
+</Section>

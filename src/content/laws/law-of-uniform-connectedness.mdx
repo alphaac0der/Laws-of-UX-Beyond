@@ -1,0 +1,86 @@
+---
+title: "Law of Uniform Connectedness"
+order: 17
+category: Gestalt
+oneLiner: "Things connected by lines or shared visuals look more related than things that aren’t."
+takeaway: "When order or relationships matter, connect the pieces visually. A line is the strongest grouping signal you have."
+origin:
+  person: "Stephen E. Palmer & Irvin Rock"
+  year: "1994"
+  source: "“Rethinking perceptual organization: The role of uniform connectedness”, Psychonomic Bulletin & Review"
+  url: "https://en.wikipedia.org/wiki/Principles_of_grouping"
+related: [law-of-common-region, law-of-proximity, goal-gradient-effect]
+complete: true
+---
+import Section from '../../components/Section.astro';
+import DemoFrame from '../../components/DemoFrame.astro';
+import Analogy from '../../components/Analogy.astro';
+import DoDont from '../../components/DoDont.astro';
+import Checklist from '../../components/Checklist.astro';
+import GestaltDemo from '../../components/demos/GestaltDemo.tsx';
+
+<Section id="demo" title="Try it yourself">
+  <DemoFrame hint="About 10 seconds"><GestaltDemo mode="connected" client:visible /></DemoFrame>
+</Section>
+
+<Section id="plain" title="In plain words">
+<Analogy>
+On a subway map, stations far apart on the page are clearly on the same line because a colored line runs through them.
+
+The line tells you more than the distances do.
+</Analogy>
+
+When elements are **physically connected**, by a line, an arrow or a shared bar, we see them as one unit. This is even stronger than being close together or looking alike.
+</Section>
+
+<Section id="why" title="Why it happens">
+Stephen Palmer and Irvin Rock argued that connectedness is one of the most basic ways our brain organizes what we see. A connected region is processed as a single object first, and then the brain looks at the details inside it.
+
+That’s why a line between two items can beat proximity: in the demo above, dots that sit close together suddenly stop looking like pairs as soon as different dots are joined.
+
+<div class="callout">
+  <strong>Great for steps and flows.</strong> Connecting lines make the order of steps, the path of a process, or the link between related items obvious without extra words.
+</div>
+</Section>
+
+<Section id="dodont" title="Do vs Don’t">
+<DoDont
+  dontCaption="Order steps shown as separate badges. It’s not obvious that they form one sequence or where you are."
+  doCaption="The steps are joined by a line, filled up to the current one. The journey reads as one connected path."
+>
+  <div slot="dont" class="ui">
+    <div class="ui-title">Order status</div>
+    <div class="ui-row" style="justify-content:space-between;font-size:11px">
+      <span class="ui-btn" style="height:26px;font-size:10px">Ordered</span><span class="ui-btn" style="height:26px;font-size:10px">Packed</span><span class="ui-btn" style="height:26px;font-size:10px">Shipped</span><span class="ui-btn" style="height:26px;font-size:10px">Delivered</span>
+    </div>
+  </div>
+  <div slot="do" class="ui">
+    <div class="ui-title">Order status</div>
+    <div style="position:relative;display:flex;justify-content:space-between;margin:14px 6px 6px">
+      <div style="position:absolute;left:0;right:0;top:6px;height:3px;background:#e4e4e7"></div>
+      <div style="position:absolute;left:0;width:66%;top:6px;height:3px;background:#18181b"></div>
+      <span style="width:15px;height:15px;border-radius:50%;background:#18181b;position:relative"></span><span style="width:15px;height:15px;border-radius:50%;background:#18181b;position:relative"></span><span style="width:15px;height:15px;border-radius:50%;background:#18181b;position:relative"></span><span style="width:15px;height:15px;border-radius:50%;background:#e4e4e7;position:relative"></span>
+    </div>
+    <div class="ui-row ui-muted" style="justify-content:space-between;font-size:10px"><span>Ordered</span><span>Packed</span><span>Shipped</span><span>Delivered</span></div>
+  </div>
+</DoDont>
+</Section>
+
+<Section id="examples" title="Real-world examples">
+<ul class="examples">
+  <li><strong>Delivery trackers</strong><p>Amazon and food delivery apps connect each stage with a line, so you see the whole journey and where your order is.</p></li>
+  <li><strong>Subway maps</strong><p>Colored lines connect stations into routes, regardless of their actual distance.</p></li>
+  <li><strong>Figma prototypes</strong><p>Arrows connect screens, making the flow between them obvious at a glance.</p></li>
+  <li><strong>Chat threads</strong><p>Slack and Reddit draw thin lines to connect replies to the message they’re answering.</p></li>
+</ul>
+</Section>
+
+<Section id="apply" title="How to apply it">
+<Checklist>
+- **Connect sequential steps** in checkouts, onboarding and trackers with a line or bar.
+- **Use lines or arrows** to show relationships in diagrams, threads and flows.
+- **Fill the connection to show progress**, such as completed steps in a solid line and future steps faded.
+- **Keep connectors subtle** so they guide the eye without becoming the main thing.
+- **Don’t connect unrelated items.** A line is such a strong signal that it will create relationships people trust.
+</Checklist>
+</Section>

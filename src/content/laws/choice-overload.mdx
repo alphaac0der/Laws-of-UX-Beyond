@@ -1,0 +1,86 @@
+---
+title: "Choice Overload"
+order: 25
+category: Cognition
+oneLiner: "Too many options can overwhelm people so much that they don’t choose at all."
+takeaway: "Offer fewer, better options. Curate, recommend and let people narrow down, instead of showing everything at once."
+origin:
+  person: "Sheena Iyengar & Mark Lepper (the “jam study”)"
+  year: "2000"
+  source: "“When choice is demotivating”, Journal of Personality and Social Psychology"
+  url: "https://en.wikipedia.org/wiki/Overchoice"
+related: [hicks-law, cognitive-load, pareto-principle]
+complete: true
+---
+import Section from '../../components/Section.astro';
+import DemoFrame from '../../components/DemoFrame.astro';
+import Analogy from '../../components/Analogy.astro';
+import DoDont from '../../components/DoDont.astro';
+import Checklist from '../../components/Checklist.astro';
+import ChoiceOverloadDemo from '../../components/demos/ChoiceOverloadDemo.tsx';
+
+<Section id="demo" title="Try it yourself">
+  <DemoFrame hint="About 20 seconds"><ChoiceOverloadDemo client:visible /></DemoFrame>
+</Section>
+
+<Section id="plain" title="In plain words">
+<Analogy>
+You open Netflix to watch something. Twenty minutes later you’re still scrolling, and you end up rewatching an old favourite, or nothing at all.
+
+With so much to choose from, choosing became the hard part.
+</Analogy>
+
+More choice sounds like a good thing. But past a certain point, it makes deciding **harder, slower and less satisfying**, and many people simply walk away.
+</Section>
+
+<Section id="why" title="Why it happens">
+In the famous “jam study,” a grocery store showed either 24 or 6 flavours of jam. The big display attracted more people, but shoppers were about **10 times more likely to buy** from the small one.
+
+Every option has to be compared with the others, and the number of comparisons grows fast. On top of that, more options means more chances to regret: *“maybe a different one was better.”* People feel less sure about what they picked, or avoid deciding entirely.
+
+<div class="callout">
+  <strong>How is this different from Hick’s Law?</strong> Hick’s Law is about <em>time</em>: more options means slower decisions. Choice overload is about <em>giving up and regret</em>: too many options means people decide not to decide, or feel worse about their choice.
+</div>
+</Section>
+
+<Section id="dodont" title="Do vs Don’t">
+<DoDont
+  dontCaption="An endless grid of identical-looking options, with no guidance on where to start."
+  doCaption="A few curated picks up front, with filters to narrow down if people want more."
+>
+  <div slot="dont" class="ui">
+    <div class="ui-title">Choose a template</div>
+    <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:4px">
+      <span style="aspect-ratio:1;background:#e4e4e7;border-radius:3px"></span><span style="aspect-ratio:1;background:#e4e4e7;border-radius:3px"></span><span style="aspect-ratio:1;background:#e4e4e7;border-radius:3px"></span><span style="aspect-ratio:1;background:#e4e4e7;border-radius:3px"></span><span style="aspect-ratio:1;background:#e4e4e7;border-radius:3px"></span><span style="aspect-ratio:1;background:#e4e4e7;border-radius:3px"></span>
+      <span style="aspect-ratio:1;background:#e4e4e7;border-radius:3px"></span><span style="aspect-ratio:1;background:#e4e4e7;border-radius:3px"></span><span style="aspect-ratio:1;background:#e4e4e7;border-radius:3px"></span><span style="aspect-ratio:1;background:#e4e4e7;border-radius:3px"></span><span style="aspect-ratio:1;background:#e4e4e7;border-radius:3px"></span><span style="aspect-ratio:1;background:#e4e4e7;border-radius:3px"></span>
+      <span style="aspect-ratio:1;background:#e4e4e7;border-radius:3px"></span><span style="aspect-ratio:1;background:#e4e4e7;border-radius:3px"></span><span style="aspect-ratio:1;background:#e4e4e7;border-radius:3px"></span><span style="aspect-ratio:1;background:#e4e4e7;border-radius:3px"></span><span style="aspect-ratio:1;background:#e4e4e7;border-radius:3px"></span><span style="aspect-ratio:1;background:#e4e4e7;border-radius:3px"></span>
+    </div>
+    <div class="ui-muted" style="margin-top:8px">Showing 18 of 412</div>
+  </div>
+  <div slot="do" class="ui">
+    <div class="ui-title">Choose a template</div>
+    <div class="ui-muted" style="margin-bottom:8px">Recommended for a portfolio</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px"><span style="aspect-ratio:3/4;background:#e4e4e7;border-radius:6px;outline:2px solid #18181b"></span><span style="aspect-ratio:3/4;background:#e4e4e7;border-radius:6px"></span><span style="aspect-ratio:3/4;background:#e4e4e7;border-radius:6px"></span></div>
+    <div class="ui-muted" style="margin-top:8px">Browse all by category →</div>
+  </div>
+</DoDont>
+</Section>
+
+<Section id="examples" title="Real-world examples">
+<ul class="examples">
+  <li><strong>Netflix</strong><p>Personalized rows like “Top picks for you” and the auto-playing preview cut thousands of titles down to a handful worth considering.</p></li>
+  <li><strong>Spotify’s Discover Weekly</strong><p>Instead of searching 100 million songs, you get 30 picked for you each week.</p></li>
+  <li><strong>Meal kits like HelloFresh</strong><p>They solve “what’s for dinner?” by offering a small weekly menu instead of every possible recipe.</p></li>
+  <li><strong>Squarespace and Canva</strong><p>Their templates are grouped by goal (portfolio, shop, blog), so people only browse a relevant few.</p></li>
+</ul>
+</Section>
+
+<Section id="apply" title="How to apply it">
+<Checklist>
+- **Curate.** Show a small set of good options first, and let people expand if they want.
+- **Recommend.** Highlight a best pick, a popular choice, or what fits their stated needs.
+- **Let people narrow down** with filters, categories and a few simple questions.
+- **Make options easy to compare** with consistent details shown side by side.
+- **Use smart defaults** so people can move on without deciding at all.
+</Checklist>
+</Section>

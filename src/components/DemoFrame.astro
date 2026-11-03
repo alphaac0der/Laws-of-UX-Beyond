@@ -1,0 +1,17 @@
+---
+interface Props {
+  hint?: string;
+}
+const { hint = 'About 30 seconds' } = Astro.props;
+---
+
+<div class="demo-frame">
+  <div class="demo-bar">
+    <b>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15a1 1 0 0 0 1.5.86l12-7.5a1 1 0 0 0 0-1.72l-12-7.5A1 1 0 0 0 7 4.5z"></path></svg>
+      Interactive demo
+    </b>
+    <span>{hint}</span>
+  </div>
+  <slot />
+</div>

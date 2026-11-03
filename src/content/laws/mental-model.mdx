@@ -1,0 +1,78 @@
+---
+title: "Mental Model"
+order: 29
+category: Cognition
+oneLiner: "The picture a person has in their head of how a system works."
+takeaway: "Learn what people already believe about how things work, and design to match it, not the way the code is built."
+origin:
+  person: "Kenneth Craik"
+  year: "1943"
+  source: "“The Nature of Explanation”"
+  url: "https://en.wikipedia.org/wiki/Mental_model"
+related: [jakobs-law, paradox-of-the-active-user, cognitive-load]
+complete: true
+---
+import Section from '../../components/Section.astro';
+import DemoFrame from '../../components/DemoFrame.astro';
+import Analogy from '../../components/Analogy.astro';
+import DoDont from '../../components/DoDont.astro';
+import Checklist from '../../components/Checklist.astro';
+import MentalModelDemo from '../../components/demos/MentalModelDemo.tsx';
+
+<Section id="demo" title="Try it yourself">
+  <DemoFrame hint="About 15 seconds"><MentalModelDemo client:visible /></DemoFrame>
+</Section>
+
+<Section id="plain" title="In plain words">
+<Analogy>
+Most people believe turning a thermostat up higher makes a room heat up faster. It doesn’t, the heater works at the same speed. But that belief still decides how people use it.
+
+What people think is happening matters more than what’s actually happening.
+</Analogy>
+
+Everyone carries a simple “story” of how a product works. When the design matches that story, it feels obvious. When it doesn’t, people make mistakes and blame themselves, or your product.
+</Section>
+
+<Section id="why" title="Why it happens">
+Psychologist Kenneth Craik suggested in 1943 that people build small-scale models of the world in their heads to predict what will happen. These models come from **past experience**, they’re often incomplete, and they don’t need to be technically correct to be useful.
+
+There are always two models in play: the **designer’s model** (how it’s built) and the **user’s model** (how they think it works). Good design closes the gap between them, usually by adapting to the user, not the other way round.
+
+<div class="callout">
+  <strong>Common mistake:</strong> organising a product around its internal structure, like database tables, departments or code modules. Users don’t think in those terms, so they can’t find anything.
+</div>
+</Section>
+
+<Section id="dodont" title="Do vs Don’t">
+<DoDont
+  dontCaption="A file app that says “Object unlinked from index”. True to the system, meaningless to the user."
+  doCaption="The same action described in the user’s terms, with a familiar trash can and a way to undo."
+>
+  <div slot="dont" class="ui">
+    <div style="font-family:monospace;font-size:11px;background:#f4f4f5;padding:8px;border-radius:6px;margin-bottom:10px">Object 0x3F2A unlinked from index. GC pending.</div>
+    <span class="ui-btn">OK</span>
+  </div>
+  <div slot="do" class="ui">
+    <div class="ui-row" style="justify-content:space-between;background:#18181b;color:#fff;padding:10px 12px;border-radius:8px;font-size:12px"><span>Moved “Report.pdf” to Trash</span><b>Undo</b></div>
+  </div>
+</DoDont>
+</Section>
+
+<Section id="examples" title="Real-world examples">
+<ul class="examples">
+  <li><strong>The desktop and trash can</strong><p>Computers borrowed files, folders and a bin from real offices, so people could rely on what they already knew.</p></li>
+  <li><strong>Shopping carts</strong><p>Online shops use “cart” and “checkout” because everyone understands how a real shop works.</p></li>
+  <li><strong>Google Drive’s “Shared with me”</strong><p>It matches how people think about files (“someone gave me this”), not how they’re stored.</p></li>
+  <li><strong>Natural scrolling</strong><p>Touchscreens made content move with your finger, like pushing paper, and laptops later followed to match that model.</p></li>
+</ul>
+</Section>
+
+<Section id="apply" title="How to apply it">
+<Checklist>
+- **Research how users think**: interviews, card sorting and watching people use similar products.
+- **Use their words** for labels and navigation, not internal or technical terms.
+- **Build on familiar metaphors** like carts, folders, inboxes and switches.
+- **Make the system’s state visible**, so people can check and correct their understanding.
+- **Test early.** If people predict the wrong outcome, change the design, not the users.
+</Checklist>
+</Section>

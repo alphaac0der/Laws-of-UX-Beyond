@@ -1,0 +1,82 @@
+---
+title: "Goal-Gradient Effect"
+order: 23
+category: Biases
+oneLiner: "The closer people get to a goal, the harder they push to reach it."
+takeaway: "Make progress visible and give people a head start. Feeling close to the finish line keeps them going."
+origin:
+  person: "Clark L. Hull; later Ran Kivetz, Oleg Urminsky & Yuhuang Zheng"
+  year: "1932"
+  source: "“The goal-gradient hypothesis and maze learning”, Psychological Review (summary on Laws of UX)"
+  url: "https://lawsofux.com/goal-gradient-effect/"
+related: [zeigarnik-effect, flow, law-of-uniform-connectedness]
+complete: true
+---
+import Section from '../../components/Section.astro';
+import DemoFrame from '../../components/DemoFrame.astro';
+import Analogy from '../../components/Analogy.astro';
+import DoDont from '../../components/DoDont.astro';
+import Checklist from '../../components/Checklist.astro';
+import GoalGradientDemo from '../../components/demos/GoalGradientDemo.tsx';
+
+<Section id="demo" title="Try it yourself">
+  <DemoFrame hint="About 15 seconds"><GoalGradientDemo client:visible /></DemoFrame>
+</Section>
+
+<Section id="plain" title="In plain words">
+<Analogy>
+Runners often speed up when they see the finish line, even though they’re more tired than at the start.
+
+Seeing the end makes the last stretch feel worth it.
+</Analogy>
+
+Motivation grows as the goal gets closer. Show people **how close they are**, and they’ll try harder to finish. Give them a little **head start**, and they’ll feel closer from the beginning.
+</Section>
+
+<Section id="why" title="Why it happens">
+In 1932, behaviorist Clark Hull noticed that rats in a maze ran faster the closer they got to the food. Decades later, researchers tested it with people using coffee loyalty cards: one card needed 10 stamps, the other needed 12 but came with 2 already stamped. Both needed 10 purchases, but people with the **pre-stamped card finished faster**.
+
+Progress feels motivating, and the feeling of progress matters even when the real distance is the same.
+
+<div class="callout">
+  <strong>Break long journeys into steps.</strong> A single huge goal feels far away. Smaller milestones mean people are always “close” to the next one.
+</div>
+</Section>
+
+<Section id="dodont" title="Do vs Don’t">
+<DoDont
+  dontCaption="A long form with no sense of how much is left. Every new field feels like it might never end."
+  doCaption="A progress bar that starts partly filled (“Account created ✓”) and shows how close the finish is."
+>
+  <div slot="dont" class="ui">
+    <div class="ui-title">Tell us about yourself</div>
+    <div class="ui-stack"><div class="ui-input"></div><div class="ui-input"></div><div class="ui-input"></div></div>
+    <div class="ui-btn primary block" style="margin-top:12px">Next</div>
+  </div>
+  <div slot="do" class="ui">
+    <div class="ui-row" style="justify-content:space-between;font-size:11px"><span class="ui-muted">Step 2 of 4</span><span class="ui-muted">Almost there</span></div>
+    <div style="height:6px;border-radius:3px;background:#e4e4e7;margin:6px 0 12px"><div style="width:50%;height:100%;border-radius:3px;background:#18181b"></div></div>
+    <div class="ui-stack"><div class="ui-input"></div><div class="ui-input"></div></div>
+    <div class="ui-btn primary block" style="margin-top:12px">Next</div>
+  </div>
+</DoDont>
+</Section>
+
+<Section id="examples" title="Real-world examples">
+<ul class="examples">
+  <li><strong>Starbucks Rewards</strong><p>The app shows your stars filling up toward the next reward, so you can see how close the next free drink is.</p></li>
+  <li><strong>LinkedIn profile progress</strong><p>You start at a partly complete profile, which makes finishing feel within reach.</p></li>
+  <li><strong>Apple Watch rings</strong><p>The rings fill up throughout the day, and people often take a late walk just to close them.</p></li>
+  <li><strong>Checkout steps</strong><p>Amazon and most online shops show “Step 3 of 4” so customers know the end is near.</p></li>
+</ul>
+</Section>
+
+<Section id="apply" title="How to apply it">
+<Checklist>
+- **Show progress** with bars, steps, rings or percentages.
+- **Give a head start.** Count steps people have already done, like creating an account.
+- **Split big goals into milestones**, so the next win is always close.
+- **Celebrate getting close**, with messages like “Almost there!” or “1 more step.”
+- **Keep it honest.** Don’t fake progress that isn’t real, or trust will drop.
+</Checklist>
+</Section>

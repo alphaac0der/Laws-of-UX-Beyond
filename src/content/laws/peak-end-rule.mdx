@@ -1,0 +1,82 @@
+---
+title: "Peak-End Rule"
+order: 19
+category: Biases
+oneLiner: "People remember an experience mostly by its most intense moment and how it ended."
+takeaway: "Design the best moment and the last moment on purpose. They decide how the whole experience is remembered."
+origin:
+  person: "Daniel Kahneman, Barbara Fredrickson, Charles Schreiber & Donald Redelmeier"
+  year: "1993"
+  source: "“When more pain is preferred to less: Adding a better end”, Psychological Science"
+  url: "https://en.wikipedia.org/wiki/Peak%E2%80%93end_rule"
+related: [serial-position-effect, zeigarnik-effect, doherty-threshold]
+complete: true
+---
+import Section from '../../components/Section.astro';
+import DemoFrame from '../../components/DemoFrame.astro';
+import Analogy from '../../components/Analogy.astro';
+import DoDont from '../../components/DoDont.astro';
+import Checklist from '../../components/Checklist.astro';
+import PeakEndDemo from '../../components/demos/PeakEndDemo.tsx';
+
+<Section id="demo" title="Try it yourself">
+  <DemoFrame hint="About 15 seconds"><PeakEndDemo client:visible /></DemoFrame>
+</Section>
+
+<Section id="plain" title="In plain words">
+<Analogy>
+You had a long, tiring holiday with one amazing sunset dinner, and the flight home was smooth and early.
+
+Months later, you remember it as a great trip. The boring bits and small annoyances have faded.
+</Analogy>
+
+We don’t remember experiences as an average of every moment. We remember **the peak** (best or worst) and **the end**. Those two moments shape whether people come back.
+</Section>
+
+<Section id="why" title="Why it happens">
+In a famous study, people held their hand in painfully cold water twice: once for 60 seconds, and once for 90 seconds where the last 30 seconds were slightly less cold. Most chose to repeat the **longer** trial. More pain overall, but a better ending.
+
+Our memory saves effort by keeping a few snapshots instead of the whole film. The most intense moment and the final moment become the summary.
+
+<div class="callout">
+  <strong>Negative peaks count too.</strong> One frustrating moment, like an error that loses your work, can become the peak that defines the whole experience. Find those moments and fix them first.
+</div>
+</Section>
+
+<Section id="dodont" title="Do vs Don’t">
+<DoDont
+  dontCaption="After paying, users land on a plain page with an order number and nothing else. The journey ends flat."
+  doCaption="A clear, friendly confirmation that shows what happens next and ends on a positive note."
+>
+  <div slot="dont" class="ui">
+    <div class="ui-muted">Transaction ID</div>
+    <div style="font-family:monospace;font-size:12px;margin:4px 0 12px">#A9F2-7731-0042</div>
+    <div class="ui-muted">Status: COMPLETE</div>
+  </div>
+  <div slot="do" class="ui" style="text-align:center">
+    <div style="width:40px;height:40px;border-radius:50%;background:#16a34a;color:#fff;display:grid;place-items:center;margin:0 auto 8px;font-size:20px">✓</div>
+    <div class="ui-title" style="margin-bottom:4px">Order placed!</div>
+    <div class="ui-muted" style="margin-bottom:12px">Arrives Thursday. We’ll email you tracking details.</div>
+    <div class="ui-btn block">Track order</div>
+  </div>
+</DoDont>
+</Section>
+
+<Section id="examples" title="Real-world examples">
+<ul class="examples">
+  <li><strong>Mailchimp</strong><p>After you send a campaign, a cartoon hand gives you a high five. A tiny delightful moment at the end of a stressful task.</p></li>
+  <li><strong>Uber</strong><p>Rides end with a smooth arrival, a clear receipt and a rating. Even if the ride was average, the ending feels tidy.</p></li>
+  <li><strong>Disney theme parks</strong><p>They design for memorable peaks like the castle and the fireworks, so long queues fade from memory.</p></li>
+  <li><strong>Duolingo</strong><p>Lessons end with celebration animations and streak counts, leaving you with a sense of achievement.</p></li>
+</ul>
+</Section>
+
+<Section id="apply" title="How to apply it">
+<Checklist>
+- **Map the journey** and find its peaks, both the best and worst moments, and its end.
+- **Fix the worst moments first**, like confusing errors, lost data or surprise costs.
+- **Make endings feel finished:** clear confirmation, what happens next, and a thank-you.
+- **Add small moments of delight** at key successes, without slowing people down.
+- **End loading and progress on a fast note.** A finish that speeds up feels quicker overall.
+</Checklist>
+</Section>

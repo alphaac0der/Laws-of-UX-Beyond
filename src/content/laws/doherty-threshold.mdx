@@ -1,0 +1,89 @@
+---
+title: "Doherty Threshold"
+order: 2
+category: Heuristics
+oneLiner: "People stay productive and engaged when the system responds in under 400 milliseconds."
+takeaway: "Respond in under 400 ms. If you can’t, show something right away so people know their action worked."
+origin:
+  person: "Walter J. Doherty & Ahrvind J. Thadani (IBM)"
+  year: "1982"
+  source: "“The Economic Value of Rapid Response Time”, IBM (summary on Laws of UX)"
+  url: "https://lawsofux.com/doherty-threshold/"
+related: [flow, fitts-law, peak-end-rule]
+complete: true
+---
+import Section from '../../components/Section.astro';
+import DemoFrame from '../../components/DemoFrame.astro';
+import Analogy from '../../components/Analogy.astro';
+import DoDont from '../../components/DoDont.astro';
+import Checklist from '../../components/Checklist.astro';
+import DohertyDemo from '../../components/demos/DohertyDemo.tsx';
+
+<Section id="demo" title="Try it yourself">
+  <DemoFrame hint="About 20 seconds"><DohertyDemo client:visible /></DemoFrame>
+</Section>
+
+<Section id="plain" title="In plain words">
+<Analogy>
+Talking to a friend face to face feels natural. Talking on a video call with a one-second lag feels awkward. You interrupt each other and lose your train of thought.
+
+Nothing about the conversation changed. Only the delay did.
+</Analogy>
+
+When a computer answers fast enough, it feels like it’s keeping up with you. When it’s slow, you stop *doing* and start *waiting*, and waiting breaks your focus.
+</Section>
+
+<Section id="why" title="Why it happens">
+In the early 1980s, people believed a 2-second response time was fine. Two IBM researchers showed that when systems responded in **under 400 milliseconds**, people worked much faster, made fewer mistakes and stayed engaged. Each faster response encouraged a faster next step from the user.
+
+Roughly, response times feel like this:
+
+<ul class="examples">
+  <li><strong>Under 100 ms</strong><p>Feels instant, as if you directly caused it.</p></li>
+  <li><strong>Under 400 ms</strong><p>Feels responsive. You stay in the flow.</p></li>
+  <li><strong>Around 1 second</strong><p>You notice the wait, but you keep your train of thought.</p></li>
+  <li><strong>Several seconds or more</strong><p>Your attention drifts and you start doing something else.</p></li>
+</ul>
+
+<div class="callout">
+  <strong>Can’t make it faster?</strong> Make it <em>feel</em> faster. Show a pressed state, a skeleton screen or a progress bar immediately. A quick acknowledgement is often enough to keep people engaged.
+</div>
+</Section>
+
+<Section id="dodont" title="Do vs Don’t">
+<DoDont
+  dontCaption="After tapping “Send”, nothing changes for two seconds. Users tap again, and send the message twice."
+  doCaption="The message appears instantly with a small “sending” mark. The app feels fast even while the network catches up."
+>
+  <div slot="dont" class="ui">
+    <div class="ui-title">Messages</div>
+    <div class="ui-muted" style="text-align:right;margin-bottom:10px">Nothing yet…</div>
+    <div class="ui-row"><div class="ui-input" style="flex:1"></div><span class="ui-btn">Send</span></div>
+  </div>
+  <div slot="do" class="ui">
+    <div class="ui-title">Messages</div>
+    <div style="margin:0 0 10px auto;width:fit-content;background:#18181b;color:#fff;border-radius:12px;padding:6px 10px;font-size:12px">See you at 6!</div>
+    <div class="ui-muted" style="text-align:right;margin:-6px 0 10px">Sending…</div>
+    <div class="ui-row"><div class="ui-input" style="flex:1"></div><span class="ui-btn primary">Send</span></div>
+  </div>
+</DoDont>
+</Section>
+
+<Section id="examples" title="Real-world examples">
+<ul class="examples">
+  <li><strong>Instagram likes</strong><p>The heart turns red the moment you tap it. The app updates the server in the background, a trick called an “optimistic update.”</p></li>
+  <li><strong>YouTube and LinkedIn</strong><p>Grey skeleton boxes appear instantly while content loads, so the page feels like it’s already arriving.</p></li>
+  <li><strong>Google Search</strong><p>Suggestions appear as you type, keeping you moving instead of waiting for a results page.</p></li>
+  <li><strong>Figma</strong><p>Moving things on the canvas happens instantly on your screen, even while changes sync with collaborators.</p></li>
+</ul>
+</Section>
+
+<Section id="apply" title="How to apply it">
+<Checklist>
+- **Aim for under 400 ms** between an action and a visible response.
+- **Acknowledge every tap immediately** with a pressed state, even if the real work takes longer.
+- **Use optimistic updates** for actions that almost always succeed, like likes, saves and toggles.
+- **Show skeleton screens or progress** for anything that takes more than about a second.
+- **Measure real-world speed** on slower phones and networks, not just on your fast laptop.
+</Checklist>
+</Section>

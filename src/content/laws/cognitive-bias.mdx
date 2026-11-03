@@ -1,0 +1,90 @@
+---
+title: "Cognitive Bias"
+order: 18
+category: Biases
+oneLiner: "Mental shortcuts that make our thinking and decisions less than perfectly rational."
+takeaway: "Everyone, including you, takes mental shortcuts. Design with them in mind, and never use them to trick people."
+origin:
+  person: "Amos Tversky & Daniel Kahneman"
+  year: "1974"
+  source: "“Judgment under Uncertainty: Heuristics and Biases”, Science"
+  url: "https://doi.org/10.1126/science.185.4157.1124"
+related: [peak-end-rule, aesthetic-usability-effect, choice-overload]
+complete: true
+---
+import Section from '../../components/Section.astro';
+import DemoFrame from '../../components/DemoFrame.astro';
+import Analogy from '../../components/Analogy.astro';
+import DoDont from '../../components/DoDont.astro';
+import Checklist from '../../components/Checklist.astro';
+import BiasDemo from '../../components/demos/BiasDemo.tsx';
+
+<Section id="demo" title="Try it yourself">
+  <DemoFrame hint="About 15 seconds"><BiasDemo client:visible /></DemoFrame>
+</Section>
+
+<Section id="plain" title="In plain words">
+<Analogy>
+A shop sells a jacket “was $200, now $120.” Next door, the same jacket is just “$120.” The first one feels like a bargain.
+
+It’s the same jacket at the same price. Only the first number in your head changed.
+</Analogy>
+
+Our brains make thousands of decisions a day, so they take **shortcuts**. Most of the time these work well. But they also lead us to predictable mistakes, and those mistakes affect how people use every product.
+</Section>
+
+<Section id="why" title="Why it happens">
+Psychologists Amos Tversky and Daniel Kahneman showed that people don’t weigh every option carefully. Instead, we rely on quick rules of thumb, called **heuristics**. These are fast and usually good enough, but they create consistent **biases**.
+
+A few that show up constantly in design:
+
+<ul class="examples">
+  <li><strong>Framing</strong><p>The same fact feels different depending on how it’s worded (“90% fat-free” vs “10% fat”).</p></li>
+  <li><strong>Anchoring</strong><p>The first number we see shapes how we judge the next ones, like an original price next to a sale price.</p></li>
+  <li><strong>Default bias</strong><p>We tend to stick with whatever is pre-selected.</p></li>
+  <li><strong>Confirmation bias</strong><p>We notice information that supports what we already believe, and that includes designers reading their own research.</p></li>
+</ul>
+
+<div class="callout">
+  <strong>Use this power responsibly.</strong> Biases can help people (like a sensible default) or exploit them (like a pre-ticked “add insurance” box). Tricks that work against users are called dark patterns. They damage trust, and in many countries they’re illegal.
+</div>
+</Section>
+
+<Section id="dodont" title="Do vs Don’t">
+<DoDont
+  dontCaption="Paid extras are pre-selected, and the price looks lower than it is. Using a bias against the user."
+  doCaption="The safest, most common option is pre-selected, and the full price is clear. Using a bias to help."
+>
+  <div slot="dont" class="ui">
+    <div class="ui-title">Checkout</div>
+    <div class="ui-row" style="margin-bottom:6px"><span style="width:14px;height:14px;border-radius:3px;background:#18181b"></span><span style="font-size:12px">Travel insurance +$29</span></div>
+    <div class="ui-row" style="margin-bottom:12px"><span style="width:14px;height:14px;border-radius:3px;background:#18181b"></span><span style="font-size:12px">Priority boarding +$15</span></div>
+    <div class="ui-btn primary block">Pay $199*</div>
+  </div>
+  <div slot="do" class="ui">
+    <div class="ui-title">Checkout</div>
+    <div class="ui-row" style="margin-bottom:6px"><span style="width:14px;height:14px;border-radius:3px;border:1.5px solid #a1a1aa"></span><span style="font-size:12px">Travel insurance +$29</span></div>
+    <div class="ui-row" style="margin-bottom:12px"><span style="width:14px;height:14px;border-radius:3px;border:1.5px solid #a1a1aa"></span><span style="font-size:12px">Priority boarding +$15</span></div>
+    <div class="ui-btn primary block">Pay $199 total</div>
+  </div>
+</DoDont>
+</Section>
+
+<Section id="examples" title="Real-world examples">
+<ul class="examples">
+  <li><strong>Organ donation</strong><p>Countries where donation is the default (opt-out) have far higher donor rates than opt-in countries. Defaults are powerful.</p></li>
+  <li><strong>Pricing pages</strong><p>A very expensive “Enterprise” plan makes the middle plan look reasonable. That’s anchoring at work.</p></li>
+  <li><strong>Savings apps</strong><p>Apps that round up purchases and save the change use defaults and small amounts to help people save without effort.</p></li>
+  <li><strong>Booking sites</strong><p>“Only 2 rooms left!” messages use scarcity bias. Helpful when true, manipulative when made up.</p></li>
+</ul>
+</Section>
+
+<Section id="apply" title="How to apply it">
+<Checklist>
+- **Choose defaults that serve the user**, like the most common, safest or cheapest sensible option.
+- **Word things clearly and honestly.** Test whether framing changes people’s understanding.
+- **Show full prices** and real information. Never use fake scarcity or hidden costs.
+- **Check your own bias** in research. Look for evidence that proves you *wrong*, not just right.
+- **Ask: “Would users thank us if they knew?”** If not, it’s probably a dark pattern.
+</Checklist>
+</Section>

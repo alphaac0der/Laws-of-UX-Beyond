@@ -1,0 +1,83 @@
+---
+title: "Working Memory"
+order: 30
+category: Cognition
+oneLiner: "The brain’s small, short-term space for holding information while we use it."
+takeaway: "Don’t make people carry information between screens. Put what they need to compare or remember right in front of them."
+origin:
+  person: "Alan Baddeley & Graham Hitch"
+  year: "1974"
+  source: "The multicomponent model of working memory"
+  url: "https://en.wikipedia.org/wiki/Baddeley%27s_model_of_working_memory"
+related: [millers-law, cognitive-load, chunking]
+complete: true
+---
+import Section from '../../components/Section.astro';
+import DemoFrame from '../../components/DemoFrame.astro';
+import Analogy from '../../components/Analogy.astro';
+import DoDont from '../../components/DoDont.astro';
+import Checklist from '../../components/Checklist.astro';
+import WorkingMemoryDemo from '../../components/demos/WorkingMemoryDemo.tsx';
+
+<Section id="demo" title="Try it yourself">
+  <DemoFrame hint="About 30 seconds"><WorkingMemoryDemo client:visible /></DemoFrame>
+</Section>
+
+<Section id="plain" title="In plain words">
+<Analogy>
+Working memory is like a small kitchen counter. You can only put a few ingredients on it while you cook. Add too many and things start falling off.
+
+Long-term memory is the pantry: huge, but it takes time to fetch things from it.
+</Analogy>
+
+Working memory is where we **hold and juggle** information right now, like a code we just read, a price we want to compare, or the step we were on. It’s small, it fades within seconds, and it’s easily disrupted.
+</Section>
+
+<Section id="why" title="Why it happens">
+Psychologists Alan Baddeley and Graham Hitch described working memory as a set of small mental workspaces: one for sounds and words, one for images and positions, and a “central executive” that directs attention between them.
+
+It can only hold a few chunks at a time, and things disappear in **about 20 seconds** unless we keep repeating them. Switching screens, reading a pop-up or getting interrupted can wipe it completely. That’s why people forget the code they were copying the moment a notification appears.
+
+<div class="callout">
+  <strong>Recognition beats recall.</strong> It’s far easier to <em>recognize</em> something you can see, like a menu item, a recent search or a product thumbnail, than to <em>recall</em> it from memory. Show, don’t ask people to remember.
+</div>
+</Section>
+
+<Section id="dodont" title="Do vs Don’t">
+<DoDont
+  dontCaption="To compare plans, users open each one on its own page, and have to remember the details of the others."
+  doCaption="A comparison table shows all plans side by side. Nothing needs to be held in memory."
+>
+  <div slot="dont" class="ui">
+    <div class="ui-row" style="gap:4px;margin-bottom:10px"><span class="ui-btn primary" style="height:24px;font-size:10px">Basic</span><span class="ui-btn" style="height:24px;font-size:10px">Plus</span><span class="ui-btn" style="height:24px;font-size:10px">Pro</span></div>
+    <div style="font-size:12px;display:grid;gap:4px"><span>$8 / month</span><span class="ui-muted">10 GB storage</span><span class="ui-muted">2 users</span></div>
+  </div>
+  <div slot="do" class="ui">
+    <table style="width:100%;font-size:11px;border-collapse:collapse">
+      <tr><td></td><th style="text-align:left">Basic</th><th style="text-align:left">Plus</th><th style="text-align:left">Pro</th></tr>
+      <tr><td class="ui-muted">Price</td><td>$8</td><td>$12</td><td>$20</td></tr>
+      <tr><td class="ui-muted">Storage</td><td>10 GB</td><td>50 GB</td><td>1 TB</td></tr>
+      <tr><td class="ui-muted">Users</td><td>2</td><td>5</td><td>20</td></tr>
+    </table>
+  </div>
+</DoDont>
+</Section>
+
+<Section id="examples" title="Real-world examples">
+<ul class="examples">
+  <li><strong>Amazon’s “Recently viewed”</strong><p>Items you looked at stay visible, so you don’t have to remember what you saw ten minutes ago.</p></li>
+  <li><strong>SMS code autofill</strong><p>iOS and Android offer to fill in one-time codes from messages, so nobody has to memorize six digits.</p></li>
+  <li><strong>Breadcrumbs and progress steps</strong><p>They show where you are and how you got there, so you don’t have to keep track yourself.</p></li>
+  <li><strong>Google Search suggestions</strong><p>Past searches and suggestions let you recognize what you want instead of retyping it from memory.</p></li>
+</ul>
+</Section>
+
+<Section id="apply" title="How to apply it">
+<Checklist>
+- **Keep relevant information visible** across steps, like order summaries, selected options and context.
+- **Use side-by-side comparisons** instead of making people flip between pages.
+- **Offer recognition over recall** with recent items, suggestions, autocomplete and history.
+- **Avoid interruptions** in the middle of tasks that need concentration.
+- **Support copy, paste and autofill** for codes, numbers and addresses.
+</Checklist>
+</Section>

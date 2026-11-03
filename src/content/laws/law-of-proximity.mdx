@@ -1,0 +1,87 @@
+---
+title: "Law of Proximity"
+order: 14
+category: Gestalt
+oneLiner: "Things that are close to each other look like they belong together."
+takeaway: "Spacing is a design tool. Put related things close together and leave space between things that aren’t related."
+origin:
+  person: "Max Wertheimer (Gestalt psychology)"
+  year: "1923"
+  source: "“Untersuchungen zur Lehre von der Gestalt” (Laws of organization in perceptual forms)"
+  url: "https://en.wikipedia.org/wiki/Principles_of_grouping"
+related: [law-of-common-region, law-of-similarity, law-of-uniform-connectedness, chunking]
+complete: true
+---
+import Section from '../../components/Section.astro';
+import DemoFrame from '../../components/DemoFrame.astro';
+import Analogy from '../../components/Analogy.astro';
+import DoDont from '../../components/DoDont.astro';
+import Checklist from '../../components/Checklist.astro';
+import ProximityDemo from '../../components/demos/ProximityDemo.tsx';
+
+<Section id="demo" title="Try it yourself">
+  <DemoFrame><ProximityDemo client:visible /></DemoFrame>
+</Section>
+
+<Section id="plain" title="In plain words">
+<Analogy>
+At a party, you see three people laughing close together and one person standing a few steps away.
+
+Without hearing a word, you know who’s in the conversation and who isn’t. Distance told you.
+</Analogy>
+
+Our eyes group things automatically. Before we read a single word, we’ve already decided **what goes with what** based on how close things are. In UI design, spacing tells people how things are related.
+</Section>
+
+<Section id="why" title="Why it happens">
+The Gestalt psychologists found that the brain doesn’t see a screen as a pile of separate pieces. It looks for **patterns and groups**, because that’s faster than handling every item on its own. Being close together is one of the strongest grouping signals there is. It can be stronger than color or shape.
+
+This makes spacing a very cheap design tool. You often don’t need borders, boxes or divider lines to show structure. **Whitespace can do the job.**
+
+<div class="callout">
+  <strong>Rule of thumb:</strong> the space <em>inside</em> a group should be clearly smaller than the space <em>between</em> groups. A label should sit closer to its own field than to the field above it.
+</div>
+</Section>
+
+<Section id="dodont" title="Do vs Don’t">
+<DoDont
+  dontCaption="Everything is evenly spaced, so the price, the title and the button all float on their own. It’s hard to tell what belongs to what."
+  doCaption="The title, rating and price are grouped tightly, with a clear gap before the action. The card reads in two quick chunks."
+>
+  <div slot="dont" class="ui" style="display:grid;gap:12px">
+    <div class="ui-img"></div>
+    <div class="ui-title" style="margin:0">Ceramic Mug</div>
+    <div class="ui-muted">★★★★☆ 214 reviews</div>
+    <div style="font-weight:650">$24</div>
+    <div class="ui-btn primary block">Add to cart</div>
+  </div>
+  <div slot="do" class="ui">
+    <div class="ui-img"></div>
+    <div style="margin-top:14px">
+      <div class="ui-title" style="margin:0">Ceramic Mug</div>
+      <div class="ui-muted" style="margin-top:2px">★★★★☆ 214 reviews</div>
+      <div style="font-weight:650;margin-top:4px">$24</div>
+    </div>
+    <div class="ui-btn primary block" style="margin-top:20px">Add to cart</div>
+  </div>
+</DoDont>
+</Section>
+
+<Section id="examples" title="Real-world examples">
+<ul class="examples">
+  <li><strong>Google search results</strong><p>Each result’s title, link and snippet sit tightly together, with a bigger gap before the next result. There are no borders, only spacing.</p></li>
+  <li><strong>Website footers</strong><p>Links are stacked in tight columns under headings like “Company” or “Support.” The gaps between columns show the categories at a glance.</p></li>
+  <li><strong>iPhone Settings</strong><p>Related settings are grouped into blocks separated by space, so “Wi-Fi” and “Bluetooth” feel like one family and “Notifications” like another.</p></li>
+  <li><strong>Chat apps</strong><p>Messages sent in a row by the same person are stacked close together. A bigger gap shows that someone else is now talking.</p></li>
+</ul>
+</Section>
+
+<Section id="apply" title="How to apply it">
+<Checklist>
+- **Keep labels close to their inputs**, closer than they are to anything else.
+- **Use a spacing scale** (e.g. 4, 8, 16, 24, 32px) with small steps inside groups and bigger steps between them.
+- **Try whitespace before borders.** Add lines or boxes only if spacing alone isn’t enough.
+- **Squint at your design.** If the blobs you see don’t match the real groups, adjust the spacing.
+- **Keep it consistent.** The same kind of relationship should get the same amount of space everywhere.
+</Checklist>
+</Section>

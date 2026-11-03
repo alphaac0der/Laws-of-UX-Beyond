@@ -1,0 +1,354 @@
+---
+/**
+ * One small geometric diagram per law that illustrates the idea itself.
+ * Classes: f = ink fill, m = muted fill, a = accent fill,
+ *          s = ink stroke, sa = accent stroke.
+ */
+interface Props {
+  slug: string;
+  class?: string;
+}
+const { slug, class: cls } = Astro.props;
+const range = (n: number) => Array.from({ length: n }, (_, i) => i);
+---
+
+<svg viewBox="0 0 160 120" class:list={['dg', cls]} aria-hidden="true" focusable="false">
+  {
+    slug === 'aesthetic-usability-effect' && (
+      <>
+        <rect x="18" y="35" width="52" height="50" class="s" stroke-dasharray="4 4" />
+        <rect x="24" y="44" width="30" height="5" class="m" />
+        <rect x="24" y="55" width="40" height="5" class="m" />
+        <rect x="90" y="35" width="52" height="50" rx="12" class="a" />
+        <path d="M103 60l8 8 17-17" class="on-a" />
+      </>
+    )
+  }
+  {
+    slug === 'doherty-threshold' && (
+      <>
+        <rect x="20" y="57" width="120" height="6" rx="3" class="m" />
+        <rect x="20" y="57" width="34" height="6" rx="3" class="a" />
+        <path d="M54 42v36" class="s" />
+        <text x="54" y="96" class="t">0.4s</text>
+      </>
+    )
+  }
+  {
+    slug === 'fitts-law' && (
+      <>
+        <circle cx="132" cy="28" r="5" class="f" />
+        <circle cx="54" cy="78" r="26" class="a" />
+        <path d="M120 36L84 60" class="s" stroke-dasharray="3 4" />
+        <path d="M96 58v20l5.5-5.5 4 9 3.5-1.5-4-9h8z" class="f" />
+      </>
+    )
+  }
+  {
+    slug === 'hicks-law' && (
+      <>
+        <rect x="18" y="52" width="14" height="14" rx="2" class="a" />
+        <rect x="36" y="52" width="14" height="14" rx="2" class="m" />
+        <path d="M64 28v64" class="s" />
+        {range(20).map((i) => (
+          <rect
+            x={78 + (i % 5) * 14}
+            y={32 + Math.floor(i / 5) * 14}
+            width="10"
+            height="10"
+            rx="2"
+            class={i === 13 ? 'a' : 'm'}
+          />
+        ))}
+      </>
+    )
+  }
+  {
+    slug === 'jakobs-law' && (
+      <>
+        {[16, 86].map((x) => (
+          <>
+            <rect x={x} y="26" width="58" height="68" rx="6" class="s" />
+            <rect x={x} y="26" width="58" height="13" rx="6" class="a" />
+            <rect x={x + 8} y="48" width="30" height="5" class="m" />
+            <rect x={x + 8} y="58" width="42" height="5" class="m" />
+            <rect x={x + 8} y="68" width="22" height="5" class="m" />
+          </>
+        ))}
+      </>
+    )
+  }
+  {
+    slug === 'millers-law' && (
+      <>
+        {range(7).map((i) => (
+          <circle cx={26 + i * 18} cy="52" r="7" class="a" />
+        ))}
+        {range(4).map((i) => (
+          <circle cx={53 + i * 18} cy="82" r="7" class="m" />
+        ))}
+      </>
+    )
+  }
+  {
+    slug === 'parkinsons-law' && (
+      <>
+        {range(7).map((i) => (
+          <path d={`M${20 + i * 20} 28v6`} class="s" />
+        ))}
+        <rect x="20" y="42" width="120" height="44" rx="6" class="s" />
+        <rect x="25" y="47" width="110" height="34" rx="3" class="a" />
+      </>
+    )
+  }
+  {
+    slug === 'postels-law' && (
+      <>
+        <path d="M18 28L92 52v16L18 92z" class="m" />
+        <circle cx="34" cy="48" r="5" class="f" />
+        <rect x="28" y="62" width="10" height="10" class="f" />
+        <path d="M50 80l6-10 6 10z" class="f" />
+        <rect x="100" y="52" width="42" height="16" rx="3" class="a" />
+      </>
+    )
+  }
+  {
+    slug === 'teslers-law' && (
+      <>
+        <rect x="14" y="36" width="52" height="48" rx="8" class="s" />
+        <rect x="94" y="36" width="52" height="48" rx="8" class="s" />
+        <circle cx="120" cy="60" r="12" class="a" />
+        <path d="M70 60h18m-6-6l6 6-6 6" class="s" />
+      </>
+    )
+  }
+  {
+    slug === 'occams-razor' && (
+      <>
+        <path d="M24 60C40 6 62 114 80 60S120 6 136 60" class="s" stroke-dasharray="4 5" />
+        <path d="M30 60h100" class="sa" />
+        <circle cx="24" cy="60" r="6" class="f" />
+        <circle cx="136" cy="60" r="6" class="f" />
+      </>
+    )
+  }
+  {
+    slug === 'pareto-principle' && (
+      <>
+        <rect x="20" y="38" width="120" height="16" rx="2" class="m" />
+        <rect x="20" y="38" width="24" height="16" rx="2" class="a" />
+        <rect x="20" y="66" width="120" height="16" rx="2" class="m" />
+        <rect x="20" y="66" width="96" height="16" rx="2" class="a" />
+      </>
+    )
+  }
+  {
+    slug === 'paradox-of-the-active-user' && (
+      <>
+        <rect x="22" y="30" width="50" height="62" rx="4" class="m" />
+        <rect x="30" y="42" width="34" height="4" class="bg" />
+        <rect x="30" y="52" width="28" height="4" class="bg" />
+        <rect x="30" y="62" width="34" height="4" class="bg" />
+        <path d="M96 30v50l13-13 9.5 21 8.5-3.8-9.5-21H136z" class="a" />
+      </>
+    )
+  }
+  {
+    slug === 'law-of-common-region' && (
+      <>
+        <rect x="12" y="30" width="74" height="60" rx="14" class="sa" />
+        {[34, 64, 96, 126].map((x) => [50, 70].map((y) => <circle cx={x} cy={y} r="6" class="f" />))}
+      </>
+    )
+  }
+  {
+    slug === 'law-of-proximity' && (
+      <>
+        {range(9).map((i) => (
+          <circle cx={26 + (i % 3) * 14} cy={46 + Math.floor(i / 3) * 14} r="4.5" class="a" />
+        ))}
+        {range(9).map((i) => (
+          <circle cx={106 + (i % 3) * 14} cy={46 + Math.floor(i / 3) * 14} r="4.5" class="f" />
+        ))}
+      </>
+    )
+  }
+  {
+    slug === 'law-of-pragnanz' && (
+      <>
+        <circle cx="58" cy="50" r="24" class="s" />
+        <circle cx="102" cy="50" r="24" class="s" />
+        <circle cx="80" cy="78" r="24" class="sa" />
+      </>
+    )
+  }
+  {
+    slug === 'law-of-similarity' && (
+      <>
+        {range(24).map((i) => {
+          const c = i % 6;
+          const x = 30 + c * 20;
+          const y = 30 + Math.floor(i / 6) * 20;
+          return c % 2 ? (
+            <rect x={x - 5} y={y - 5} width="10" height="10" rx="1.5" class="a" />
+          ) : (
+            <circle cx={x} cy={y} r="5" class="f" />
+          );
+        })}
+      </>
+    )
+  }
+  {
+    slug === 'law-of-uniform-connectedness' && (
+      <>
+        <path d="M47 60h22M113 60h22" class="sa" style="stroke-width:4" />
+        {range(6).map((i) => (
+          <circle cx={25 + i * 22} cy="60" r="7" class={[1, 2, 4, 5].includes(i) ? 'a' : 'f'} />
+        ))}
+      </>
+    )
+  }
+  {
+    slug === 'cognitive-bias' && (
+      <>
+        <path d="M50 42h60M50 82h60" class="s" style="stroke-width:3" />
+        <path d="M60 32L50 42l10 10M100 32l10 10-10 10" class="sa" />
+        <path d="M40 72l10 10-10 10M120 72l-10 10 10 10" class="sa" />
+      </>
+    )
+  }
+  {
+    slug === 'peak-end-rule' && (
+      <>
+        <path d="M16 82l20-4 16 8 16-14 14-44 14 44 16 6 14-12 18-18" class="s" />
+        <circle cx="82" cy="28" r="6" class="a" />
+        <circle cx="144" cy="48" r="6" class="a" />
+      </>
+    )
+  }
+  {
+    slug === 'serial-position-effect' && (
+      <>
+        {[56, 40, 26, 20, 24, 38, 54].map((h, i) => (
+          <rect x={22 + i * 18} y={96 - h} width="12" height={h} rx="2" class={i === 0 || i === 6 ? 'a' : 'm'} />
+        ))}
+      </>
+    )
+  }
+  {
+    slug === 'von-restorff-effect' && (
+      <>
+        {range(5).map((i) =>
+          i === 2 ? (
+            <rect x="70" y="50" width="20" height="20" rx="3" class="a" />
+          ) : (
+            <circle cx={28 + i * 26} cy="60" r="10" class="m" />
+          ),
+        )}
+      </>
+    )
+  }
+  {
+    slug === 'zeigarnik-effect' && (
+      <>
+        {[34, 58].map((y) => (
+          <>
+            <rect x="24" y={y - 7} width="14" height="14" rx="3" class="m" />
+            <rect x="48" y={y - 3} width="70" height="6" rx="3" class="m" />
+          </>
+        ))}
+        <rect x="24" y="75" width="14" height="14" rx="3" class="sa" />
+        <rect x="48" y="79" width="88" height="6" rx="3" class="a" />
+      </>
+    )
+  }
+  {
+    slug === 'goal-gradient-effect' && (
+      <>
+        <rect x="18" y="56" width="104" height="10" rx="5" class="m" />
+        <rect x="18" y="56" width="86" height="10" rx="5" class="a" />
+        <path d="M136 30v54" class="s" />
+        <path d="M136 30l18 7-18 7z" class="a" />
+      </>
+    )
+  }
+  {
+    slug === 'selective-attention' && (
+      <>
+        {[
+          [24, 30], [52, 22], [80, 34], [130, 26], [20, 66], [44, 88], [70, 74],
+          [128, 92], [144, 58], [96, 98], [36, 50], [150, 32], [112, 40],
+        ].map(([x, y]) => (
+          <circle cx={x} cy={y} r="4" class="m" />
+        ))}
+        <circle cx="104" cy="66" r="18" class="sa" />
+        <circle cx="104" cy="66" r="6" class="a" />
+      </>
+    )
+  }
+  {
+    slug === 'choice-overload' && (
+      <>
+        {range(60).map((i) => (
+          <rect x={22 + (i % 10) * 12} y={26 + Math.floor(i / 10) * 12} width="8" height="8" rx="1.5" class="m" />
+        ))}
+        <rect x="69" y="49" width="10" height="10" rx="2" class="a" />
+      </>
+    )
+  }
+  {
+    slug === 'chunking' && (
+      <>
+        {[
+          [18, 'a'], [29, 'a'], [40, 'a'],
+          [60, 'f'], [71, 'f'], [82, 'f'],
+          [102, 'a'], [113, 'a'], [124, 'a'], [135, 'a'],
+        ].map(([x, c]) => (
+          <rect x={x} y="48" width="8" height="24" rx="2" class={c} />
+        ))}
+      </>
+    )
+  }
+  {
+    slug === 'cognitive-load' && (
+      <>
+        <rect x="44" y="26" width="72" height="76" rx="6" class="s" />
+        <rect x="50" y="80" width="60" height="16" rx="2" class="m" />
+        <rect x="50" y="61" width="60" height="16" rx="2" class="m" />
+        <rect x="50" y="42" width="60" height="16" rx="2" class="m" />
+        <rect x="58" y="14" width="48" height="24" rx="2" class="a" />
+      </>
+    )
+  }
+  {
+    slug === 'flow' && (
+      <>
+        <path d="M18 76L120 18" class="s" />
+        <path d="M40 104L142 46" class="s" />
+        <path d="M30 90c26-20 32-6 52-22s28-26 50-36" class="sa" />
+      </>
+    )
+  }
+  {
+    slug === 'mental-model' && (
+      <>
+        <circle cx="54" cy="60" r="32" class="s" />
+        <rect x="42" y="52" width="24" height="16" rx="3" class="a" />
+        <path d="M90 60h16" class="s" stroke-dasharray="3 4" />
+        <rect x="110" y="48" width="36" height="24" rx="4" class="f" />
+      </>
+    )
+  }
+  {
+    slug === 'working-memory' && (
+      <>
+        <rect x="38" y="34" width="84" height="52" rx="8" class="s" />
+        <rect x="46" y="42" width="14" height="36" rx="2" class="a" />
+        <rect x="64" y="42" width="14" height="36" rx="2" class="f" />
+        <rect x="82" y="42" width="14" height="36" rx="2" class="f" />
+        <rect x="100" y="42" width="14" height="36" rx="2" class="m" />
+        <rect x="132" y="46" width="14" height="28" rx="2" class="s" stroke-dasharray="3 3" />
+      </>
+    )
+  }
+</svg>

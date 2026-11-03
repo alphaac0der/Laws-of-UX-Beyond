@@ -1,0 +1,84 @@
+---
+title: "Serial Position Effect"
+order: 20
+category: Biases
+oneLiner: "People best remember the first and last items in a list."
+takeaway: "Put the most important items at the start and the end. The middle is where things get forgotten."
+origin:
+  person: "Hermann Ebbinghaus"
+  year: "1885"
+  source: "“Über das Gedächtnis” (On Memory)"
+  url: "https://en.wikipedia.org/wiki/Serial-position_effect"
+related: [von-restorff-effect, millers-law, peak-end-rule]
+complete: true
+---
+import Section from '../../components/Section.astro';
+import DemoFrame from '../../components/DemoFrame.astro';
+import Analogy from '../../components/Analogy.astro';
+import DoDont from '../../components/DoDont.astro';
+import Checklist from '../../components/Checklist.astro';
+import MemoryListDemo from '../../components/demos/MemoryListDemo.tsx';
+
+<Section id="demo" title="Try it yourself">
+  <DemoFrame hint="About 30 seconds"><MemoryListDemo mode="serial" client:visible /></DemoFrame>
+</Section>
+
+<Section id="plain" title="In plain words">
+<Analogy>
+Think of a long meeting. You probably remember how it started and the last thing that was said before everyone left.
+
+The middle half hour? A bit of a blur.
+</Analogy>
+
+In any list, we remember **the beginning** and **the end** best. Items in the middle are the most likely to be forgotten.
+</Section>
+
+<Section id="why" title="Why it happens">
+Two effects work together:
+
+<ul class="examples">
+  <li><strong>Primacy effect</strong><p>The first items get the most attention and mental rehearsal, so they move into long-term memory.</p></li>
+  <li><strong>Recency effect</strong><p>The last items are still fresh in short-term memory when we need them.</p></li>
+</ul>
+
+The middle items get neither advantage. Hermann Ebbinghaus first described this pattern in the 1880s while testing his own memory with lists of made-up syllables.
+
+<div class="callout">
+  <strong>Try your results again.</strong> If your chart from the demo has tall bars at both ends and a dip in the middle, you just saw this effect in your own memory.
+</div>
+</Section>
+
+<Section id="dodont" title="Do vs Don’t">
+<DoDont
+  dontCaption="The most important tab, Home, is buried in the middle of the bottom bar, between less important items."
+  doCaption="Key destinations sit at the start and end of the bar, where people notice and remember them."
+>
+  <div slot="dont" class="ui">
+    <div class="ui-img" style="margin-bottom:10px"></div>
+    <div class="ui-row" style="justify-content:space-between;font-size:10px;border-top:1px solid #e4e4e7;padding-top:8px"><span class="ui-muted">Help</span><span class="ui-muted">Offers</span><b>Home</b><span class="ui-muted">Settings</span><span class="ui-muted">News</span></div>
+  </div>
+  <div slot="do" class="ui">
+    <div class="ui-img" style="margin-bottom:10px"></div>
+    <div class="ui-row" style="justify-content:space-between;font-size:10px;border-top:1px solid #e4e4e7;padding-top:8px"><b>Home</b><span class="ui-muted">Search</span><span class="ui-muted">Offers</span><span class="ui-muted">Orders</span><b>Profile</b></div>
+  </div>
+</DoDont>
+</Section>
+
+<Section id="examples" title="Real-world examples">
+<ul class="examples">
+  <li><strong>Apple’s website navigation</strong><p>The Apple logo (home) is first, and search and the bag are last, with product categories in between.</p></li>
+  <li><strong>Mobile tab bars</strong><p>Instagram puts Home first and Profile last, the two places people go most.</p></li>
+  <li><strong>Landing pages</strong><p>Strong pages open with the main promise and close with a clear call to action, because those are what visitors remember.</p></li>
+  <li><strong>Presentations</strong><p>Good speakers state the key point at the beginning and repeat it at the end.</p></li>
+</ul>
+</Section>
+
+<Section id="apply" title="How to apply it">
+<Checklist>
+- **Put the most important items first and last** in menus, tab bars and lists.
+- **Lead with the key message** on pages and emails, and end with a clear next step.
+- **Keep lists short**, so fewer items fall into the forgettable middle.
+- **Make middle items stand out** if they matter, for example with highlighting (see the Von Restorff Effect).
+- **Summarize at the end** of long content, like checkouts, articles and onboarding.
+</Checklist>
+</Section>

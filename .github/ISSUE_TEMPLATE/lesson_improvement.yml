@@ -1,0 +1,30 @@
+name: Improve a lesson
+description: Suggest clearer wording, a better example, or fix a fact or source.
+labels: [content]
+body:
+  - type: input
+    id: law
+    attributes:
+      label: Which law?
+      placeholder: Miller's Law
+    validations:
+      required: true
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What kind of change?
+      options:
+        - Something is inaccurate
+        - Something is confusing
+        - Better example or analogy
+        - Broken or missing source
+        - Idea for the demo
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: Details
+      description: What should change, and why? Link to a source if it's about facts.
+    validations:
+      required: true

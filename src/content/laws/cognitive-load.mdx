@@ -1,0 +1,88 @@
+---
+title: "Cognitive Load"
+order: 27
+category: Cognition
+oneLiner: "The amount of mental effort it takes to understand and use an interface."
+takeaway: "Every element costs a little thinking. Remove what doesn’t help, so people can spend their effort on their actual goal."
+origin:
+  person: "John Sweller"
+  year: "1988"
+  source: "“Cognitive load during problem solving: Effects on learning”, Cognitive Science"
+  url: "https://en.wikipedia.org/wiki/Cognitive_load"
+related: [working-memory, hicks-law, millers-law]
+complete: true
+---
+import Section from '../../components/Section.astro';
+import DemoFrame from '../../components/DemoFrame.astro';
+import Analogy from '../../components/Analogy.astro';
+import DoDont from '../../components/DoDont.astro';
+import Checklist from '../../components/Checklist.astro';
+import CognitiveLoadDemo from '../../components/demos/CognitiveLoadDemo.tsx';
+
+<Section id="demo" title="Try it yourself">
+  <DemoFrame hint="About 20 seconds"><CognitiveLoadDemo client:visible /></DemoFrame>
+</Section>
+
+<Section id="plain" title="In plain words">
+<Analogy>
+Doing simple maths in a quiet room is easy. Doing it while someone talks to you, the TV is on and your phone keeps buzzing is surprisingly hard.
+
+The maths didn’t get harder. Your brain just had less room for it.
+</Analogy>
+
+Our brains have limited room for thinking at any moment. Everything on a screen uses some of it. When too much competes for that room, people slow down, make mistakes and feel tired.
+</Section>
+
+<Section id="why" title="Why it happens">
+Educational psychologist John Sweller described two kinds of mental load that matter for design:
+
+<ul class="examples">
+  <li><strong>Intrinsic load</strong><p>The effort the task itself requires, like choosing a flight or understanding a contract. You can’t remove it, only support it.</p></li>
+  <li><strong>Extraneous load</strong><p>Effort caused by the design, like clutter, confusing labels, inconsistent layouts and distractions. This is the part designers can and should remove.</p></li>
+</ul>
+
+When extraneous load is high, there’s less room left for the real task. That’s why a busy screen makes a simple job feel hard.
+
+<div class="callout">
+  <strong>Low load doesn’t mean empty.</strong> A screen can contain a lot of information and still feel easy, if it’s well organised, consistent and shows things in a predictable order.
+</div>
+</Section>
+
+<Section id="dodont" title="Do vs Don’t">
+<DoDont
+  dontCaption="A settings screen packed with unexplained toggles, jargon and promos. Users have to decode everything before acting."
+  doCaption="A few clearly named options with short descriptions. Advanced settings live one tap away."
+>
+  <div slot="dont" class="ui" style="font-size:11px;display:grid;gap:6px">
+    <div class="ui-row" style="justify-content:space-between"><span>Sync mode (Δ-v2)</span><span class="ui-toggle"></span></div>
+    <div class="ui-row" style="justify-content:space-between"><span>Cache TTL override</span><span class="ui-toggle"></span></div>
+    <div style="background:#ff3b30;color:#fff;padding:4px 6px;border-radius:4px">UPGRADE to PRO now -40%</div>
+    <div class="ui-row" style="justify-content:space-between"><span>Legacy push (beta)</span><span class="ui-toggle"></span></div>
+    <div class="ui-row" style="justify-content:space-between"><span>Notif. agg. lvl</span><span class="ui-toggle"></span></div>
+  </div>
+  <div slot="do" class="ui" style="font-size:12px;display:grid;gap:10px">
+    <div class="ui-row" style="justify-content:space-between"><div><b>Sync automatically</b><div class="ui-muted">Keep files up to date on all devices</div></div><span class="ui-toggle" style="background:#18181b"></span></div>
+    <div class="ui-row" style="justify-content:space-between"><div><b>Notifications</b><div class="ui-muted">Only for mentions and messages</div></div><span class="ui-toggle"></span></div>
+    <div class="ui-muted">Advanced settings →</div>
+  </div>
+</DoDont>
+</Section>
+
+<Section id="examples" title="Real-world examples">
+<ul class="examples">
+  <li><strong>Apple Pay</strong><p>Paying needs one glance and a double-click, with no card numbers to type and nothing to decide.</p></li>
+  <li><strong>Google Maps driving mode</strong><p>Everything except the route and the next turn fades away while you drive.</p></li>
+  <li><strong>Medium and Substack</strong><p>Reading pages hide menus and sidebars so all your attention goes to the text.</p></li>
+  <li><strong>Stripe’s dashboard</strong><p>Complex financial data is shown with a clear hierarchy: key numbers first, details on demand.</p></li>
+</ul>
+</Section>
+
+<Section id="apply" title="How to apply it">
+<Checklist>
+- **Remove clutter**: decorative elements, duplicate information and distractions that don’t help the task.
+- **Use plain, familiar words** instead of internal jargon.
+- **Be consistent**, so people don’t have to relearn layouts and patterns on each screen.
+- **Reveal complexity gradually.** Show the basics first and put details one step away.
+- **Do the work for people** with defaults, calculations and remembered choices (see Tesler’s Law).
+</Checklist>
+</Section>

@@ -1,0 +1,83 @@
+---
+title: "Miller’s Law"
+order: 6
+category: Heuristics
+oneLiner: "Most people can only keep about 7 (±2) items in their head at once."
+takeaway: "Don’t make people remember. Show information when they need it, and group what they have to hold."
+origin:
+  person: "George A. Miller"
+  year: "1956"
+  source: "“The Magical Number Seven, Plus or Minus Two”, Psychological Review"
+  url: "https://en.wikipedia.org/wiki/The_Magical_Number_Seven,_Plus_or_Minus_Two"
+related: [chunking, working-memory, cognitive-load, hicks-law]
+complete: true
+---
+import Section from '../../components/Section.astro';
+import DemoFrame from '../../components/DemoFrame.astro';
+import Analogy from '../../components/Analogy.astro';
+import DoDont from '../../components/DoDont.astro';
+import Checklist from '../../components/Checklist.astro';
+import MillersDemo from '../../components/demos/MillersDemo.tsx';
+
+<Section id="demo" title="Try it yourself">
+  <DemoFrame hint="About 40 seconds"><MillersDemo client:visible /></DemoFrame>
+</Section>
+
+<Section id="plain" title="In plain words">
+<Analogy>
+Someone reads you a shopping list out loud with no paper to write it on. Milk, eggs, bread: easy. By the eleventh item, the first ones have quietly fallen out of your head.
+
+Your short-term memory is a small table, not a warehouse.
+</Analogy>
+
+There’s a limit to how much we can juggle in our heads at once. When an interface asks people to remember more than that, they forget, make mistakes or give up.
+</Section>
+
+<Section id="why" title="Why it happens">
+In 1956, psychologist George Miller noticed that in many experiments people could hold about **seven items, give or take two**, in short-term memory. Later research suggests the real number is often even lower, around **four chunks**, depending on what the items are.
+
+The exact number matters less than the lesson: **memory is limited, and it’s easy to overload**.
+
+<div class="callout">
+  <strong>Common mistake:</strong> “Miller’s Law says menus must have at most 7 items.” Not quite. When the options are <em>visible</em>, people don’t need to remember them. The limit matters when people must <em>hold</em> information in their head, like a code, a step from earlier, or details from another screen.
+</div>
+</Section>
+
+<Section id="dodont" title="Do vs Don’t">
+<DoDont
+  dontCaption="A 2FA screen that shows the code, then asks you to go to another screen and type all 10 characters from memory."
+  doCaption="A short 6-digit code in two groups, with a copy button and the code still visible when you need it."
+>
+  <div slot="dont" class="ui">
+    <div class="ui-title">Your recovery code</div>
+    <div style="font-family:monospace;font-size:15px;letter-spacing:.08em;margin:8px 0 12px">K7QX2M9TBW</div>
+    <div class="ui-muted" style="margin-bottom:10px">Remember it, then continue.</div>
+    <div class="ui-btn primary block">Continue</div>
+  </div>
+  <div slot="do" class="ui">
+    <div class="ui-title">Your code</div>
+    <div class="ui-row" style="margin:8px 0 12px;justify-content:space-between"><span style="font-family:monospace;font-size:20px;letter-spacing:.1em">482 917</span><span class="ui-btn">Copy</span></div>
+    <div class="ui-input" style="margin-bottom:10px"></div>
+    <div class="ui-btn primary block">Verify</div>
+  </div>
+</DoDont>
+</Section>
+
+<Section id="examples" title="Real-world examples">
+<ul class="examples">
+  <li><strong>Phone numbers</strong><p>We write them as 555-123-4567 instead of 5551234567, so you remember three groups instead of ten digits.</p></li>
+  <li><strong>One-time codes</strong><p>Most login codes are only 6 digits, and phones often offer to fill them in automatically, so you don’t have to remember them at all.</p></li>
+  <li><strong>Checkout summaries</strong><p>Good checkouts keep your order summary visible on every step, instead of making you remember what was in your cart.</p></li>
+  <li><strong>Amazon product comparison</strong><p>Comparison tables put specs side by side so you don’t have to memorize them while flipping between pages.</p></li>
+</ul>
+</Section>
+
+<Section id="apply" title="How to apply it">
+<Checklist>
+- **Keep information visible** when people need it, instead of asking them to remember it from a previous screen.
+- **Chunk long content**, such as numbers, codes, forms and long pages, into small, meaningful groups.
+- **Keep codes short** and offer copy, paste and autofill.
+- **Use recognition, not recall.** Let people pick from options instead of typing things from memory.
+- **Don’t treat “7” as a hard rule** for visible lists. Treat it as a reminder that memory is limited.
+</Checklist>
+</Section>

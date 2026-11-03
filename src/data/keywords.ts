@@ -1,0 +1,36 @@
+/**
+ * Extra search words per law, so beginners find laws by topic ("memory", "buttons", "forms")
+ * and not only by their official names.
+ */
+export const KEYWORDS: Record<string, string> = {
+  'aesthetic-usability-effect': 'beauty visual design looks trust polish pretty',
+  'doherty-threshold': 'speed performance loading response time latency fast slow',
+  'fitts-law': 'buttons size distance click tap target touch mouse',
+  'hicks-law': 'choices options decision time menus navigation',
+  'jakobs-law': 'conventions patterns familiar expectations standards consistency',
+  'millers-law': 'memory short-term remember limit seven chunks',
+  'parkinsons-law': 'time tasks forms autofill efficiency deadlines',
+  'postels-law': 'input forms validation errors flexible robust',
+  'teslers-law': 'complexity simplicity automation defaults effort',
+  'occams-razor': 'simplicity minimal remove clutter simple',
+  'pareto-principle': '80/20 priorities features usage focus',
+  'paradox-of-the-active-user': 'onboarding tutorials learning help manuals',
+  'law-of-common-region': 'grouping cards containers backgrounds borders gestalt layout',
+  'law-of-proximity': 'spacing grouping whitespace layout gestalt forms',
+  'law-of-pragnanz': 'shapes simplicity icons logos perception gestalt',
+  'law-of-similarity': 'consistency color style grouping links buttons gestalt',
+  'law-of-uniform-connectedness': 'lines steps progress connection grouping gestalt',
+  'cognitive-bias': 'psychology decisions framing anchoring defaults dark patterns',
+  'peak-end-rule': 'memory experience emotions endings delight journey',
+  'serial-position-effect': 'memory lists order first last navigation',
+  'von-restorff-effect': 'memory contrast highlight attention standout emphasis',
+  'zeigarnik-effect': 'memory unfinished tasks progress checklists onboarding',
+  'goal-gradient-effect': 'progress motivation rewards loyalty steps',
+  'selective-attention': 'attention focus banner blindness ads distraction',
+  'choice-overload': 'choices options decisions too many paradox of choice',
+  chunking: 'memory grouping formatting numbers readability',
+  'cognitive-load': 'mental effort clutter complexity simplicity overload',
+  flow: 'focus engagement challenge skill immersion',
+  'mental-model': 'expectations understanding metaphors users beliefs',
+  'working-memory': 'memory short-term compare recall recognition',
+};

@@ -1,0 +1,84 @@
+---
+title: "Flow"
+order: 28
+category: Cognition
+oneLiner: "Being fully absorbed in a task that is challenging but still doable."
+takeaway: "Match the challenge to people’s skill, give instant feedback, and remove anything that breaks their concentration."
+origin:
+  person: "Mihaly Csikszentmihalyi"
+  year: "1975"
+  source: "“Beyond Boredom and Anxiety”"
+  url: "https://en.wikipedia.org/wiki/Flow_(psychology)"
+related: [doherty-threshold, goal-gradient-effect, cognitive-load]
+complete: true
+---
+import Section from '../../components/Section.astro';
+import DemoFrame from '../../components/DemoFrame.astro';
+import Analogy from '../../components/Analogy.astro';
+import DoDont from '../../components/DoDont.astro';
+import Checklist from '../../components/Checklist.astro';
+import FlowDemo from '../../components/demos/FlowDemo.tsx';
+
+<Section id="demo" title="Try it yourself">
+  <DemoFrame hint="About 15 seconds"><FlowDemo client:visible /></DemoFrame>
+</Section>
+
+<Section id="plain" title="In plain words">
+<Analogy>
+Think of a time you were so absorbed in a game, a drawing or a song that you looked up and two hours had vanished.
+
+That’s flow: the task was hard enough to hold your attention, but not so hard that you wanted to quit.
+</Analogy>
+
+Flow is the state of **deep, effortless focus**. Products can’t force it, but they can make it much easier to get into, and much easier to break.
+</Section>
+
+<Section id="why" title="Why it happens">
+Psychologist Mihaly Csikszentmihalyi studied artists, athletes and surgeons who described losing track of time while working. He found flow happens when a few conditions line up:
+
+<ul class="examples">
+  <li><strong>Balanced challenge</strong><p>The task stretches your skill a little, without overwhelming it. Too easy leads to boredom, too hard leads to anxiety.</p></li>
+  <li><strong>Clear goals</strong><p>You know what you’re trying to do right now.</p></li>
+  <li><strong>Immediate feedback</strong><p>You can see straight away whether what you did worked.</p></li>
+  <li><strong>No interruptions</strong><p>Nothing pulls your attention away.</p></li>
+</ul>
+
+<div class="callout">
+  <strong>Interruptions are flow’s enemy.</strong> A pop-up, a slow response or a confusing error can knock people out of flow instantly, and getting back in takes much longer than getting knocked out.
+</div>
+</Section>
+
+<Section id="dodont" title="Do vs Don’t">
+<DoDont
+  dontCaption="A writing app that interrupts with a rating pop-up in the middle of a sentence."
+  doCaption="A distraction-free writing view with quiet, instant autosave. Nothing breaks your concentration."
+>
+  <div slot="dont" class="ui" style="position:relative">
+    <div style="font-size:11px;color:#52525b;line-height:1.6">The morning light came through the window and she finally began to write the first lin</div>
+    <div style="position:absolute;inset:20px 16px;background:#fff;border:1px solid #e4e4e7;border-radius:10px;box-shadow:0 10px 30px -10px rgba(0,0,0,.3);padding:12px;text-align:center"><b style="font-size:12px">Enjoying the app?</b><div class="ui-muted" style="margin:4px 0 8px">Rate us 5 stars!</div><span class="ui-btn primary">Rate now</span></div>
+  </div>
+  <div slot="do" class="ui">
+    <div style="font-size:12px;color:#27272a;line-height:1.7">The morning light came through the window and she finally began to write the first line.</div>
+    <div class="ui-muted" style="text-align:right;margin-top:10px">Saved</div>
+  </div>
+</DoDont>
+</Section>
+
+<Section id="examples" title="Real-world examples">
+<ul class="examples">
+  <li><strong>Video games</strong><p>Good games adjust difficulty as you improve, keeping you in the flow channel for hours.</p></li>
+  <li><strong>Duolingo</strong><p>Lessons adapt to your level, give instant right-or-wrong feedback, and are short enough to finish in one go.</p></li>
+  <li><strong>Figma and code editors</strong><p>Keyboard shortcuts, instant previews and autosave let experts work without breaking focus.</p></li>
+  <li><strong>iA Writer</strong><p>Its focus mode hides everything except the sentence you’re writing.</p></li>
+</ul>
+</Section>
+
+<Section id="apply" title="How to apply it">
+<Checklist>
+- **Give instant feedback** for every action (see the Doherty Threshold).
+- **Make goals clear** at each step, so people always know what to do next.
+- **Adapt to skill:** simple paths for beginners and shortcuts for experts.
+- **Protect focus.** Avoid pop-ups, interruptions and unnecessary confirmations during deep work.
+- **Save automatically** so people never have to stop and worry about losing work.
+</Checklist>
+</Section>

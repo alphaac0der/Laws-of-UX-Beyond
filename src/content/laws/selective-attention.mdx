@@ -1,0 +1,82 @@
+---
+title: "Selective Attention"
+order: 24
+category: Biases
+oneLiner: "People focus on what matters to their goal and tune out everything else."
+takeaway: "Put important information where people are already looking, and never make it look like an ad."
+origin:
+  person: "Colin Cherry (the “cocktail party effect”)"
+  year: "1953"
+  source: "“Some experiments on the recognition of speech, with one and with two ears”, Journal of the Acoustical Society of America"
+  url: "https://en.wikipedia.org/wiki/Cocktail_party_effect"
+related: [von-restorff-effect, cognitive-load, working-memory]
+complete: true
+---
+import Section from '../../components/Section.astro';
+import DemoFrame from '../../components/DemoFrame.astro';
+import Analogy from '../../components/Analogy.astro';
+import DoDont from '../../components/DoDont.astro';
+import Checklist from '../../components/Checklist.astro';
+import SelectiveDemo from '../../components/demos/SelectiveDemo.tsx';
+
+<Section id="demo" title="Try it yourself">
+  <DemoFrame hint="About 20 seconds"><SelectiveDemo client:visible /></DemoFrame>
+</Section>
+
+<Section id="plain" title="In plain words">
+<Analogy>
+At a noisy party you can follow one conversation and ignore all the others. But if someone across the room says your name, you hear it instantly.
+
+Your brain filters the world, letting through only what seems relevant.
+</Analogy>
+
+We can’t pay attention to everything, so we **filter**. People on a website notice what matches their goal and skip the rest, sometimes including things that were right in front of them.
+</Section>
+
+<Section id="why" title="Why it happens">
+In the 1950s, Colin Cherry showed that people listening to two voices at once could follow one and remember almost nothing of the other. In a famous later study, about half of viewers counting basketball passes didn’t notice a person in a gorilla suit walking through the scene.
+
+Online, this filtering shows up as **banner blindness**: people have learned that boxes that look like ads are usually useless, so they skip anything that resembles one, even when it contains exactly what they need.
+
+<div class="callout">
+  <strong>Change blindness is related.</strong> If something on the screen changes while people are focused elsewhere, like a total updating or an error appearing far away, they often don’t notice. Show feedback right where the person is looking.
+</div>
+</Section>
+
+<Section id="dodont" title="Do vs Don’t">
+<DoDont
+  dontCaption="An important shipping notice is styled like a colorful promo banner at the top, and most people skip right over it."
+  doCaption="The same notice appears inline, right next to the delivery options where people are already looking."
+>
+  <div slot="dont" class="ui">
+    <div style="background:linear-gradient(90deg,#ffd93b,#ff9f1c);border-radius:6px;padding:6px;font-size:10px;text-align:center;margin-bottom:10px;color:#2b1600"><b>NOTICE!</b> Orders after 2pm ship Monday!</div>
+    <div class="ui-title">Delivery</div>
+    <div class="ui-stack"><div class="ui-input"></div><div class="ui-input"></div></div>
+  </div>
+  <div slot="do" class="ui">
+    <div class="ui-title">Delivery</div>
+    <div class="ui-stack"><div class="ui-input"></div></div>
+    <div style="font-size:11px;color:#52525b;margin:8px 0;padding:8px;border-radius:6px;background:#f4f4f5">Order now, ships <b style="color:#18181b">Monday</b> (after 2pm cutoff).</div>
+    <div class="ui-input"></div>
+  </div>
+</DoDont>
+</Section>
+
+<Section id="examples" title="Real-world examples">
+<ul class="examples">
+  <li><strong>Banner blindness</strong><p>Eye-tracking studies by Nielsen Norman Group show people rarely look at anything that resembles an ad, even useful content.</p></li>
+  <li><strong>Inline form errors</strong><p>Good forms show errors next to the field with the problem. A message at the top of the page is easy to miss.</p></li>
+  <li><strong>Google Maps navigation</strong><p>Only the next turn is shown big and clear. Everything else is reduced while you drive.</p></li>
+  <li><strong>Focus modes</strong><p>iOS Focus and writing apps like iA Writer hide everything except the task at hand.</p></li>
+</ul>
+</Section>
+
+<Section id="apply" title="How to apply it">
+<Checklist>
+- **Place information where people are looking** for their task, not in sidebars or banners.
+- **Never style important content like ads**: avoid bright banners, flashing and “sponsored-looking” boxes.
+- **Show feedback near the action**, like errors by the field and confirmation by the button.
+- **Remove distractions** on focused tasks such as checkout, sign-up and writing.
+- **Test with eye-tracking or observation** to see what people actually notice.
+</Checklist>
+</Section>

@@ -1,0 +1,82 @@
+---
+title: "Aesthetic-Usability Effect"
+order: 1
+category: Heuristics
+oneLiner: "People think good-looking designs are easier to use, even when they aren’t."
+takeaway: "Good looks buy you patience and trust, but they don’t fix real usability problems. Polish what already works."
+origin:
+  person: "Masaaki Kurosu & Kaori Kashimura (Hitachi Design Center)"
+  year: "1995"
+  source: "“Apparent usability vs. inherent usability”, CHI ’95 (summary by Nielsen Norman Group)"
+  url: "https://www.nngroup.com/articles/aesthetic-usability-effect/"
+related: [peak-end-rule, cognitive-bias, jakobs-law]
+complete: true
+---
+import Section from '../../components/Section.astro';
+import DemoFrame from '../../components/DemoFrame.astro';
+import Analogy from '../../components/Analogy.astro';
+import DoDont from '../../components/DoDont.astro';
+import Checklist from '../../components/Checklist.astro';
+import AestheticDemo from '../../components/demos/AestheticDemo.tsx';
+
+<Section id="demo" title="Try it yourself">
+  <DemoFrame hint="About 10 seconds"><AestheticDemo client:visible /></DemoFrame>
+</Section>
+
+<Section id="plain" title="In plain words">
+<Analogy>
+Two restaurants serve the exact same pasta. One has clean tables and a well-designed menu. The other has sticky tables and a menu printed in Comic Sans.
+
+Most people will say the first one’s pasta tastes better, and they’ll forgive it more if the food arrives a bit late.
+</Analogy>
+
+We judge with our eyes first. When something looks well made, we assume it **works** well too, and we’re more patient when it doesn’t.
+</Section>
+
+<Section id="why" title="Why it happens">
+Before you’ve clicked anything, your brain has already formed a first impression in a fraction of a second. A neat, consistent, good-looking interface sends a signal: *someone cared about this*. That feeling spills over into how we judge everything else, including how easy it is to use.
+
+This works both ways. A beautiful design makes people more tolerant of small problems, but it can also **hide** those problems during testing, because users are less likely to complain about something they like the look of.
+
+<div class="callout">
+  <strong>Common mistake:</strong> using visual polish to cover up a confusing flow. People may say they like it in a test, then still fail the task. Watch what users <em>do</em>, not just what they say.
+</div>
+</Section>
+
+<Section id="dodont" title="Do vs Don’t">
+<DoDont
+  dontCaption="A cramped, unaligned card with random sizes and colors. Even if it works fine, it feels broken and untrustworthy."
+  doCaption="The same content with consistent spacing, alignment and one clear button. It feels reliable before you’ve used it."
+>
+  <div slot="dont" class="ui ui-plain">
+    <div class="ui-title" style="color:#c00">PREMIUM PLAN!!!</div>
+    <div style="font-size:11px;margin-bottom:4px">$12/month - billed yearly - cancel anytime*</div>
+    <div class="ui-btn" style="width:60%">Subscribe now</div>
+    <div style="font-size:9px;margin-top:6px;text-align:right">*terms apply</div>
+  </div>
+  <div slot="do" class="ui">
+    <div class="ui-muted">Premium</div>
+    <div class="ui-title" style="font-size:22px;margin:4px 0 2px">$12<span class="ui-muted"> / month</span></div>
+    <div class="ui-muted" style="margin-bottom:14px">Billed yearly. Cancel anytime.</div>
+    <div class="ui-btn primary block">Subscribe</div>
+  </div>
+</DoDont>
+</Section>
+
+<Section id="examples" title="Real-world examples">
+<ul class="examples">
+  <li><strong>Apple product pages</strong><p>Calm layouts and beautiful photography make the products feel premium and easy to use before you’ve touched one.</p></li>
+  <li><strong>Stripe</strong><p>Its polished website and docs signal that the payment product is trustworthy, which matters a lot when you’re handing over money.</p></li>
+  <li><strong>Notion</strong><p>Clean typography and lots of whitespace make a very powerful tool feel approachable to beginners.</p></li>
+  <li><strong>Banking apps</strong><p>Studies of online banking find that people trust better-looking sites more, even when the features are the same.</p></li>
+</ul>
+</Section>
+
+<Section id="apply" title="How to apply it">
+<Checklist>
+- **Get the basics right first:** consistent spacing, alignment and a limited set of fonts and colors go a long way.
+- **Use good looks to build trust** on high-stakes screens like checkout, sign-up and payment.
+- **Don’t let polish hide problems.** In usability tests, measure task success, not just “do you like it?”
+- **Keep it consistent.** One beautiful screen next to a messy one makes the whole product feel unreliable.
+</Checklist>
+</Section>

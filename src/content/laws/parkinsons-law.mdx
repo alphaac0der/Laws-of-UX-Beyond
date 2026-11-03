@@ -1,0 +1,86 @@
+---
+title: "Parkinson’s Law"
+order: 7
+category: Heuristics
+oneLiner: "A task takes up all the time you give it."
+takeaway: "Shrink the work, not just the wait. Prefill, autofill and remove steps so tasks take less time than people expect."
+origin:
+  person: "Cyril Northcote Parkinson"
+  year: "1955"
+  source: "Essay in The Economist, “Parkinson’s Law”"
+  url: "https://en.wikipedia.org/wiki/Parkinson%27s_law"
+related: [doherty-threshold, goal-gradient-effect, teslers-law]
+complete: true
+---
+import Section from '../../components/Section.astro';
+import DemoFrame from '../../components/DemoFrame.astro';
+import Analogy from '../../components/Analogy.astro';
+import DoDont from '../../components/DoDont.astro';
+import Checklist from '../../components/Checklist.astro';
+import ParkinsonDemo from '../../components/demos/ParkinsonDemo.tsx';
+
+<Section id="demo" title="Try it yourself">
+  <DemoFrame hint="About 30 seconds"><ParkinsonDemo client:visible /></DemoFrame>
+</Section>
+
+<Section id="plain" title="In plain words">
+<Analogy>
+If your teacher gives you a week to write an essay, it takes a week. If they give you a day, it somehow takes a day.
+
+The essay didn’t change. The time you were given did.
+</Analogy>
+
+Work stretches to fill the space we leave for it. In design, that means a long form *feels* like a big job, so people slow down, hesitate or leave. The fix is to make the job genuinely smaller.
+</Section>
+
+<Section id="why" title="Why it happens">
+Historian Cyril Parkinson first wrote this as a joke about government offices, where staff kept growing even when the work didn’t. The idea stuck because everyone recognizes it: when there’s time, we fill it with second-guessing, extra steps and polishing.
+
+For users, every field, step and decision is time. If a task *looks* long, people expect it to take long, and they spend that time or put it off for later. Designers can’t control people’s schedules, but they can **cut how much work a task needs**.
+
+<div class="callout">
+  <strong>Tip:</strong> showing how long something will take (“2 minutes, 3 steps”) helps too. It sets a small, clear time box, so the task doesn’t feel open-ended.
+</div>
+</Section>
+
+<Section id="dodont" title="Do vs Don’t">
+<DoDont
+  dontCaption="A checkout that asks you to type every detail again, even though the shop already knows them from your account."
+  doCaption="Saved details are filled in, and one tap confirms. The task takes seconds instead of minutes."
+>
+  <div slot="dont" class="ui">
+    <div class="ui-title">Shipping (step 1 of 4)</div>
+    <div class="ui-stack">
+      <span class="ui-label">Full name</span><div class="ui-input"></div>
+      <span class="ui-label">Street</span><div class="ui-input"></div>
+      <span class="ui-label">City · Postcode</span><div class="ui-input"></div>
+    </div>
+    <div class="ui-btn primary block" style="margin-top:12px">Next</div>
+  </div>
+  <div slot="do" class="ui">
+    <div class="ui-title">Ship to</div>
+    <div style="border:1px solid #e4e4e7;border-radius:8px;padding:10px;margin-bottom:12px"><b style="font-size:13px">Sam Rivera</b><div class="ui-muted">12 Hill Road, Leeds</div></div>
+    <div class="ui-btn primary block">Place order</div>
+    <div class="ui-muted" style="text-align:center;margin-top:8px">Change address</div>
+  </div>
+</DoDont>
+</Section>
+
+<Section id="examples" title="Real-world examples">
+<ul class="examples">
+  <li><strong>Amazon 1-Click</strong><p>Your address and payment are already saved, so buying takes a single tap instead of a full checkout.</p></li>
+  <li><strong>Browser autofill</strong><p>Chrome and Safari fill in names, addresses and cards, cutting form time from minutes to seconds.</p></li>
+  <li><strong>Typeform</strong><p>It tells you up front how long a survey takes (“takes 2 minutes”), which makes people more likely to start and finish.</p></li>
+  <li><strong>Apple Pay and Google Pay</strong><p>They replace a whole payment form with a quick confirmation.</p></li>
+</ul>
+</Section>
+
+<Section id="apply" title="How to apply it">
+<Checklist>
+- **Prefill everything you already know**, like name, email, address and country.
+- **Support autofill** with the correct input types and autocomplete attributes.
+- **Remove optional fields**, or move them to later.
+- **Tell people how long it will take**, such as “3 steps” or “about 2 minutes.”
+- **Offer shortcuts** for repeat actions, like reordering, saved carts or one-tap payment.
+</Checklist>
+</Section>

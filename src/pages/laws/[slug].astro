@@ -1,0 +1,194 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Section from '../../components/Section.astro';
+import LawDiagram from '../../components/LawDiagram.astro';
+
+export async function getStaticPaths() {
+  const laws = (await getCollection('laws')).sort((a, b) => a.data.order - b.data.order);
+  return laws.map((law, i) => ({
+    params: { slug: law.id },
+    props: { law, prev: laws[i - 1], next: laws[i + 1], all: laws },
+  }));
+}
+
+interface Props {
+  law: CollectionEntry<'laws'>;
+  prev?: CollectionEntry<'laws'>;
+  next?: CollectionEntry<'laws'>;
+  all: CollectionEntry<'laws'>[];
+}
+const { law, prev, next, all } = Astro.props;
+const { title, category, oneLiner, takeaway, origin, related, complete, order } = law.data;
+const { Content } = await render(law);
+const relatedLaws = related
+  .map((id) => all.find((l) => l.id === id))
+  .filter((l): l is CollectionEntry<'laws'> => Boolean(l));
+
+const toc = [
+  ...(complete
+    ? [
+        { id: 'demo', label: 'Try it yourself' },
+        { id: 'plain', label: 'In plain words' },
+        { id: 'why', label: 'Why it happens' },
+        { id: 'dodont', label: 'Do vs Don’t' },
+        { id: 'examples', label: 'Real-world examples' },
+        { id: 'apply', label: 'How to apply it' },
+      ]
+    : []),
+  ...(origin ? [{ id: 'origin', label: 'Where it comes from' }] : []),
+  ...(relatedLaws.length ? [{ id: 'related', label: 'Related laws' }] : []),
+];
+---
+
+<Base title={`${title} · Laws of UX Beyond`} description={`${title}: ${oneLiner}`}>
+  <div class="progress" id="progress" aria-hidden="true"></div>
+
+  <header class="law-hero">
+    <div class="wrap law-hero-grid">
+      <div>
+        <nav class="crumbs" aria-label="Breadcrumb">
+          <a href="/#laws">All laws</a><span aria-hidden="true">/</span><span>{category}</span>
+        </nav>
+        <h1>{title}</h1>
+        <p class="lead">{oneLiner}</p>
+        <dl class="law-facts">
+          <div><dt>Law</dt><dd>{String(order).padStart(2, '0')} of {all.length}</dd></div>
+          <div><dt>Category</dt><dd>{category}</dd></div>
+          {origin && <div><dt>Discovered</dt><dd>{origin.year}</dd></div>}
+        </dl>
+      </div>
+      <div class="law-art"><LawDiagram slug={law.id} /></div>
+    </div>
+  </header>
+
+  <div class="wrap law-layout">
+    <aside class="toc-col">
+      <nav class="toc" aria-label="On this page">
+        <p>On this page</p>
+        <ol>
+          {
+            toc.map((t) => (
+              <li>
+                <a href={`#${t.id}`} data-target={t.id}>
+                  {t.label}
+                </a>
+              </li>
+            ))
+          }
+        </ol>
+      </nav>
+    </aside>
+
+    <article class="law-main">
+      <Content />
+
+      {
+        !complete && (
+          <div class="coming">
+            <h2>Full lesson in progress</h2>
+            <p>
+              This law will get an interactive demo, an everyday analogy, do/don’t examples and practical tips.
+              Until then, try a finished lesson like <a href="/laws/hicks-law">Hick’s Law</a>.
+            </p>
+          </div>
+        )
+      }
+
+      {
+        origin && (
+          <Section id="origin" title="Where it comes from">
+            <dl class="origin">
+              <dt>Who</dt>
+              <dd>{origin.person}</dd>
+              <dt>When</dt>
+              <dd>{origin.year}</dd>
+              {origin.source && (
+                <>
+                  <dt>Source</dt>
+                  <dd>
+                    {origin.url ? (
+                      <a href={origin.url} target="_blank" rel="noopener">
+                        {origin.source}
+                      </a>
+                    ) : (
+                      origin.source
+                    )}
+                  </dd>
+                </>
+              )}
+            </dl>
+            {takeaway && (
+              <figure class="takeaway" style="margin-top:40px">
+                <span>Key takeaway</span>
+                <p>{takeaway}</p>
+              </figure>
+            )}
+          </Section>
+        )
+      }
+
+      {
+        relatedLaws.length > 0 && (
+          <Section id="related" title="Related laws">
+            <div class="related">
+              {relatedLaws.map((r) => (
+                <a href={`/laws/${r.id}`}>
+                  <LawDiagram slug={r.id} />
+                  <span>
+                    <small>{r.data.category}</small>
+                    <strong>{r.data.title}</strong>
+                  </span>
+                </a>
+              ))}
+            </div>
+          </Section>
+        )
+      }
+
+      <nav class="pager" aria-label="Previous and next law">
+        {
+          prev && (
+            <a href={`/laws/${prev.id}`}>
+              <small>← Previous</small>
+              <strong>{prev.data.title}</strong>
+            </a>
+          )
+        }
+        {
+          next && (
+            <a class="next" href={`/laws/${next.id}`}>
+              <small>Next →</small>
+              <strong>{next.data.title}</strong>
+            </a>
+          )
+        }
+      </nav>
+    </article>
+  </div>
+</Base>
+
+<script>
+  const bar = document.getElementById('progress')!;
+  const update = () => {
+    const max = document.documentElement.scrollHeight - innerHeight;
+    bar.style.transform = `scaleX(${max > 0 ? Math.min(1, scrollY / max) : 0})`;
+  };
+  addEventListener('scroll', update, { passive: true });
+  update();
+
+  // Highlight the current section in the sidebar.
+  const links = new Map(
+    [...document.querySelectorAll<HTMLAnchorElement>('.toc a')].map((a) => [a.dataset.target!, a]),
+  );
+  const sections = [...links.keys()]
+    .map((id) => document.getElementById(id))
+    .filter((el): el is HTMLElement => Boolean(el));
+  const setActive = () => {
+    let current = sections[0]?.id;
+    for (const s of sections) if (s.getBoundingClientRect().top < 140) current = s.id;
+    links.forEach((a, id) => a.classList.toggle('active', id === current));
+  };
+  addEventListener('scroll', setActive, { passive: true });
+  setActive();
+</script>
