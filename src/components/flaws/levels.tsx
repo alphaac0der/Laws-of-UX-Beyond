@@ -1,5 +1,5 @@
 import type { ComponentChildren, JSX } from 'preact';
-import { Spot } from './Spot';
+import { Fix, Spot } from './Spot';
 
 export type Flaw = {
   id: string;
@@ -18,14 +18,26 @@ export type Level = {
   title: string;
   brief: string;
   flaws: Flaw[];
+  /** The broken screen the player clicks on. */
   Screen: () => JSX.Element;
+  /** The same screen with every flaw fixed, shown side by side once the level is over. */
+  Fixed: () => JSX.Element;
 };
 
 /* ---------- Small building blocks for the mock screens ---------- */
 
-const Input = (p: { text?: string; mono?: boolean; muted?: boolean }) => (
-  <div class={`fx-input ${p.mono ? 'mono' : ''} ${p.muted ? 'muted' : ''}`}>{p.text ?? ''}</div>
+const Input = (p: { text?: string; mono?: boolean; muted?: boolean; eye?: boolean }) => (
+  <div class={`fx-input ${p.mono ? 'mono' : ''} ${p.muted ? 'muted' : ''}`}>
+    {p.text ?? ''}
+    {p.eye && (
+      <span class="fx-eye" title="Show password">
+        <Icon d={I.eye} size={15} />
+      </span>
+    )}
+  </div>
 );
+/** A note on the fixed screen about something that was removed, so there's nothing to draw. */
+const Note = (p: { children: ComponentChildren }) => <div class="fx-note">{p.children}</div>;
 const Label = (p: { children: ComponentChildren; style?: string }) => (
   <div class="fx-label" style={p.style}>
     {p.children}
@@ -54,7 +66,32 @@ const I = {
   help: 'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6M12 17h.01',
   compass: 'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM15.5 8.5l-2 5-5 2 2-5z',
   check: 'M5 12.5l4.5 4.5L19 7.5',
+  eye: 'M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12zM12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z',
+  search: 'M11 18a7 7 0 1 0 0-14 7 7 0 0 0 0 14zM20 20l-4-4',
 };
+
+/** Sorted bars with the long tail grouped, the fix for the 3D pie. */
+function Bars() {
+  const rows: [string, number][] = [
+    ['US', 22],
+    ['UK', 17],
+    ['Germany', 13],
+    ['India', 11],
+    ['Canada', 9],
+    ['Other', 28],
+  ];
+  return (
+    <div class="fx-bars">
+      {rows.map(([k, v]) => (
+        <div>
+          <span>{k}</span>
+          <i style={`width:${(v / 28) * 100}%`} />
+          <b>{v}%</b>
+        </div>
+      ))}
+    </div>
+  );
+}
 
 /** A pie chart drawn with fake 3D depth, for the dashboard level. */
 function Pie3D() {
@@ -161,9 +198,9 @@ export const LEVELS: Level[] = [
           <Label style="margin-top:12px">How did you hear about us?</Label>
           <div class="fx-input fx-select">Choose one</div>
         </Spot>
-        <Spot style="margin-top:14px" note="Hiding the password with dots is standard. Fine.">
+        <Spot style="margin-top:14px" note="Hidden by default, with an eye icon to check what you typed. Fine.">
           <Label>Password</Label>
-          <Input text="••••••••••" />
+          <Input text="••••••••••" eye />
         </Spot>
         <Spot f="restorff" style="margin-top:20px">
           <div class="fx-row end">
@@ -176,6 +213,41 @@ export const LEVELS: Level[] = [
             By signing up you agree to our <u>Terms</u> and <u>Privacy Policy</u>.
           </div>
         </Spot>
+      </div>
+    ),
+    Fixed: () => (
+      <div class="fx-screen">
+        <div class="fx-h">Create your account</div>
+        <div class="fx-sub">Start your free 14-day trial.</div>
+        <div style="margin-top:16px">
+          <Label>Full name</Label>
+          <Input text="Alex Morgan" />
+        </div>
+        <Fix f="proximity" style="margin-top:14px">
+          <Label>Email</Label>
+          <Input text="alex@example.com" />
+        </Fix>
+        <Fix f="postel" style="margin-top:14px">
+          <Label>Phone</Label>
+          <Input text="(555) 123 4567" />
+          <div class="fx-help ok">Any format works. We’ll tidy it up.</div>
+        </Fix>
+        <Fix f="occam" style="margin-top:14px">
+          <Note>Company, job title and “How did you hear about us?” are gone. Ask later, if at all.</Note>
+        </Fix>
+        <div style="margin-top:14px">
+          <Label>Password</Label>
+          <Input text="••••••••••" eye />
+        </div>
+        <Fix f="restorff" style="margin-top:20px">
+          <span class="fx-btn primary block">Create account</span>
+          <div class="fx-sub fx-center" style="margin-top:10px">
+            <u>Cancel</u>
+          </div>
+        </Fix>
+        <div class="fx-fine" style="margin-top:14px">
+          By signing up you agree to our <u>Terms</u> and <u>Privacy Policy</u>.
+        </div>
       </div>
     ),
   },
@@ -286,6 +358,72 @@ export const LEVELS: Level[] = [
         </Spot>
       </div>
     ),
+    Fixed: () => (
+      <div class="fx-screen">
+        <Fix f="steps">
+          <div class="fx-stepper">
+            <span class="done">Cart</span>
+            <span class="done">Shipping</span>
+            <span class="on">Payment</span>
+            <span>Review</span>
+          </div>
+        </Fix>
+        <div class="fx-row" style="margin-top:16px">
+          <div class="fx-thumb" />
+          <div style="flex:1">
+            <b>Canvas tote bag</b>
+            <div class="fx-sub">Natural · Qty 1</div>
+          </div>
+          <b>$38.00</b>
+        </div>
+        <Fix f="tesler" style="margin-top:14px">
+          <div class="fx-lines">
+            <div>
+              <span>Subtotal</span>
+              <span>$38.00</span>
+            </div>
+            <div>
+              <span>Shipping</span>
+              <span>$4.95</span>
+            </div>
+            <div>
+              <span>Tax (estimated)</span>
+              <span>$3.42</span>
+            </div>
+            <div class="total">
+              <b>Total</b>
+              <b>$46.37</b>
+            </div>
+          </div>
+        </Fix>
+        <Fix f="bias" style="margin-top:14px">
+          <div class="fx-row" style="align-items:start">
+            <span class="fx-check" />
+            <span>
+              Add Purchase Protection (+$9.99)
+              <div class="fx-sub">Covers loss or damage for a year. Optional.</div>
+            </span>
+          </div>
+        </Fix>
+        <Fix f="chunking" style="margin-top:16px">
+          <Label>Card number</Label>
+          <Input text="4242 4242 4242 4242" mono />
+        </Fix>
+        <div class="fx-two" style="margin-top:12px">
+          <div>
+            <Label>Expiry</Label>
+            <Input text="08 / 28" mono />
+          </div>
+          <div>
+            <Label>CVC</Label>
+            <Input text="•••" mono />
+          </div>
+        </div>
+        <span class="fx-btn primary block" style="margin-top:18px">
+          Pay $46.37
+        </span>
+      </div>
+    ),
   },
 
   {
@@ -359,7 +497,10 @@ export const LEVELS: Level[] = [
             ].map(([n, p]) => (
               <div class="fx-plan">
                 <span>{n}</span>
-                <b>{p}</b>
+                <b>
+                  {p}
+                  <small>/mo</small>
+                </b>
                 <span class="fx-btn tiny">Choose</span>
               </div>
             ))}
@@ -376,6 +517,70 @@ export const LEVELS: Level[] = [
             Questions? <u>Talk to our team</u>
           </div>
         </Spot>
+      </div>
+    ),
+    Fixed: () => (
+      <div class="fx-screen wide">
+        <div class="fx-row spread" style="align-items:end">
+          <div>
+            <div class="fx-h">Plans for every creator</div>
+            <div class="fx-sub">Cancel anytime.</div>
+          </div>
+          <Fix f="toggle">
+            <span class="fx-seg">
+              <span class="on">Monthly</span>
+              <span>Yearly · save 20%</span>
+            </span>
+          </Fix>
+        </div>
+        <Fix f="banner" style="margin-top:12px">
+          <div class="fx-notice">Prices go up on 1 June. Start a plan before then to keep today’s price.</div>
+        </Fix>
+        <Fix f="hick" style="margin-top:14px">
+          <div class="fx-plans three">
+            {[
+              ['Basic', '$7', false],
+              ['Pro', '$15', true],
+              ['Business', '$39', false],
+            ].map(([n, p, pick]) => (
+              <div class={`fx-plan ${pick ? 'is-pick' : ''}`}>
+                {pick && <em>Most popular</em>}
+                <span>{n}</span>
+                <b>
+                  {p}
+                  <small>/mo</small>
+                </b>
+                <span class={`fx-btn tiny ${pick ? 'primary' : ''}`}>Choose</span>
+              </div>
+            ))}
+          </div>
+        </Fix>
+        <Fix f="memory" style="margin-top:14px">
+          <table class="fx-table">
+            <thead>
+              <tr>
+                <th />
+                <td>Basic</td>
+                <td>Pro</td>
+                <td>Business</td>
+              </tr>
+            </thead>
+            <tbody>
+              {[
+                ['Projects', '3', 'Unlimited', 'Unlimited'],
+                ['4K export', '–', '✓', '✓'],
+                ['Team seats', '1', '1', '10'],
+              ].map((r) => (
+                <tr>
+                  {r.map((c, i) => (i === 0 ? <th>{c}</th> : <td>{c}</td>))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </Fix>
+        <div class="fx-fine" style="margin-top:14px">
+          Questions? <u>Talk to our team</u>
+        </div>
       </div>
     ),
   },
@@ -457,13 +662,66 @@ export const LEVELS: Level[] = [
               [I.user, 'Profile'],
               [I.help, 'FAQ'],
             ].map(([d, n]) => (
-              <span>
+              <span class={n === 'Home' ? 'on' : ''}>
                 <Icon d={d} size={17} />
                 {n}
               </span>
             ))}
           </div>
         </Spot>
+      </div>
+    ),
+    Fixed: () => (
+      <div class="fx-phone">
+        <div class="fx-row spread">
+          <div>
+            <div class="fx-sub">Good evening</div>
+            <div class="fx-h">What’s cooking?</div>
+          </div>
+          <Fix f="jakob">
+            <span class="fx-icon-btn">
+              <Icon d={I.search} size={18} />
+            </span>
+          </Fix>
+        </div>
+        <Fix f="fitts" style="margin-top:14px">
+          <div class="fx-promo roomy">
+            <b>20% off your next box</b>
+            <div>Use code FRESH20 at checkout.</div>
+            <span class="fx-x big" aria-hidden="true">
+              ×
+            </span>
+          </div>
+        </Fix>
+        <Fix f="doherty" style="margin-top:14px">
+          <div class="fx-skel">
+            {[0, 1, 2].map(() => (
+              <div>
+                <i />
+                <span>
+                  <s />
+                  <s class="short" />
+                </span>
+              </div>
+            ))}
+          </div>
+        </Fix>
+        <Fix f="serial" style="margin-top:14px">
+          <div class="fx-tabs">
+            {[
+              [I.home, 'Home'],
+              [I.box, 'Orders'],
+              [I.gift, 'Gifts'],
+              [I.help, 'FAQ'],
+              [I.user, 'Profile'],
+            ].map(([d, n], i) => (
+              <span class={i === 0 ? 'on' : ''}>
+                <Icon d={d} size={17} />
+                {n}
+              </span>
+            ))}
+          </div>
+        </Fix>
       </div>
     ),
   },
@@ -549,6 +807,34 @@ export const LEVELS: Level[] = [
             <span class="fx-btn ghost block">Continue</span>
           </div>
         </Spot>
+      </div>
+    ),
+    Fixed: () => (
+      <div class="fx-phone">
+        <Fix f="gradient">
+          <div class="fx-row spread fx-sub">
+            <span>Step 2 of 4</span>
+            <span>Account created ✓</span>
+          </div>
+          <div class="fx-track">
+            <span style="width:25%" />
+          </div>
+        </Fix>
+        <div class="fx-h" style="margin-top:18px">
+          Welcome to Budgetly
+        </div>
+        <Fix f="load" style="margin-top:8px">
+          <p class="fx-lede">Connect your bank to see all your spending in one place.</p>
+        </Fix>
+        <Fix f="tour" style="margin-top:14px">
+          <Note>No tour up front. Each tip appears next to its feature the first time you use it.</Note>
+        </Fix>
+        <Fix f="similarity" style="margin-top:16px">
+          <span class="fx-btn primary block">Continue</span>
+          <div class="fx-sub fx-center" style="margin-top:10px">
+            <u>Skip for now</u>
+          </div>
+        </Fix>
       </div>
     ),
   },
@@ -646,6 +932,59 @@ export const LEVELS: Level[] = [
           <div class="fx-stars">★★★★★</div>
           <span class="fx-btn tiny">Rate us</span> <span class="fx-sub">Later</span>
         </Spot>
+      </div>
+    ),
+    Fixed: () => (
+      <div class="fx-screen wide fx-dash">
+        <div class="fx-row spread">
+          <div class="fx-h">Overview</div>
+          <span class="fx-sub">Last 7 days</span>
+        </div>
+        <Fix f="pareto" style="margin-top:12px">
+          <div class="fx-kpis big">
+            {[
+              ['Visitors', '48.2k', '▲ 6%', 'up'],
+              ['Sign-ups', '1,204', '▲ 12%', 'up'],
+              ['Revenue', '$18.4k', '▼ 3%', 'down'],
+            ].map(([k, v, d, dir]) => (
+              <div>
+                <span>{k}</span>
+                <b>{v}</b>
+                <em class={dir}>{d}</em>
+              </div>
+            ))}
+          </div>
+          <div class="fx-sub" style="margin-top:6px">
+            <u>See all 12 metrics</u>
+          </div>
+        </Fix>
+        <div class="fx-two" style="margin-top:12px;align-items:start">
+          <Fix f="pragnanz">
+            <div class="fx-sub" style="margin-bottom:6px">
+              Traffic by country
+            </div>
+            <Bars />
+          </Fix>
+          <Fix f="region">
+            <div class="fx-boxes">
+              <div>
+                <b>Top pages</b>
+                <span>/pricing 4.2k</span>
+                <span>/blog/launch 3.1k</span>
+                <span>/docs 2.7k</span>
+              </div>
+              <div>
+                <b>Top sources</b>
+                <span>google.com 5.4k</span>
+                <span>newsletter 2.2k</span>
+                <span>x.com 1.1k</span>
+              </div>
+            </div>
+          </Fix>
+        </div>
+        <Fix f="flow" style="margin-top:12px">
+          <Note>No pop-up on top of the work. Ask for a rating later, after a report has been shared.</Note>
+        </Fix>
       </div>
     ),
   },

@@ -124,7 +124,21 @@ export default function FindTheFlaws(props: { laws: Record<string, string> }) {
       <div class="fx-game">
         <div class="fx-stage">
           <SpotContext.Provider value={api}>
-            <level.Screen />
+            {over ? (
+              // Once the level is over, show the fixed screen next to the broken one.
+              <div class="fx-compare">
+                <figure>
+                  <figcaption>Before</figcaption>
+                  <level.Screen />
+                </figure>
+                <figure class="after">
+                  <figcaption>After</figcaption>
+                  <level.Fixed />
+                </figure>
+              </div>
+            ) : (
+              <level.Screen />
+            )}
           </SpotContext.Provider>
           {toast && (
             <div class={`fx-toast ${toast.kind}`} key={toast.n} aria-hidden="true">
@@ -200,7 +214,8 @@ export default function FindTheFlaws(props: { laws: Record<string, string> }) {
                   </b>{' '}
                   The rest are revealed above.
                 </>
-              )}
+              )}{' '}
+              Compare the broken screen with the fixed one. The numbers match the cards.
             </p>
           )}
 

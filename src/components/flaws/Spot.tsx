@@ -62,3 +62,22 @@ export function Spot(props: {
     </Tag>
   );
 }
+
+/**
+ * Marks the corrected part of a level's Fixed screen, numbered to match its flaw card.
+ * Not clickable: the fixed screen is for comparing, not playing.
+ */
+export function Fix(props: { f: string; style?: string; children: ComponentChildren }) {
+  const api = useContext(SpotContext)!;
+  const badge = api.badge(props.f);
+  return (
+    <div class="fx-fixed" style={props.style}>
+      {props.children}
+      {badge > 0 && (
+        <span class="fx-badge" aria-hidden="true">
+          {badge}
+        </span>
+      )}
+    </div>
+  );
+}

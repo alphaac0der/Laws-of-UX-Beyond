@@ -95,7 +95,8 @@ Each screen in `src/components/flaws/levels.tsx` has a `Screen` (a mock UI) and 
 Inside the screen, wrap each mistake in `<Spot f="flaw-id">`. Also wrap the elements that are fine in a plain `<Spot note="Why this is fine.">`. Clicking a fine element counts as a miss, which keeps the game honest: hovering over or tabbing to things doesn’t reveal which ones are the flaws.
 
 - Aim for four flaws per screen, each from a different law, and each one something a real team could plausibly ship.
-- Keep at least three fine elements per screen.
+- Keep at least three fine elements per screen, and check that nothing else on the screen is accidentally wrong. Players will rightly flag it.
+- Add a `Fixed` screen: the same UI with every flaw corrected. Wrap each corrected part in `<Fix f="flaw-id">` so it gets the same number as its card. For something you removed, use `<Note>` to say what went and why. The game shows Before and After side by side once the screen is finished.
 - Set `pattern` to the matching id in `patterns.ts` so the pattern page links to the screen.
 
 ### Writing style
