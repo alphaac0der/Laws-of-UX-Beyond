@@ -45,7 +45,7 @@ Every lesson follows the same structure, so readers always know where to look. U
 3. **Why it happens:** the psychology, plus one `.callout` with a common mistake or nuance.
 4. **Do vs Don’t:** one `<DoDont>` with two small mock screens built from the `.ui-*` classes.
 5. **Real-world examples:** three or four real products. Say *what* they do and *why* it works.
-6. **How to apply it:** a `<Checklist>` of four or five concrete actions. Write each item as a Markdown bullet that starts with a **bold action**. The design review checklist (`/checklist`) and the pattern pages read these bullets directly from the lesson.
+6. **How to apply it:** a `<Checklist>` of four or five concrete actions. Write each item as a Markdown bullet that starts with a **bold action**. The pattern pages read these bullets directly from the lesson.
 7. **Practice:** a `<Practice>` block with three `<Challenge>` questions (see below).
 
 The frontmatter also needs a `takeaway`, a `critique`, an `origin` (who, when, source and link) and `related` laws. These render automatically.
